@@ -1,0 +1,20 @@
+# Python / venv
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# MLX models
+mlx_models/
+
+# OS / editor
+.DS_Store
+.vscode/
+
+# Logs
+*.log
