@@ -53,7 +53,7 @@ Key changes we made (with context):
   - format adherence checks
 - Fixed `extract_feature_name()` regex to correctly detect `Feature: ...`.
 
-### 2) `experiments/configs/mistral_propensity.json`
+### 2) `experiments/configs/local_llm_propensity.json`
 Config now includes:
 - `mode: "feature_accretion"`
 - `prompt_template` for NLP pipeline feature deltas
@@ -132,12 +132,12 @@ python experiments/download_models.py
 
 2) Run one model:
 ```
-python experiments/run_propensity.py --config experiments/configs/mistral_propensity.json
+python experiments/run_propensity.py --config experiments/configs/local_llm_propensity.json
 ```
 
 3) Run all models:
 ```
-python experiments/run_all_models.py --config experiments/configs/mistral_propensity.json
+python experiments/run_all_models.py --config experiments/configs/local_llm_propensity.json
 ```
 
 4) Analyze:
@@ -150,7 +150,7 @@ jupyter lab experiments/analysis.ipynb
 ## If you continue this chat
 Ask the new LLM to:
 1) Verify `run_propensity.py` metrics and stop conditions
-2) Confirm config values in `mistral_propensity.json`
+2) Confirm config values in `local_llm_propensity.json`
 3) Regenerate analysis plots if output files are new
 4) Adjust novelty/repetition thresholds based on model behavior
 
@@ -223,7 +223,7 @@ if novelty_score < threshold for N steps -> stop
 if format missing -> stop
 ```
 
-### `experiments/configs/mistral_propensity.json` (config knobs)
+### `experiments/configs/local_llm_propensity.json` (config knobs)
 Key fields to tune:
 - `mode`: `"feature_accretion"`
 - `prompt_template`: delta‑only NLP pipeline prompt

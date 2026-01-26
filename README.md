@@ -32,7 +32,7 @@ experiments/
   download_models.py       # download MLX models from HF
   analysis.ipynb           # analysis + plots
   configs/
-    mistral_propensity.json
+    local_llm_propensity.json
   outputs/
     *.jsonl
 mlx_models/
@@ -62,7 +62,7 @@ Use `--copy` if you prefer to duplicate files instead of symlinks.
 
 ## Run a Single Model
 ```bash
-python experiments/run_propensity.py --config experiments/configs/mistral_propensity.json
+python experiments/run_propensity.py --config experiments/configs/local_llm_propensity.json
 ```
 
 Output is written to `experiments/outputs/<run_name>.jsonl`.
@@ -71,7 +71,7 @@ Output is written to `experiments/outputs/<run_name>.jsonl`.
 
 ## Run All Models (Same Grid)
 ```bash
-python experiments/run_all_models.py --config experiments/configs/mistral_propensity.json
+python experiments/run_all_models.py --config experiments/configs/local_llm_propensity.json
 ```
 Outputs are grouped by model name in the JSONL filename.
 
@@ -91,7 +91,7 @@ The notebook visualizes:
 ---
 
 ## Key Config Knobs
-Edit `experiments/configs/mistral_propensity.json` to tune behavior:
+Edit `experiments/configs/local_llm_propensity.json` to tune behavior:
 - `mode`: `"feature_accretion"` (recommended)
 - `prompt_template`: controls the task + format
 - `feature_categories`: soft pool for rotating additions

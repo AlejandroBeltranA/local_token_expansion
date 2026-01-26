@@ -22,7 +22,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Run propensity experiments across multiple models.")
     parser.add_argument(
         "--config",
-        default="experiments/configs/mistral_propensity.json",
+        default="experiments/configs/local_llm_propensity.json",
         help="Base config JSON",
     )
     parser.add_argument(
@@ -48,7 +48,7 @@ def main() -> None:
     total = len(models)
     for idx, model_path in enumerate(models, start=1):
         model_name = Path(model_path).name
-        run_name = f"{cfg.get('run_name', 'propensity')}__{model_name}"
+        run_name = f"{model_name}"
 
         temp_cfg = dict(cfg)
         temp_cfg["model_path"] = model_path

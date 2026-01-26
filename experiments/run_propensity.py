@@ -131,6 +131,34 @@ def format_adherence(text: str) -> dict:
         "format_ok": len(missing) == 0,
     }
 
+def levenshtein(a: str, b: str) -> int:
+    """Compute edit distance between two strings."""
+    if a == b:
+        return 0
+    if not a:
+        return len(b)
+    if not b:
+        return len(a)
+    prev = list(range(len(b) + 1))
+    for i, ca in enumerate(a, start=1):
+        curr = [i]
+        for j, cb in enumerate(b, start=1):
+            ins = curr[j - 1] + 1
+            delete = prev[j] + 1
+            sub = prev[j - 1] + (0 if ca == cb else 1)
+            curr.append(min(ins, delete, sub))
+        prev = curr
+    return prev[-1]
+
+
+def extract_memory_answer(text: str, tag: str) -> str | None:
+    """Extract the model's memory answer from a tagged line."""
+    pattern = rf"^{re.escape(tag)}\\s*:\\s*(.+)$"
+    match = re.search(pattern, text, re.MULTILINE | re.IGNORECASE)
+    if not match:
+        return None
+    return match.group(1).strip()
+
 
 def jaccard_similarity(a: list[tuple[str, ...]], b: list[tuple[str, ...]]) -> float:
     """Compare two responses by overlapping n‑grams (0 = different, 1 = identical)."""
@@ -228,7 +256,7 @@ def main() -> None:
     - Log metrics and stop on breakdown conditions
     """
     parser = argparse.ArgumentParser(description="Run rolling-chat propensity experiments with MLX models.")
-    parser.add_argument("--config", default="experiments/configs/mistral_propensity.json", help="Path to config JSON")
+    parser.add_argument("--config", default="experiments/configs/local_llm_propensity.json", help="Path to config JSON")
     args = parser.parse_args()
 
     config_path = Path(args.config)
@@ -264,6 +292,17 @@ def main() -> None:
     novelty_threshold = float(cfg.get("novelty_threshold", 0.0))
     novelty_consecutive = int(cfg.get("novelty_consecutive", 0))
     format_adherence_required = bool(cfg.get("format_adherence_required", False))
+    memory_check = bool(cfg.get("memory_check", False))
+    memory_tag = cfg.get("memory_tag", "MemoryCheck")
+    memory_question = cfg.get(
+        "memory_question",
+        "MemoryCheck: What language were we coding in immediately before this step? Reply with a single language name.",
+    )
+    memory_probe_min_steps = int(cfg.get("memory_probe_min_steps", 1))
+    memory_probe_max_steps = int(cfg.get("memory_probe_max_steps", 5))
+    latency_ratio_threshold = float(cfg.get("latency_ratio_threshold", 0.0))
+    latency_window = int(cfg.get("latency_window", 3))
+    latency_consecutive = int(cfg.get("latency_consecutive", 0))
 
     prompt_template = cfg["prompt_template"]
     repeat_prompt_template = cfg.get("repeat_prompt_template", "")
@@ -309,6 +348,10 @@ def main() -> None:
                 feature_ledger = []
                 seen_tokens = set()
                 novelty_streak = 0
+                last_language = None
+                latency_streak = 0
+                duration_history = []
+                next_memory_probe = rng.randint(memory_probe_min_steps, memory_probe_max_steps)
                 language_pool = languages[:]
                 rng.shuffle(language_pool)
                 language_cursor = 0
@@ -330,12 +373,7 @@ def main() -> None:
 
                     prompt_type = "base"
                     if mode == "feature_accretion":
-                        spec_summary = summarize_features(feature_ledger, spec_summary_max_chars)
-                        prompt = prompt_template.format(
-                            feature_ledger=", ".join(feature_ledger) if feature_ledger else "None",
-                            spec_summary=spec_summary if spec_summary else "None",
-                            feature_categories=", ".join(feature_categories) if feature_categories else "Any",
-                        )
+                        prompt = prompt_template
                         prompt_type = "feature_delta"
                     else:
                         if repeat_prompt_template and language in last_response_by_language:
@@ -350,6 +388,11 @@ def main() -> None:
                         else:
                             prompt = prompt_template.format(language=language)
                     prompt = normalize_prompt(prompt)
+                    memory_probe_used = False
+                    if memory_check and step == next_memory_probe:
+                        prompt = f"{prompt}\n\n{memory_question}"
+                        memory_probe_used = True
+                        next_memory_probe = step + rng.randint(memory_probe_min_steps, memory_probe_max_steps)
 
                     conversation.append({"role": "user", "content": prompt})
                     prompt_text = build_prompt(tokenizer, conversation)
@@ -385,6 +428,7 @@ def main() -> None:
                         conversation.pop()
                         break
                     duration = time.time() - start
+                    duration_history.append(duration)
 
                     if isinstance(response, tuple):
                         response = response[0]
@@ -416,6 +460,16 @@ def main() -> None:
                     format_status = format_adherence(response) if mode == "feature_accretion" else {"format_ok": True, "format_missing": []}
                     if feature_name:
                         feature_ledger.append(feature_name)
+
+                    memory_expected = last_language
+                    memory_answer = extract_memory_answer(response, memory_tag) if memory_check else None
+                    memory_match = None
+                    memory_distance = None
+                    if memory_check and memory_expected and memory_probe_used:
+                        answer_norm = (memory_answer or "").strip().lower()
+                        expected_norm = memory_expected.strip().lower()
+                        memory_match = 1 if answer_norm == expected_norm else 0
+                        memory_distance = levenshtein(answer_norm, expected_norm) if answer_norm else None
                     if repetition_rate_threshold > 0 and rep_rate >= repetition_rate_threshold:
                         repetition_streak += 1
                     else:
@@ -469,6 +523,11 @@ def main() -> None:
                         "feature_ledger_count": len(feature_ledger),
                         "format_ok": format_status["format_ok"],
                         "format_missing": format_status["format_missing"],
+                        "memory_expected": memory_expected,
+                        "memory_answer": memory_answer,
+                        "memory_match": memory_match,
+                        "memory_distance": memory_distance,
+                        "memory_probe_used": memory_probe_used,
                         "breakdown_score": round(breakdown_score, 2),
                         "breakdown_flag": breakdown_flag,
                     }
@@ -497,6 +556,19 @@ def main() -> None:
                     if format_adherence_required and not format_status["format_ok"]:
                         stop_reason = "format_adherence_failed"
                         break
+
+                    if latency_ratio_threshold > 0 and len(duration_history) > 1:
+                        recent = duration_history[-(latency_window + 1):-1] if latency_window > 0 else duration_history[:-1]
+                        baseline = sum(recent) / len(recent) if recent else None
+                        if baseline and duration >= latency_ratio_threshold * baseline:
+                            latency_streak += 1
+                        else:
+                            latency_streak = 0
+                        if latency_consecutive and latency_streak >= latency_consecutive:
+                            stop_reason = "latency_threshold_reached"
+                            break
+
+                    last_language = language
 
                 run_duration = time.time() - run_start
                 summary = {
