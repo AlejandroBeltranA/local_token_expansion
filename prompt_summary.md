@@ -287,7 +287,7 @@ Use `--copy` if you don’t want symlinks.
 - **Similarity to previous rises** → responses are close to last step.
 - **Hit max tokens** → response is being cut off; not necessarily “breaking,” but output quality is constrained.
 - **Format fails** → the model can’t reliably follow simple structure anymore.
-These together define the “usefulness → repetition cliff.”
+These together define the **response degradation threshold**.
 
 ---
 

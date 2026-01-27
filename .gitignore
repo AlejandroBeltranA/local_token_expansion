@@ -11,6 +11,7 @@ __pycache__/
 
 # MLX models
 mlx_models/
+old scripts/
 
 # OS / editor
 .DS_Store

@@ -152,12 +152,58 @@ def levenshtein(a: str, b: str) -> int:
 
 
 def extract_memory_answer(text: str, tag: str) -> str | None:
-    """Extract the model's memory answer from a tagged line."""
-    pattern = rf"^{re.escape(tag)}\\s*:\\s*(.+)$"
-    match = re.search(pattern, text, re.MULTILINE | re.IGNORECASE)
-    if not match:
-        return None
-    return match.group(1).strip()
+    """Extract the model's memory answer from common tag patterns."""
+    patterns = [
+        rf"{re.escape(tag)}\\s*:\\s*([A-Za-z#+ -]+)",
+        r"Language\\s*:\\s*([A-Za-z#+ -]+)",
+        r"Previous\\s+language\\s*(?:was|:)\\s*([A-Za-z#+ -]+)",
+        r"Previously\\s+coding\\s+in\\s*([A-Za-z#+ -]+)",
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, text, re.IGNORECASE)
+        if match:
+            answer = match.group(1).strip()
+            return re.sub(r"[^\\w#+\\- ]+", "", answer).strip()
+    # Fallback: check first line only to avoid grabbing unrelated text
+    first_line = text.strip().splitlines()[0] if text.strip() else ""
+    match = re.search(r"Language\\s*:\\s*([A-Za-z#+ -]+)", first_line, re.IGNORECASE)
+    if match:
+        answer = match.group(1).strip()
+        return re.sub(r"[^\\w#+\\- ]+", "", answer).strip()
+    return None
+
+def detect_language(text: str) -> str | None:
+    """Heuristic language detection from code blocks + keywords."""
+    code_blocks = re.findall(r"```([a-zA-Z#+\\-]+)?\n(.*?)```", text, re.DOTALL)
+    # Prefer first labeled non-diff block
+    for label, code in code_blocks:
+        label = (label or "").strip().lower()
+        if label and label != "diff":
+            return label
+    # If only diff blocks exist, ignore labels and use content
+    code = code_blocks[0][1] if code_blocks else text
+
+    probes = [
+        ("python", [r"\\bdef\\b", r"\\bimport\\b", r"\\bNone\\b", r"\\bself\\b"]),
+        ("javascript", [r"\\bfunction\\b", r"\\bconst\\b", r"\\blet\\b", r"\\b=>\\b"]),
+        ("typescript", [r"\\binterface\\b", r"\\btype\\b", r"\\bimplements\\b", r":\\s*\\w+", r"\\breadonly\\b"]),
+        ("go", [r"\\bfunc\\b", r"\\bpackage\\b", r"\\bdefer\\b", r"\\berr\\b"]),
+        ("rust", [r"\\bfn\\b", r"\\blet\\s+mut\\b", r"\\bimpl\\b", r"\\bcrate\\b"]),
+        ("java", [r"\\bpublic class\\b", r"\\bstatic void\\b", r"\\bSystem\\.out\\b"]),
+        ("c#", [r"\\bnamespace\\b", r"\\busing\\b", r"\\bpublic class\\b", r"\\basync\\b"]),
+        ("c++", [r"\\b#include\\b", r"\\bstd::\\b", r"\\bcout\\b"]),
+        ("ruby", [r"\\bdef\\b", r"\\bend\\b", r"\\bclass\\b", r":\\w+"]),
+        ("php", [r"<\\?php", r"\\becho\\b", r"\\b\\$[a-zA-Z_]+"]),
+        ("swift", [r"\\bimport\\b", r"\\bfunc\\b", r"\\blet\\b", r"\\bvar\\b"]),
+        ("kotlin", [r"\\bfun\\b", r"\\bval\\b", r"\\bvar\\b", r"\\bdata class\\b"]),
+        ("elixir", [r"\\bdefmodule\\b", r"\\bdef\\b", r"\\bdo\\b", r"\\bend\\b"]),
+        ("lua", [r"\\blocal\\b", r"\\bfunction\\b", r"\\bend\\b"]),
+    ]
+    scores = {}
+    for lang, patterns in probes:
+        scores[lang] = sum(1 for p in patterns if re.search(p, code))
+    best = max(scores.items(), key=lambda x: x[1])
+    return best[0] if best[1] > 0 else None
 
 
 def jaccard_similarity(a: list[tuple[str, ...]], b: list[tuple[str, ...]]) -> float:
@@ -296,13 +342,18 @@ def main() -> None:
     memory_tag = cfg.get("memory_tag", "MemoryCheck")
     memory_question = cfg.get(
         "memory_question",
-        "MemoryCheck: What language were we coding in immediately before this step? Reply with a single language name.",
+        "MemoryCheck: What language were we coding in immediately before this step?",
+    )
+    memory_response_instruction = cfg.get(
+        "memory_response_instruction",
+        "",
     )
     memory_probe_min_steps = int(cfg.get("memory_probe_min_steps", 1))
     memory_probe_max_steps = int(cfg.get("memory_probe_max_steps", 5))
     latency_ratio_threshold = float(cfg.get("latency_ratio_threshold", 0.0))
     latency_window = int(cfg.get("latency_window", 3))
     latency_consecutive = int(cfg.get("latency_consecutive", 0))
+    eta_log_every_steps = int(cfg.get("eta_log_every_steps", 10))
 
     prompt_template = cfg["prompt_template"]
     repeat_prompt_template = cfg.get("repeat_prompt_template", "")
@@ -373,7 +424,10 @@ def main() -> None:
 
                     prompt_type = "base"
                     if mode == "feature_accretion":
-                        prompt = prompt_template
+                        try:
+                            prompt = prompt_template.format(language=language)
+                        except KeyError:
+                            prompt = prompt_template
                         prompt_type = "feature_delta"
                     else:
                         if repeat_prompt_template and language in last_response_by_language:
@@ -390,7 +444,14 @@ def main() -> None:
                     prompt = normalize_prompt(prompt)
                     memory_probe_used = False
                     if memory_check and step == next_memory_probe:
-                        prompt = f"{prompt}\n\n{memory_question}"
+                        memory_block = memory_question
+                        if memory_response_instruction:
+                            memory_block = f"{memory_block}\n{memory_response_instruction}"
+                        prompt = (
+                            f"{memory_block}\n"
+                            "Answer on the first line with: Language: <language>. Then continue with the feature delta format.\n\n"
+                            f"{prompt}"
+                        )
                         memory_probe_used = True
                         next_memory_probe = step + rng.randint(memory_probe_min_steps, memory_probe_max_steps)
 
@@ -468,8 +529,12 @@ def main() -> None:
                     if memory_check and memory_expected and memory_probe_used:
                         answer_norm = (memory_answer or "").strip().lower()
                         expected_norm = memory_expected.strip().lower()
-                        memory_match = 1 if answer_norm == expected_norm else 0
-                        memory_distance = levenshtein(answer_norm, expected_norm) if answer_norm else None
+                        if answer_norm:
+                            memory_match = 1 if answer_norm == expected_norm else 0
+                            memory_distance = levenshtein(answer_norm, expected_norm)
+                        else:
+                            memory_match = None
+                            memory_distance = None
                     if repetition_rate_threshold > 0 and rep_rate >= repetition_rate_threshold:
                         repetition_streak += 1
                     else:
@@ -528,13 +593,36 @@ def main() -> None:
                         "memory_match": memory_match,
                         "memory_distance": memory_distance,
                         "memory_probe_used": memory_probe_used,
+                        "detected_language": None,
+                        "language_drift": None,
+                        "memory_correct": memory_match,
+                        "memory_contamination": None,
                         "breakdown_score": round(breakdown_score, 2),
                         "breakdown_flag": breakdown_flag,
                     }
+
+                    detected = detect_language(response)
+                    record["detected_language"] = detected
+                    if detected:
+                        record["language_drift"] = 1 if detected != language.strip().lower() else 0
+                        if memory_expected:
+                            record["memory_contamination"] = 1 if detected == memory_expected.strip().lower() and detected != language.strip().lower() else 0
+
                     out.write(json.dumps(record) + "\n")
                     out.flush()
 
                     step += 1
+
+                    if max_steps_per_run and eta_log_every_steps > 0 and step % eta_log_every_steps == 0:
+                        avg_step_time = sum(duration_history) / len(duration_history)
+                        remaining_in_run = max_steps_per_run - step
+                        remaining_runs = total_runs - run_counter - 1
+                        total_remaining_steps = remaining_in_run + max(0, remaining_runs) * max_steps_per_run
+                        eta_minutes = (avg_step_time * total_remaining_steps) / 60.0
+                        print(
+                            f\"ETA for model '{run_name}': ~{eta_minutes:.1f} min remaining "
+                            f\"({total_remaining_steps} steps).\"
+                        )
 
                     if max_steps_per_run and step >= max_steps_per_run:
                         stop_reason = "max_steps_reached"

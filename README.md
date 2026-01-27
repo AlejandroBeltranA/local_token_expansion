@@ -24,6 +24,46 @@ each step adds exactly **one new feature** and outputs only the **delta**.
 
 ---
 
+## What We’re Testing
+We’re testing **when a local LLM stops being useful under sustained, repetitive pressure**.  
+Specifically:
+- Can it keep adding **new, meaningful features** over many steps?
+- Does it **remember recent context** when probed (short‑term memory)?
+- At what point does it **repeat itself**, **stall**, or **drift** from the required format?
+- How quickly does **latency balloon** as the run continues?
+
+This is not about “breaking” the model in a security sense — it’s about **detecting the usefulness → repetition cliff**.
+
+---
+
+## What “Degradation” Looks Like (Evidence)
+We treat the following as signals that the model is entering a **response degradation phase**:
+
+1) **Novelty collapse**
+   - `novelty_score` stays below threshold for multiple steps.
+
+2) **Repetition / similarity spikes**
+   - `repetition_rate` climbs and `similarity_to_prev` stays high.
+
+3) **Format drift**
+   - Missing required sections (Feature/Motivation/Patch/Test).
+   - `format_ok` falls consistently.
+
+4) **Memory failure**
+   - Incorrect answers to memory probes (wrong language).
+   - `memory_match` drops and `memory_distance` rises.
+
+5) **Stalling / refusal**
+   - `stall_flag` or `refusal_flag` becomes common.
+
+6) **Latency blow‑up**
+   - Response time jumps far above baseline for multiple steps
+   - Stops when `latency_threshold_reached` is triggered.
+
+When multiple signals align, we consider that a **true degradation event**.
+
+---
+
 ## Project Layout
 ```
 experiments/
