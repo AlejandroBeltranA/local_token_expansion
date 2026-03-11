@@ -1,0 +1,22 @@
+run_name: "example_mock"
+backend: "mock"
+
+models:
+  - name: "mock-model"
+    path: "unused"
+    revision: null
+
+suites:
+  - "suites/core_conciseness.yaml"
+  - "suites/structured_extraction.yaml"
+
+generation:
+  temperature: 0.2
+  top_p: 0.95
+  seed: 0
+  max_tokens: 128
+
+output:
+  results_dir: "examples/results"
+  reports_dir: "examples/reports"
+

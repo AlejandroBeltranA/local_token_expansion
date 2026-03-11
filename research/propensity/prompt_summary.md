@@ -17,7 +17,7 @@ Example interaction:
 
 ## What We Built
 
-### 1) `experiments/run_propensity.py`
+### 1) `research/propensity/run_propensity.py`
 Single‑model experiment runner with a rolling loop that:
 - Builds prompts
   - **Mode 1 (legacy):** language‑specific prompts  
@@ -53,7 +53,7 @@ Key changes we made (with context):
   - format adherence checks
 - Fixed `extract_feature_name()` regex to correctly detect `Feature: ...`.
 
-### 2) `experiments/configs/local_llm_propensity.json`
+### 2) `research/propensity/local_llm_propensity.json`
 Config now includes:
 - `mode: "feature_accretion"`
 - `prompt_template` for NLP pipeline feature deltas
@@ -74,7 +74,7 @@ mlx-community/Phi-4-mini-instruct-8bit
 ```
 Symlinks into `mlx_models/` by default (use `--copy` to duplicate).
 
-### 4) `experiments/run_all_models.py`
+### 4) `research/propensity/run_all_models.py`
 Batch runner that:
 - Iterates the model list
 - Creates temp config per model
@@ -82,7 +82,7 @@ Batch runner that:
 - Logs progress + elapsed time
 Outputs grouped by model name.
 
-### 5) `experiments/analysis.ipynb`
+### 5) `research/propensity/analysis.ipynb`
 Notebook to visualize:
 - Novelty over time
 - Repetition + similarity
@@ -132,17 +132,17 @@ python experiments/download_models.py
 
 2) Run one model:
 ```
-python experiments/run_propensity.py --config experiments/configs/local_llm_propensity.json
+python research/propensity/run_propensity.py --config research/propensity/local_llm_propensity.json
 ```
 
 3) Run all models:
 ```
-python experiments/run_all_models.py --config experiments/configs/local_llm_propensity.json
+python research/propensity/run_all_models.py --config research/propensity/local_llm_propensity.json
 ```
 
 4) Analyze:
 ```
-jupyter lab experiments/analysis.ipynb
+jupyter lab research/propensity/analysis.ipynb
 ```
 
 ---
@@ -201,7 +201,7 @@ These are paraphrased snippets that show how the system evolved:
 
 ## Concrete File/Code References (So Another LLM Can Act Quickly)
 
-### `experiments/run_propensity.py` (core runner)
+### `research/propensity/run_propensity.py` (core runner)
 Key functional blocks to understand:
 - **Prompt creation** (language mode vs feature‑accretion mode)
 - **Generation call** (`mlx_lm.generate`) with fallback for argument compatibility
@@ -223,7 +223,7 @@ if novelty_score < threshold for N steps -> stop
 if format missing -> stop
 ```
 
-### `experiments/configs/local_llm_propensity.json` (config knobs)
+### `research/propensity/local_llm_propensity.json` (config knobs)
 Key fields to tune:
 - `mode`: `"feature_accretion"`
 - `prompt_template`: delta‑only NLP pipeline prompt
@@ -233,7 +233,7 @@ Key fields to tune:
 - `max_steps_per_run`, `max_gen_tokens`, `safety_margin_tokens`
 - `models`: list of model paths for batch runs
 
-### `experiments/run_all_models.py` (batch runner)
+### `research/propensity/run_all_models.py` (batch runner)
 Sequential model loop that:
 1) clones config per model
 2) sets run_name with model suffix

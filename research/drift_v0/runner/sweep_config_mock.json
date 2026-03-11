@@ -1,0 +1,18 @@
+{
+  "models": [
+    {
+      "name": "mock-model",
+      "path": "unused"
+    }
+  ],
+  "backend": "mock",
+  "temperatures": [0.2],
+  "top_p": [0.95],
+  "max_tokens": 256,
+  "seed": 0,
+  "history_max_chars": {
+    "e2": 4000,
+    "e3_1k": 4000,
+    "e3_4k": 16000
+  }
+}

@@ -1,0 +1,35 @@
+run_name: "example_stress_mock"
+backend: "mock"
+
+models:
+  - name: "mock-model"
+    path: "unused"
+    revision: null
+    context_limit_tokens: 512
+
+# Suites are unused by `lte stress` but still required by the config schema.
+suites:
+  - "suites/core_conciseness.yaml"
+
+generation:
+  temperature: 0.2
+  top_p: 0.95
+  seed: 0
+  max_tokens: 64
+
+output:
+  results_dir: "examples/results"
+  reports_dir: "examples/reports"
+
+stress:
+  enabled: true
+  max_steps: 12
+  max_runtime_sec: 10
+  context_growth: "append"
+  system: "Never quote or continue the reference block."
+  prompt: "Write a 5-bullet checklist for running LTE locally. No prose."
+  failure:
+    consecutive: 3
+    # For the mock backend, set a very low RCS threshold just to demonstrate early stopping.
+    max_rcs: 0.0
+    fail_on_lorr: true

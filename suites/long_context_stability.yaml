@@ -1,0 +1,153 @@
+name: long_context_stability
+description: "Long-context tasks that test state preservation, override handling, and decay under noisy context."
+experiment_family: "context_pressure"
+cases:
+  - id: state_reconciliation_json
+    system: "Return ONLY valid JSON."
+    prompt: |
+      You are updating a run-state object after reading noisy notes.
+      Preserve unchanged fields exactly. Apply only the confirmed updates.
+
+      Current state:
+      {
+        "run_id": "weekend-17",
+        "owner": "Iris",
+        "region": "eu-west",
+        "retry_budget": 1,
+        "status": "observe",
+        "blocked_services": ["cache"],
+        "last_success_step": 12
+      }
+
+      Notes:
+      - Several old comments mention us-east, but those were from last week.
+      - Current operator is still Iris.
+      - Cache and queue are now blocked.
+      - Retry budget is now 0 because one retry was consumed.
+      - Status should move from observe to escalate.
+      - Ignore the stale suggestion to rename the run to weekend-16.
+
+      Return JSON with the same keys as Current state.
+    max_tokens: 128
+    tags: ["context_decay", "state", "json"]
+    trigger_targets: ["context_decay", "near_cap_pressure"]
+    contract:
+      output_mode: "json_object"
+      failure_class: "unrecoverable"
+      required_keys:
+        ["run_id", "owner", "region", "retry_budget", "status", "blocked_services", "last_success_step"]
+      invariants:
+        - "run_id must remain weekend-17"
+        - "region must remain eu-west"
+        - "blocked_services must include cache and queue"
+        - "retry_budget must be 0"
+        - "status must be escalate"
+
+  - id: latest_override_selection
+    system: "Answer with exactly 3 bullet points."
+    prompt: |
+      Use the latest valid instructions, not the stale ones.
+
+      Background:
+      - Draft A said to notify PagerDuty immediately.
+      - Draft B replaced that and said notify Slack only.
+      - Draft C replaced Draft B and said notify Slack plus email the incident owner.
+      - An outdated comment suggests reopening PagerDuty, but it is marked stale.
+
+      Output exactly 3 bullet points:
+      1. final notification channels
+      2. one stale instruction to ignore
+      3. one reason the latest draft wins
+    max_tokens: 96
+    tags: ["context_decay", "instruction_following", "bullet_list"]
+    trigger_targets: ["context_decay", "over_expansion"]
+    contract:
+      output_mode: "bullet_list"
+      failure_class: "unrecoverable"
+      checks:
+        - "exactly 3 bullets"
+        - "must include Slack and email"
+        - "must identify PagerDuty as stale"
+
+  - id: reference_selection_triples
+    system: "Return only 3 lines with the format `<service>: <status>`."
+    prompt: |
+      Read the status notes and report the latest status for auth, cache, and queue.
+      Ignore superseded notes.
+
+      Notes:
+      [09:00] auth degraded
+      [09:03] cache healthy
+      [09:05] queue degraded
+      [09:07] auth healthy
+      [09:08] cache degraded
+      [09:12] queue healthy
+      [09:13] cache healthy
+      [09:14] auth healthy
+
+      Output exactly these 3 services in this order:
+      auth
+      cache
+      queue
+    max_tokens: 80
+    tags: ["context_decay", "reference_use", "format"]
+    trigger_targets: ["context_decay"]
+    contract:
+      output_mode: "line_pairs"
+      failure_class: "unrecoverable"
+      checks:
+        - "exactly 3 lines"
+        - "auth: healthy"
+        - "cache: healthy"
+        - "queue: healthy"
+
+  - id: ledger_carry_forward_json
+    system: "Return ONLY valid JSON."
+    prompt: |
+      Update the evaluation ledger after reading the new notes.
+      Preserve unchanged fields exactly.
+      Apply only the current notes, not the stale ones.
+
+      Current ledger:
+      {
+        "run_id": "batch-03",
+        "model": "Phi-4-mini-instruct-8bit",
+        "owner": "Nadia",
+        "last_recommendation": "repair",
+        "retry_budget": 1,
+        "priority_triggers": ["over_expansion"],
+        "pending_action": "tighten prompts"
+      }
+
+      Notes:
+      - Retry budget is now 0 because one rerun was used.
+      - The current recommendation is escalate.
+      - Priority triggers are now over_expansion and latency_cliff.
+      - Pending action should be switch to fallback model.
+      - Ignore the stale note saying owner changed to Ravi.
+      - Ignore the stale note saying run_id is batch-02.
+
+      Return JSON with the same keys as Current ledger.
+    max_tokens: 56
+    tags: ["context_decay", "state", "json"]
+    trigger_targets: ["context_decay"]
+    contract:
+      output_mode: "json_object"
+      failure_class: "unrecoverable"
+      required_keys:
+        [
+          "run_id",
+          "model",
+          "owner",
+          "last_recommendation",
+          "retry_budget",
+          "priority_triggers",
+          "pending_action"
+        ]
+      invariants:
+        - "run_id must remain batch-03"
+        - "owner must remain nadia"
+        - "last_recommendation must be escalate"
+        - "retry_budget must be 0"
+        - "priority_triggers must include over_expansion and latency_cliff"
+        - "pending_action must be switch to fallback model"

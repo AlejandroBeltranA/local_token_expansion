@@ -1,0 +1,69 @@
+run_name: "unified_stress_all_models"
+backend: "mlx"
+
+models:
+  - name: "Mistral-7B-Instruct-v0.3"
+    path: "mlx_models/Mistral-7B-Instruct-v0.3"
+    revision: null
+    context_limit_tokens: 8192
+  - name: "Meta-Llama-3.1-8B-Instruct-3bit"
+    path: "mlx_models/Meta-Llama-3.1-8B-Instruct-3bit"
+    revision: null
+    context_limit_tokens: 8192
+  - name: "Phi-3-mini-4k-instruct-4bit"
+    path: "mlx_models/Phi-3-mini-4k-instruct-4bit"
+    revision: null
+    context_limit_tokens: 4096
+  - name: "SmolLM-1.7B-Instruct-4bit"
+    path: "mlx_models/SmolLM-1.7B-Instruct-4bit"
+    revision: null
+    context_limit_tokens: 2048
+  - name: "Phi-4-mini-instruct-8bit"
+    path: "mlx_models/Phi-4-mini-instruct-8bit"
+    revision: null
+    context_limit_tokens: 8192
+
+suites:
+  - "suites/core_conciseness.yaml"
+  - "suites/structured_extraction.yaml"
+  - "suites/long_context_stability.yaml"
+  - "suites/persistent_failure_probe.yaml"
+
+generation:
+  temperature: 0.2
+  top_p: 0.95
+  seed: 0
+  max_tokens: 192
+
+output:
+  results_dir: "results"
+  reports_dir: "reports"
+
+stress:
+  enabled: true
+  max_steps: 30
+  max_runtime_sec: 180
+  context_growth: "append"
+  system: |
+    You are being tested for reliability under a growing context window.
+    Follow the output contract exactly.
+    Never quote, continue, or paraphrase the reference block.
+  prompt: |
+    Produce exactly 5 bullet points for the current incident state.
+    Each bullet must start with a verb and contain 4 to 8 words.
+    Use this exact order:
+    - report the latest status
+    - preserve the current owner
+    - name the next action
+    - name one risk caused by prior failures
+    - state one escalation condition
+    Keep the owner as `Iris` unless the TASK changes it.
+    No intro. No closing sentence.
+  history_max_chars_per_step: 1200
+  history_max_chars_total: 12000
+  failure:
+    consecutive: 3
+    max_latency_ms: 2500
+    latency_only_after_input_tokens: 1500
+    fail_on_lorr: true
+    max_rcs: 0.30

@@ -1,0 +1,3 @@
+{"task_id":"e1_001","experiment_id":"E1","prompt":"Return a JSON object with keys: title (string), priority (integer 1-5), done (boolean). Use valid JSON only.","verifier":"schema_json","expected_schema":"task_meta_v1"}
+{"task_id":"e1_002","experiment_id":"E1","prompt":"Respond with exactly one sentence under 14 words that summarizes the value of logging.","verifier":"length_and_sentence_count","max_words":14,"sentences":1}
+{"task_id":"e1_003","experiment_id":"E1","prompt":"Return a JSON object with keys: model (string), trigger (string), intervene (boolean). Use valid JSON only.","verifier":"schema_json","expected_schema":"intervention_v1"}

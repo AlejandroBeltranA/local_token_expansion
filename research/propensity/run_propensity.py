@@ -302,7 +302,7 @@ def main() -> None:
     - Log metrics and stop on breakdown conditions
     """
     parser = argparse.ArgumentParser(description="Run rolling-chat propensity experiments with MLX models.")
-    parser.add_argument("--config", default="experiments/configs/local_llm_propensity.json", help="Path to config JSON")
+    parser.add_argument("--config", default="research/propensity/local_llm_propensity.json", help="Path to config JSON")
     args = parser.parse_args()
 
     config_path = Path(args.config)
@@ -620,8 +620,8 @@ def main() -> None:
                         total_remaining_steps = remaining_in_run + max(0, remaining_runs) * max_steps_per_run
                         eta_minutes = (avg_step_time * total_remaining_steps) / 60.0
                         print(
-                            f\"ETA for model '{run_name}': ~{eta_minutes:.1f} min remaining "
-                            f\"({total_remaining_steps} steps).\"
+                            f"ETA for model '{run_name}': ~{eta_minutes:.1f} min remaining "
+                            f"({total_remaining_steps} steps)."
                         )
 
                     if max_steps_per_run and step >= max_steps_per_run:

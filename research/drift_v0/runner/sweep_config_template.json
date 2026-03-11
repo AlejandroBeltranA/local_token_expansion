@@ -1,0 +1,18 @@
+{
+  "models": [
+    {
+      "name": "Mistral-7B-Instruct-v0.3",
+      "path": "mlx_models/Mistral-7B-Instruct-v0.3"
+    }
+  ],
+  "backend": "mlx",
+  "temperatures": [0.0, 0.2, 0.6],
+  "top_p": [0.8, 0.95, 1.0],
+  "max_tokens": 256,
+  "seed": 0,
+  "history_max_chars": {
+    "e2": 4000,
+    "e3_1k": 4000,
+    "e3_4k": 16000
+  }
+}

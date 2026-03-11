@@ -13,9 +13,16 @@ __pycache__/
 mlx_models/
 old scripts/
 
+# LTE outputs (generated)
+/results/
+/reports/
+/artifacts/
+
 # OS / editor
 .DS_Store
 .vscode/
+.claude/
+.codex/
 
 # Logs
 *.log

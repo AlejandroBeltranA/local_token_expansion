@@ -1,0 +1,44 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='980' height='460' viewBox='0 0 980 460'>
+<rect width='100%' height='100%' fill='white'/>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#222;} .axis{stroke:#333;stroke-width:1;} .grid{stroke:#ddd;stroke-width:1;} </style>
+<text x='490' y='22' text-anchor='middle' font-size='16' font-weight='700'>Failure Taxonomy Composition (E2/E3 Primary Turns)</text>
+<line x1='90' y1='380.00' x2='950' y2='380.00' class='grid'/>
+<text x='80' y='384.00' text-anchor='end' font-size='12'>0%</text>
+<line x1='90' y1='293.75' x2='950' y2='293.75' class='grid'/>
+<text x='80' y='297.75' text-anchor='end' font-size='12'>25%</text>
+<line x1='90' y1='207.50' x2='950' y2='207.50' class='grid'/>
+<text x='80' y='211.50' text-anchor='end' font-size='12'>50%</text>
+<line x1='90' y1='121.25' x2='950' y2='121.25' class='grid'/>
+<text x='80' y='125.25' text-anchor='end' font-size='12'>75%</text>
+<line x1='90' y1='35.00' x2='950' y2='35.00' class='grid'/>
+<text x='80' y='39.00' text-anchor='end' font-size='12'>100%</text>
+<line x1='90' y1='380' x2='950' y2='380' class='axis'/>
+<line x1='90' y1='35' x2='90' y2='380' class='axis'/>
+<rect x='153.70' y='312.92' width='95.56' height='67.08' fill='#ffbf00'/>
+<rect x='153.70' y='35.00' width='95.56' height='277.92' fill='#9467bd'/>
+<rect x='153.70' y='35.00' width='95.56' height='0.00' fill='#17becf'/>
+<text x='201.48' y='415' text-anchor='middle' font-size='11'>meta-llama-3-1-8b-instruct-3bit</text>
+<rect x='312.96' y='113.80' width='95.56' height='266.20' fill='#ffbf00'/>
+<rect x='312.96' y='35.00' width='95.56' height='78.80' fill='#9467bd'/>
+<rect x='312.96' y='35.00' width='95.56' height='0.00' fill='#17becf'/>
+<text x='360.74' y='415' text-anchor='middle' font-size='11'>mistral-7b-instruct-v0-3</text>
+<rect x='472.22' y='104.00' width='95.56' height='276.00' fill='#ffbf00'/>
+<rect x='472.22' y='35.00' width='95.56' height='69.00' fill='#9467bd'/>
+<rect x='472.22' y='35.00' width='95.56' height='0.00' fill='#17becf'/>
+<text x='520.00' y='415' text-anchor='middle' font-size='11'>phi-3-mini-4k-instruct-4bit</text>
+<rect x='631.48' y='121.25' width='95.56' height='258.75' fill='#ffbf00'/>
+<rect x='631.48' y='35.00' width='95.56' height='86.25' fill='#9467bd'/>
+<rect x='631.48' y='35.00' width='95.56' height='0.00' fill='#17becf'/>
+<text x='679.26' y='415' text-anchor='middle' font-size='11'>phi-4-mini-instruct-8bit</text>
+<rect x='790.74' y='83.42' width='95.56' height='296.58' fill='#ffbf00'/>
+<rect x='790.74' y='39.04' width='95.56' height='44.39' fill='#9467bd'/>
+<rect x='790.74' y='35.00' width='95.56' height='4.04' fill='#17becf'/>
+<text x='838.52' y='415' text-anchor='middle' font-size='11'>smollm-1-7b-instruct-4bit</text>
+<rect x='180' y='430' width='12' height='12' fill='#ffbf00'/>
+<text x='198' y='440' font-size='12'>Schema only</text>
+<rect x='400' y='430' width='12' height='12' fill='#9467bd'/>
+<text x='418' y='440' font-size='12'>Schema + repetition</text>
+<rect x='620' y='430' width='12' height='12' fill='#17becf'/>
+<text x='638' y='440' font-size='12'>Repetition only</text>
+<text x='24' y='207.50' font-size='12' transform='rotate(-90 24 207.50)'>Share of failed turns</text>
+</svg>

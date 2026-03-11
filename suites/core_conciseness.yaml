@@ -1,0 +1,104 @@
+name: core_conciseness
+description: "Budget-sensitive prompts for over-expansion detection on operationally meaningful summaries and deltas."
+experiment_family: "budget_guardrails"
+cases:
+  - id: incident_brief_one_sentence
+    system: "You are a terse operations assistant. Follow output limits exactly."
+    prompt: |
+      Summarize the incident below in exactly 1 sentence and no more than 22 words.
+
+      Incident:
+      - API latency rose from 210 ms to 980 ms after a cache rollout.
+      - Error rate stayed below 1%.
+      - Rollback restored latency within 4 minutes.
+    max_tokens: 48
+    tags: ["budget", "over_expansion", "latency"]
+    trigger_targets: ["over_expansion"]
+    contract:
+      output_mode: "single_sentence"
+      failure_class: "recoverable"
+      checks:
+        - "one sentence only"
+        - "22 words or fewer"
+        - "must mention rollback"
+
+  - id: policy_delta_two_bullets
+    system: "Return only the requested bullets."
+    prompt: |
+      Compare Policy A and Policy B in exactly 2 bullet points.
+      Each bullet must be 8 words or fewer.
+      No intro and no closing sentence.
+
+      Policy A:
+      - Retain logs for 30 days.
+      - Allow contractor access with manager approval.
+
+      Policy B:
+      - Retain logs for 7 days.
+      - Contractor access requires manager approval plus ticket number.
+    max_tokens: 56
+    tags: ["budget", "over_expansion", "instruction_following"]
+    trigger_targets: ["over_expansion"]
+    contract:
+      output_mode: "bullet_list"
+      failure_class: "recoverable"
+      checks:
+        - "exactly 2 bullets"
+        - "8 words or fewer per bullet"
+        - "must mention retention and ticket number"
+
+  - id: handoff_delta_concise
+    pair_id: handoff_delta
+    variant: concise
+    system: "You are a helpful assistant. Be concise."
+    prompt: |
+      Summarize the handoff delta below in exactly 2 sentences.
+      Mention only what changed.
+
+      Previous run:
+      - owner: Iris
+      - status: observe
+      - retry_budget: 1
+      - blocked_services: cache
+
+      Current run:
+      - owner: Iris
+      - status: escalate
+      - retry_budget: 0
+      - blocked_services: cache, queue
+    max_tokens: 64
+    tags: ["paired", "concise", "verbosity_drift"]
+    trigger_targets: ["over_expansion"]
+    contract:
+      output_mode: "two_sentences"
+      failure_class: "recoverable"
+      checks:
+        - "exactly 2 sentences"
+
+  - id: handoff_delta_detailed
+    pair_id: handoff_delta
+    variant: detailed
+    system: "You are a helpful assistant. Be detailed but avoid filler."
+    prompt: |
+      Summarize the handoff delta below in exactly 4 short sentences.
+      Mention only what changed and why it matters operationally.
+
+      Previous run:
+      - owner: Iris
+      - status: observe
+      - retry_budget: 1
+      - blocked_services: cache
+
+      Current run:
+      - owner: Iris
+      - status: escalate
+      - retry_budget: 0
+      - blocked_services: cache, queue
+    max_tokens: 96
+    tags: ["paired", "detailed", "verbosity_drift"]
+    trigger_targets: ["over_expansion"]
+    contract:
+      output_mode: "four_sentences"
+      failure_class: "recoverable"
+      checks:
+        - "exactly 4 sentences"

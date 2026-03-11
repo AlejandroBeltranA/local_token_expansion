@@ -1,6 +1,6 @@
 {
   "model_path": "mlx_models/Mistral-7B-Instruct-v0.3",
-  "output_dir": "experiments/outputs",
+  "output_dir": "research/propensity/outputs",
   "run_name": "mistral_propensity_features",
   "models": [
     "mlx_models/Mistral-7B-Instruct-v0.3",

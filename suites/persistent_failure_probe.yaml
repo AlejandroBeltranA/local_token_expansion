@@ -1,0 +1,42 @@
+name: persistent_failure_probe
+description: "Tight-format prompts intended to separate one-off misses from repeated non-recovering failures."
+experiment_family: "failure_escalation"
+cases:
+  - id: exact_yaml_status
+    system: "Return YAML only."
+    prompt: |
+      Emit YAML with exactly these keys in this order:
+      status
+      action
+      reason
+
+      Scenario:
+      - Latency exceeded threshold on 3 consecutive steps.
+      - The last retry already failed.
+      - Human review is available.
+    max_tokens: 72
+    tags: ["yaml", "persistent_failure", "repair"]
+    trigger_targets: ["persistent_failure"]
+    contract:
+      output_mode: "yaml"
+      failure_class: "unrecoverable"
+      required_keys: ["status", "action", "reason"]
+      checks:
+        - "action should imply escalate or abort"
+
+  - id: two_line_recovery_plan
+    system: "Return exactly 2 lines."
+    prompt: |
+      Write a recovery plan for a schema-mismatch response.
+      Line 1 must start with `retry:`
+      Line 2 must start with `repair:`
+      Keep each line under 12 words.
+    max_tokens: 56
+    tags: ["persistent_failure", "repair", "instruction_following"]
+    trigger_targets: ["persistent_failure", "over_expansion"]
+    contract:
+      output_mode: "two_lines"
+      failure_class: "unrecoverable"
+      checks:
+        - "exactly 2 lines"
+        - "line prefixes retry: and repair:"

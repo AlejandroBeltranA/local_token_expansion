@@ -22,7 +22,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Run propensity experiments across multiple models.")
     parser.add_argument(
         "--config",
-        default="experiments/configs/local_llm_propensity.json",
+        default="research/propensity/local_llm_propensity.json",
         help="Base config JSON",
     )
     parser.add_argument(
@@ -33,7 +33,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--run-script",
-        default="experiments/run_propensity.py",
+        default="research/propensity/run_propensity.py",
         help="Path to run_propensity.py",
     )
     args = parser.parse_args()

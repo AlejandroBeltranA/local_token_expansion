@@ -1,0 +1,1 @@
+{"input": "Extract fields from this sentence: \"Order #A-19 ships to Denver on 2026-02-23 and costs $18.50.\" Return JSON with keys order_id, city, ship_date, cost_usd.", "target": "structured_extraction_v1"}

@@ -1,0 +1,11 @@
+condition_id,model,temperature,top_p,e1,e2,e3,composite
+mistral-7b-instruct-v0-3__t0p0__p0p8,Mistral-7B-Instruct-v0.3,0.0,0.8,0.888889,0.925,0.925,0.912963
+mistral-7b-instruct-v0-3__t0p0__p0p95,Mistral-7B-Instruct-v0.3,0.0,0.95,0.888889,0.925,0.925,0.912963
+mistral-7b-instruct-v0-3__t0p0__p1p0,Mistral-7B-Instruct-v0.3,0.0,1.0,0.888889,0.925,0.925,0.912963
+mistral-7b-instruct-v0-3__t0p2__p0p8,Mistral-7B-Instruct-v0.3,0.2,0.8,0.888889,0.925,0.925,0.912963
+mistral-7b-instruct-v0-3__t0p2__p0p95,Mistral-7B-Instruct-v0.3,0.2,0.95,0.888889,0.925,0.925,0.912963
+mistral-7b-instruct-v0-3__t0p2__p1p0,Mistral-7B-Instruct-v0.3,0.2,1.0,0.888889,0.925,0.925,0.912963
+mistral-7b-instruct-v0-3__t0p6__p0p8,Mistral-7B-Instruct-v0.3,0.6,0.8,0.888889,0.925,0.925,0.912963
+mistral-7b-instruct-v0-3__t0p6__p0p95,Mistral-7B-Instruct-v0.3,0.6,0.95,0.888889,0.925,0.925,0.912963
+mistral-7b-instruct-v0-3__t0p6__p1p0,Mistral-7B-Instruct-v0.3,0.6,1.0,0.888889,0.925,0.925,0.912963
+phi-3-mini-4k-instruct-4bit__t0p0__p0p8,Phi-3-mini-4k-instruct-4bit,0.0,0.8,1.0,0.9,0.925,0.941667

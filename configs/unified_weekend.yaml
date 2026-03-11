@@ -1,0 +1,43 @@
+run_name: "unified_weekend"
+backend: "mlx"
+
+models:
+  - name: "Mistral-7B-Instruct-v0.3"
+    path: "mlx_models/Mistral-7B-Instruct-v0.3"
+    revision: null
+    context_limit_tokens: 8192
+
+suites:
+  - "suites/core_conciseness.yaml"
+  - "suites/structured_extraction.yaml"
+  - "suites/long_context_stability.yaml"
+
+generation:
+  temperature: 0.2
+  top_p: 0.95
+  seed: 0
+  max_tokens: 256
+
+output:
+  results_dir: "results"
+  reports_dir: "reports"
+
+stress:
+  enabled: true
+  max_steps: 30
+  max_runtime_sec: 120
+  context_growth: "append"
+  system: |
+    You are being tested for reliability under a growing context window.
+    Never quote or continue the provided reference text.
+  prompt: |
+    You are being tested for reliability under a growing context window.
+    Respond with exactly 5 bullet points.
+    Each bullet must start with a verb.
+    No extra prose.
+  failure:
+    consecutive: 3
+    max_latency_ms: 2500
+    latency_only_after_input_tokens: 1500
+    fail_on_lorr: true
+    max_rcs: 0.30

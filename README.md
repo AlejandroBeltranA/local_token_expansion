@@ -1,161 +1,177 @@
-# Local Token Expansion – Propensity Experiment
+# Local Token Expansion (LTE)
 
-This repo contains a reproducible pipeline to stress‑test local MLX LLMs and measure when outputs become repetitive, truncated, or otherwise less useful.
+LTE is a local-first reliability and intervention pipeline for LLM-based systems.
 
----
+It is designed to detect when a model stops being operationally useful in an automated workflow and to emit explicit intervention signals for downstream systems:
 
-## Motivation
-We want to understand the **usefulness → repetition cliff** in local models.  
-Instead of “trying to break” a model, we measure **when it stops adding meaningful new content** by tracking novelty, repetition, format adherence, and truncation across many steps.
+- `continue`
+- `retry`
+- `repair`
+- `escalate`
+- `abort`
 
----
+The focus is not general model quality. LTE measures operational degradation on local hardware: over-expansion, cap pressure, repetition, context decay, latency cliffs, and persistent failure under stress.
 
-## What It Does
-The pipeline runs a **rolling, step‑by‑step prompt loop** and logs:
-- **Novelty** (new tokens vs all prior steps)
-- **Repetition** (n‑gram overlap)
-- **Similarity to previous response**
-- **Truncation** (hit max tokens)
-- **Refusal / stall / already‑answered signals**
-- **Format adherence** (if enabled)
+## Start Here
 
-Current mode is **feature accretion** for an NLP pipeline:
-each step adds exactly **one new feature** and outputs only the **delta**.
+- Working paper: [docs/whitepaper_draft.md](docs/whitepaper_draft.md)
+- Methodology: [docs/methodology.md](docs/methodology.md)
+- Product direction: [docs/product_direction.md](docs/product_direction.md)
+- Weekend sweep results: [results/weekend_sweep_full/report.md](results/weekend_sweep_full/report.md)
+- Research tracks: [research/README.md](research/README.md)
 
----
+## What LTE Measures
 
-## What We’re Testing
-We’re testing **when a local LLM stops being useful under sustained, repetitive pressure**.  
-Specifically:
-- Can it keep adding **new, meaningful features** over many steps?
-- Does it **remember recent context** when probed (short‑term memory)?
-- At what point does it **repeat itself**, **stall**, or **drift** from the required format?
-- How quickly does **latency balloon** as the run continues?
+- `Expansion Ratio (ER)`: output tokens relative to input tokens
+- `Length Overrun Rate (LORR)`: how often outputs push against `max_tokens`
+- `Verbosity Drift (VD)`: how much longer "detailed" variants become than concise ones
+- `Runaway Continuation Score (RCS)`: repetition pressure in model outputs
+- Stress failure state: when repeated failures make continued use unjustified
 
-This is not about “breaking” the model in a security sense — it’s about **detecting the usefulness → repetition cliff**.
+These metrics are meant to support deployment decisions, not leaderboard ranking.
 
----
+## Repo Layout
 
-## What “Degradation” Looks Like (Evidence)
-We treat the following as signals that the model is entering a **response degradation phase**:
+- `lte/`: maintained runtime, metrics, reporting, stress runner, and backends
+- `configs/`: runnable benchmark and stress configs
+- `suites/`: YAML-defined probe suites
+- `examples/`: deterministic mock runs for smoke testing and report generation
+- `docs/`: methodology, working paper, and project notes
+- `research/`: exploratory and legacy research tracks
 
-1) **Novelty collapse**
-   - `novelty_score` stays below threshold for multiple steps.
+## Quickstart
 
-2) **Repetition / similarity spikes**
-   - `repetition_rate` climbs and `similarity_to_prev` stays high.
-
-3) **Format drift**
-   - Missing required sections (Feature/Motivation/Patch/Test).
-   - `format_ok` falls consistently.
-
-4) **Memory failure**
-   - Incorrect answers to memory probes (wrong language).
-   - `memory_match` drops and `memory_distance` rises.
-
-5) **Stalling / refusal**
-   - `stall_flag` or `refusal_flag` becomes common.
-
-6) **Latency blow‑up**
-   - Response time jumps far above baseline for multiple steps
-   - Stops when `latency_threshold_reached` is triggered.
-
-When multiple signals align, we consider that a **true degradation event**.
-
----
-
-## Project Layout
-```
-experiments/
-  run_propensity.py        # main experiment runner
-  run_all_models.py        # batch runner (multiple models)
-  download_models.py       # download MLX models from HF
-  analysis.ipynb           # analysis + plots
-  configs/
-    local_llm_propensity.json
-  outputs/
-    *.jsonl
-mlx_models/
-  Mistral-7B-Instruct-v0.3
-```
-
----
-
-## Setup
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install --upgrade pip
-pip install -r requirements.txt
+pip install -U pip
+pip install -e ".[dev]"
 ```
 
----
+List suites:
 
-## Download Models
+```bash
+lte list-suites
+```
+
+Run tests:
+
+```bash
+python -m pytest -q
+```
+
+## MLX Setup
+
+LTE is designed for local model execution on Apple Silicon via MLX.
+
+Download or prepare MLX-formatted models:
+
 ```bash
 python experiments/download_models.py
 ```
-This pulls MLX‑formatted models from Hugging Face and symlinks them into `mlx_models/`.  
-Use `--copy` if you prefer to duplicate files instead of symlinks.
 
----
+Models are placed or symlinked under `mlx_models/` by default.
 
-## Run a Single Model
+## Running LTE
+
+Run the default benchmark config:
+
 ```bash
-python experiments/run_propensity.py --config experiments/configs/local_llm_propensity.json
+lte run --config configs/default.yaml --progress
 ```
 
-Output is written to `experiments/outputs/<run_name>.jsonl`.
+This writes:
 
----
+- `results/run_<run_id>.jsonl`
+- `reports/run_<run_id>/report.md`
 
-## Run All Models (Same Grid)
+Generate a report from an existing run:
+
 ```bash
-python experiments/run_all_models.py --config experiments/configs/local_llm_propensity.json
+lte report --input results/run_<run_id>.jsonl --output reports/run_<run_id>/
 ```
-Outputs are grouped by model name in the JSONL filename.
 
----
+Run the unified single-model benchmark + stress flow:
 
-## Analyze Results
 ```bash
-jupyter lab experiments/analysis.ipynb
+lte unified --config configs/unified_weekend.yaml --run-id unified_real_demo --progress
 ```
-The notebook visualizes:
-- Novelty over time
-- Repetition and similarity
-- Breakdown score and truncation
-- Feature ledger growth
-- Format adherence rates
 
----
+This writes one merged artifact set under `results/unified_<run_id>/` including:
 
-## Key Config Knobs
-Edit `experiments/configs/local_llm_propensity.json` to tune behavior:
-- `mode`: `"feature_accretion"` (recommended)
-- `prompt_template`: controls the task + format
-- `feature_categories`: soft pool for rotating additions
-- `novelty_threshold`, `novelty_consecutive`: stop when novelty collapses
-- `max_steps_per_run`, `max_gen_tokens`, `safety_margin_tokens`
-- `models`: list of model paths for batch runs
+- `benchmark.jsonl`
+- `stress.jsonl`
+- `merged.jsonl`
+- `summary.json`
+- `report.md`
 
----
+## Stress Mode
 
-## Expected Outputs
-Each JSONL record contains:
-- prompt, response, tokens, timing
-- novelty, repetition, similarity
-- truncation, refusal, stall, already‑answered
-- breakdown score + flag
-- feature ledger info + format adherence
+Use stress mode to find the point where the model stops being worth using under a growing context window.
 
-These metrics help pinpoint when the model stops adding useful content.
+```bash
+lte stress --config configs/stress_all_models.yaml --progress
+```
 
----
+For a unified multi-model sweep over the full benchmark battery plus stress:
 
-## Next Steps (Optional)
-- Add external evaluation using ChatGPT’s API for richer scoring of tone, structure, and coherence.
-- Compare “cliff step” across multiple model families.
-- Add retry-on-format‑failure to enforce deltas.
+```bash
+lte unified --config configs/stress_all_models.yaml --run-id unified_sweep --progress
+```
 
----
+Stress mode is designed to stop after persistent failure rather than a single bad step. Failure can be defined through:
+
+- repetition (`max_rcs`)
+- near-cap outputs (`fail_on_lorr`)
+- latency thresholds (`max_latency_ms`)
+- required consecutive failed steps (`consecutive`)
+
+For a small deterministic example without MLX:
+
+```bash
+lte stress --config examples/stress_mock_config.yaml --run-id demo_stress --force
+```
+
+## Example Outputs
+
+Small deterministic example runs are checked into `examples/` for smoke testing and report generation.
+
+Treat these as harness examples, not as evidence of task quality. The mock backend is intended for deterministic pipeline verification rather than meaningful model evaluation.
+
+## Reproducing The Published Sweep
+
+The five-model sweep used in the working paper is documented under `results/weekend_sweep_full/`:
+
+- `report.md`: top-level run summary
+- `baseline_phase_summary.json`: baseline aggregation
+- `generated_configs/`: per-run configs
+- `runs/`: per-run artifacts used to generate figures and summaries
+
+The checked-in results are the primary public artifact for that sweep. The command below is an example for running a local weekend-style pipeline, not a guarantee of bit-for-bit reproduction of every checked-in artifact.
+
+```bash
+lte unified --config configs/unified_weekend.yaml --run-id my_run --progress
+```
+
+For a deterministic smoke test:
+
+```bash
+lte unified --config examples/unified_mock_config.yaml --run-id mock_demo
+```
+
+## Methodology
+
+- Benchmark methodology: [docs/methodology.md](docs/methodology.md)
+- Product direction: [docs/product_direction.md](docs/product_direction.md)
+- Inspect integration notes: [docs/inspect_integration.md](docs/inspect_integration.md)
+- `drift_v0` operating protocol: [research/drift_v0/AGENT_OPERATING_PROTOCOL.md](research/drift_v0/AGENT_OPERATING_PROTOCOL.md)
+
+## Legacy and Research Tracks
+
+Not everything in this repo is equally mature.
+
+- `lte/` is the maintained product surface.
+- `research/propensity/` is exploratory legacy work.
+- `research/drift_v0/` is a research track focused on explicit trigger logic, interventions, and accountability framing.
+
+If you are trying to understand the project quickly, start with `lte/`, `configs/`, `suites/`, and the docs above.

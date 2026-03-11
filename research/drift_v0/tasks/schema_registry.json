@@ -1,0 +1,43 @@
+{
+  "task_meta_v1": {
+    "type": "object",
+    "required": ["title", "priority", "done"],
+    "properties": {
+      "title": { "type": "string" },
+      "priority": { "type": "integer", "minimum": 1, "maximum": 5 },
+      "done": { "type": "boolean" }
+    },
+    "additionalProperties": false
+  },
+  "intervention_v1": {
+    "type": "object",
+    "required": ["model", "trigger", "intervene"],
+    "properties": {
+      "model": { "type": "string" },
+      "trigger": { "type": "string" },
+      "intervene": { "type": "boolean" }
+    },
+    "additionalProperties": false
+  },
+  "state_v1": {
+    "type": "object",
+    "required": ["user", "balance", "last_action"],
+    "properties": {
+      "user": { "type": "string" },
+      "balance": { "type": "integer" },
+      "last_action": { "type": "string" }
+    },
+    "additionalProperties": false
+  },
+  "state_check_v1": {
+    "type": "object",
+    "required": ["user", "balance", "last_action", "consistency_check"],
+    "properties": {
+      "user": { "type": "string" },
+      "balance": { "type": "integer" },
+      "last_action": { "type": "string" },
+      "consistency_check": { "type": "boolean" }
+    },
+    "additionalProperties": false
+  }
+}

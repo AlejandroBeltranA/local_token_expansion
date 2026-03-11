@@ -1,0 +1,86 @@
+name: structured_extraction
+description: "Schema- and format-constrained tasks that expose near-cap pressure and repairable format failures."
+experiment_family: "structured_contracts"
+cases:
+  - id: extract_ticket_json
+    system: "Return ONLY valid JSON. No markdown."
+    prompt: |
+      Extract the incident record below into JSON with keys:
+      ticket_id (string), severity (string), owner (string), services (array of strings), eta_minutes (number).
+
+      Record:
+      Ticket INC-4821 is severity high.
+      Owner: Maya Chen.
+      Impacted services: auth-api, session-cache.
+      Next update expected in 15 minutes.
+    max_tokens: 96
+    tags: ["json", "schema", "near_cap_pressure"]
+    trigger_targets: ["near_cap_pressure", "persistent_failure"]
+    contract:
+      output_mode: "json_object"
+      failure_class: "recoverable"
+      required_keys: ["ticket_id", "severity", "owner", "services", "eta_minutes"]
+
+  - id: extract_invoice_json
+    system: "Return ONLY valid JSON. No prose."
+    prompt: |
+      Convert this text to JSON with keys:
+      invoice_id (string), due_date (YYYY-MM-DD), total_usd (number), paid (boolean).
+
+      Text:
+      Invoice INV-77 is due on 2026-04-15.
+      Total amount is $245.90.
+      Status: unpaid.
+    max_tokens: 80
+    tags: ["json", "schema", "near_cap_pressure"]
+    trigger_targets: ["near_cap_pressure"]
+    contract:
+      output_mode: "json_object"
+      failure_class: "recoverable"
+      required_keys: ["invoice_id", "due_date", "total_usd", "paid"]
+
+  - id: emit_csv_rows
+    system: "Output raw CSV only."
+    prompt: |
+      Convert the inventory text below into CSV with header `item,quantity`.
+      Output exactly 4 lines total including the header.
+
+      Inventory:
+      routers x3
+      switches x5
+      firewalls x2
+    max_tokens: 72
+    tags: ["csv", "format", "instruction_following"]
+    trigger_targets: ["over_expansion", "near_cap_pressure"]
+    contract:
+      output_mode: "csv"
+      failure_class: "recoverable"
+      checks:
+        - "exactly 4 lines"
+        - "header must be item,quantity"
+
+  - id: emit_action_lines
+    system: "Return plain text only."
+    prompt: |
+      Convert the incident brief below into exactly 3 lines.
+      Use the format `<field>: <value>` for each line.
+      Use these fields in this exact order:
+      owner
+      action
+      escalation
+
+      Incident brief:
+      - Owner is Maya Chen.
+      - Next action is reduce generation max_tokens to 128.
+      - Escalate if two more latency failures occur.
+    max_tokens: 80
+    tags: ["format", "instruction_following", "structured_lines"]
+    trigger_targets: ["over_expansion", "persistent_failure"]
+    contract:
+      output_mode: "line_pairs"
+      failure_class: "recoverable"
+      checks:
+        - "exactly 3 lines"
+        - "owner: maya chen"
+        - "action: reduce generation max_tokens to 128"
+        - "escalation: if two more latency failures occur"

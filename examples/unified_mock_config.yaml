@@ -1,0 +1,36 @@
+run_name: "unified_mock"
+backend: "mock"
+
+models:
+  - name: "mock-model"
+    path: "unused"
+    revision: null
+    context_limit_tokens: 64
+
+suites:
+  - "suites/core_conciseness.yaml"
+  - "suites/structured_extraction.yaml"
+
+generation:
+  temperature: 0.2
+  top_p: 0.95
+  seed: 0
+  max_tokens: 64
+
+output:
+  results_dir: "results"
+  reports_dir: "reports"
+
+stress:
+  enabled: true
+  max_steps: 6
+  max_runtime_sec: 10
+  context_growth: "append"
+  prompt: |
+    Write exactly 5 bullet points about running LTE locally.
+    Each bullet must start with a verb.
+    No extra prose.
+  failure:
+    consecutive: 2
+    max_rcs: 0.0
+    fail_on_lorr: true
