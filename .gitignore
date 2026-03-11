@@ -23,6 +23,7 @@ old scripts/
 .vscode/
 .claude/
 .codex/
+docs/internal/
 
 # Logs
 *.log
