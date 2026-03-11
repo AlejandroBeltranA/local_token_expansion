@@ -123,13 +123,13 @@ Start here:
 
 - [docs/product_direction.md](../product_direction.md)
 - [docs/handover_unified_experiment.md](handover_unified_experiment.md)
-- [docs/unified_experiment_spec.md](../unified_experiment_spec.md)
-- [docs/paper_accountability_scaffold.md](../paper_accountability_scaffold.md)
-- [docs/probe_intervention_table.md](../probe_intervention_table.md)
-- [docs/paper_intro_results_draft.md](../paper_intro_results_draft.md)
-- [docs/paper_methods_draft.md](../paper_methods_draft.md)
-- [docs/paper_discussion_limitations_draft.md](../paper_discussion_limitations_draft.md)
-- [docs/paper_results_draft.md](../paper_results_draft.md)
+- [docs/unified_experiment_spec.md](unified_experiment_spec.md)
+- [docs/paper_accountability_scaffold.md](paper_accountability_scaffold.md)
+- [docs/probe_intervention_table.md](probe_intervention_table.md)
+- [docs/paper_intro_results_draft.md](paper_intro_results_draft.md)
+- [docs/paper_methods_draft.md](paper_methods_draft.md)
+- [docs/paper_discussion_limitations_draft.md](paper_discussion_limitations_draft.md)
+- [docs/paper_results_draft.md](paper_results_draft.md)
 
 Then inspect:
 
