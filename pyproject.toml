@@ -1,11 +1,11 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=64"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "local-token-expansion"
 version = "0.1.0"
-description = "Local Token Expansion (LTE) benchmark runner for MLX models"
+description = "Local-first LLM evaluation harness for operational degradation and intervention signals"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [{ name = "Local Token Expansion contributors" }]
@@ -23,6 +23,10 @@ dev = [
 
 [project.scripts]
 lte = "lte.cli:main"
+
+[project.urls]
+Repository = "https://github.com/AlejandroBeltranA/local_token_expansion"
+Documentation = "https://github.com/AlejandroBeltranA/local_token_expansion#readme"
 
 [tool.setuptools]
 packages = ["lte", "lte.backends"]
