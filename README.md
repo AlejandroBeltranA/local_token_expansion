@@ -2,41 +2,39 @@
 
 Local Token Expansion (LTE) is a local-first evaluation harness for measuring when LLMs stop being operationally useful under workflow pressure.
 
-Local-first LLM evaluation harness for reliability, stress testing, operational degradation, and intervention signals.
+Most LLM benchmarks ask whether a model can complete a task. LTE asks a different question: when does the model stop being useful inside a constrained workflow? It measures output expansion, cap pressure, verbosity drift, repetition, context stress, latency cliffs, and persistent failure states, then maps those signals to intervention decisions: `continue`, `retry`, `repair`, `escalate`, or `abort`.
 
-Most LLM benchmarks focus on task accuracy, preference, or leaderboard performance. LTE focuses on a different failure surface: operational degradation. It measures how models behave when prompts grow, outputs expand, latency rises, repetition appears, or failures persist long enough that an automated workflow should stop, retry, repair, escalate, or abort.
+This repository is not a general model leaderboard. It is a harness for producing deployment-relevant signals from local model runs.
 
 ## Why This Matters
 
-Production LLM workflows often fail before they become obviously wrong. A model can become too verbose for the downstream contract, push against token caps, repeat itself, slow down under context growth, or require repeated repair attempts. Those failures matter for routing, escalation, local deployment, and monitoring even when a static task benchmark looks acceptable.
+LLM workflows often fail before they become obviously wrong. A model can remain fluent while drifting out of contract, exceeding token budgets, repeating prior content, or slowing enough to make the surrounding system unusable. These failures matter because automated systems need to know when to keep going, when to repair an output, and when to stop.
 
-LTE turns those behaviors into deployment-relevant signals. It is meant to complement standard evals by asking whether a model remains useful inside a constrained workflow.
-
-## What This Is Not
-
-LTE is not a general model leaderboard. It does not claim broad model capability, truthfulness, safety, alignment, or universal reliability. Results should be interpreted as workflow-specific evidence about operational degradation under the prompts, caps, local hardware, and stress settings used in a run.
+LTE makes those thresholds explicit. It complements task-accuracy benchmarks by measuring operational degradation under the same prompts, caps, hardware, and stress policy.
 
 ## What LTE Measures
 
-| Metric | What it captures | Why it matters |
+| Metric | Definition | Use |
 | --- | --- | --- |
-| Expansion Ratio | Output tokens divided by input tokens. | Detects output growth that can break cost, latency, or downstream parsing assumptions. |
-| Length Overrun Rate | Share of outputs that approach the configured `max_tokens` cap. | Flags cap pressure and likely truncation risk. |
-| Verbosity Drift | Change in output length across concise and detailed prompt variants. | Shows whether a model respects requested response shape under prompt pressure. |
-| Runaway Continuation Score | Repetition pressure, currently based on repeated n-grams in generated text. | Catches looping or continuation behavior that makes output operationally unusable. |
-| Latency | Generation latency per prompt or stress step. | Exposes local hardware and context-growth cliffs relevant to deployment. |
-| Stress failure state | Persistent failure under a growing context window. | Identifies when continued automatic use should stop or escalate. |
+| Expansion Ratio | Output tokens divided by input tokens. | Shows whether outputs are growing beyond the workflow's budget. |
+| Length Overrun Rate | Share of outputs that approach `max_tokens`. | Flags cap pressure and likely truncation risk. |
+| Verbosity Drift | Length change across concise and detailed prompt variants. | Tests whether the model respects requested response shape. |
+| Runaway Continuation Score | Repetition pressure, currently based on repeated n-grams. | Catches loops and recycled phrasing. |
+| Latency | Generation time per prompt or stress step. | Identifies local runtime and context-growth cliffs. |
+| Stress failure state | Persistent failure under a growing context window. | Marks when continued automatic use is no longer justified. |
+
+These metrics do not measure truthfulness, safety, or broad capability. They measure whether a model remains usable under an operational contract.
 
 ## Intervention Signals
 
-LTE emits intervention signals for downstream systems:
+LTE turns measurement into an operational decision.
 
 | Signal | Meaning |
 | --- | --- |
-| `continue` | Output remains within the operational envelope. |
-| `retry` | A transient failure may be worth another attempt. |
-| `repair` | Output appears recoverable through a targeted fix or structured repair pass. |
-| `escalate` | Automation should hand off or route to a more capable path. |
+| `continue` | The run remains inside the operational envelope. |
+| `retry` | An isolated recoverable failure merits one tighter attempt. |
+| `repair` | The output shape is wrong, but the content can be deterministically corrected. |
+| `escalate` | The model still produces output but should not be trusted without oversight. |
 | `abort` | Persistent or unrecoverable failure makes continued use unjustified. |
 
 ## For Evaluation Teams
@@ -49,20 +47,26 @@ LTE is useful when the question is not "which model is best overall?" but:
 - when should an automated system retry, repair, escalate, or abort?
 - how do local models compare under the same operational pressure?
 
-The repository is structured around reproducible local runs, JSONL artifacts, Markdown reports, and explicit intervention recommendations rather than a single aggregate score.
+Rather than collapse these questions into one aggregate score, LTE preserves the run artefacts, trigger states, and intervention recommendation.
+
+## What This Is Not
+
+LTE is not a frontier benchmark, a safety benchmark, or a universal reliability score. It does not claim broad model quality, factuality, alignment, or production readiness. Results should be interpreted as workflow-specific evidence about the prompts, caps, local hardware, backend, and stress settings used in a run.
+
+Mock outputs are included for pipeline verification. They are not evidence about model quality.
 
 ## Repository Layout
 
 | Path | Purpose |
 | --- | --- |
-| `lte/` | Maintained runtime, metrics, reporting, stress runner, schema, contracts, and backends. |
-| `configs/` | Runnable benchmark, stress, and unified-run configuration files. |
+| `lte/` | Maintained runtime, metrics, reporting, stress runner, contracts, schema, and backends. |
+| `configs/` | Benchmark, stress, and unified-run configs. |
 | `suites/` | YAML-defined probe suites. |
-| `examples/` | Deterministic mock configs and example outputs for smoke testing. |
+| `examples/` | Deterministic mock configs and outputs for smoke testing. |
 | `docs/` | Methodology, positioning, working paper draft, product notes, and integration notes. |
-| `results/` | Checked-in run artifacts, including the five-model weekend sweep. |
+| `results/` | Checked-in run artefacts, including the five-model weekend sweep. |
 | `research/` | Exploratory and legacy research tracks. |
-| `tests/` | Unit and smoke tests for metrics, contracts, CLI behavior, suites, and scripts. |
+| `tests/` | Unit and smoke tests for metrics, contracts, CLI behaviour, suites, and scripts. |
 
 ## Quickstart
 
@@ -91,7 +95,7 @@ lte list-models --config configs/stress_all_models.yaml
 python -m pytest -q
 ```
 
-The test suite uses the mock backend where possible. MLX-backed benchmark runs require local model files under `mlx_models/`.
+The tests use the mock backend where possible. MLX-backed benchmark runs require local model files under `mlx_models/`.
 
 ## Run the Benchmark
 
@@ -112,13 +116,13 @@ Generate a report from an existing run:
 lte report --input results/run_<run_id>.jsonl --output reports/run_<run_id>/
 ```
 
-Run the unified benchmark plus stress flow:
+Run the unified benchmark and stress flow:
 
 ```bash
 lte unified --config configs/unified_weekend.yaml --run-id unified_real_demo --progress
 ```
 
-Unified runs write one artifact set under `results/unified_<run_id>/`:
+Unified runs write one artefact set under `results/unified_<run_id>/`:
 
 - `benchmark.jsonl`
 - `stress.jsonl`
@@ -134,18 +138,13 @@ Stress mode grows the context window and stops after persistent operational fail
 lte stress --config configs/stress_all_models.yaml --progress
 ```
 
-For a unified multi-model sweep over the benchmark battery plus stress:
+For a unified multi-model sweep over the benchmark battery and stress test:
 
 ```bash
 lte unified --config configs/stress_all_models.yaml --run-id unified_sweep --progress
 ```
 
-Failure can be defined through:
-
-- repetition (`max_rcs`)
-- near-cap outputs (`fail_on_lorr`)
-- latency thresholds (`max_latency_ms`)
-- required consecutive failed steps (`consecutive`)
+Failure can be defined through repetition (`max_rcs`), near-cap outputs (`fail_on_lorr`), latency thresholds (`max_latency_ms`), and required consecutive failed steps (`consecutive`).
 
 For a deterministic smoke test without MLX:
 
@@ -165,9 +164,9 @@ Models are expected under `mlx_models/` by default. Mock configs in `examples/` 
 
 ## Key Results From Published Sweep
 
-The five-model sweep is preserved under `results/weekend_sweep_full/`. It used four benchmark probe suites from `configs/default.yaml` plus the stress configuration in `configs/stress_all_models.yaml`. The checked-in baseline summary contains six baseline runs per model, covering two temperatures and three seeds.
+The five-model sweep is preserved under `results/weekend_sweep_full/`. It used the four benchmark probe suites in `configs/default.yaml` and the stress configuration in `configs/stress_all_models.yaml`. The checked-in baseline summary contains six baseline runs per model, covering two temperatures and three seeds.
 
-The most consistent degradation patterns in this artifact were over-expansion across all five models, context decay in four of five models, persistent failure in three of five models, and latency cliff behavior for Mistral-7B-Instruct-v0.3 under the configured stress rule.
+The most consistent degradation pattern was over-expansion, which appeared across all five models. Context decay appeared in four models, persistent failure in three, and latency cliff behaviour in Mistral-7B-Instruct-v0.3 under the configured stress rule.
 
 | Model | Baseline runs | Recommendation counts | Trigger counts | Mean contract failures | Mean stress latency |
 | --- | ---: | --- | --- | ---: | ---: |
@@ -177,13 +176,9 @@ The most consistent degradation patterns in this artifact were over-expansion ac
 | Phi-3-mini-4k-instruct-4bit | 6 | `abort`: 6 | `context_decay`: 6, `near_cap_pressure`: 6, `over_expansion`: 6, `persistent_failure`: 6 | 11.0 | 5226.1 ms |
 | SmolLM-1.7B-Instruct-4bit | 6 | `abort`: 6 | `context_decay`: 6, `near_cap_pressure`: 6, `over_expansion`: 6, `persistent_failure`: 6 | 12.0 | 2924.6 ms |
 
-Read the full artifact report: [`results/weekend_sweep_full/report.md`](results/weekend_sweep_full/report.md). The aggregated baseline summary is in [`results/weekend_sweep_full/baseline_phase_summary.json`](results/weekend_sweep_full/baseline_phase_summary.json).
+Read the full artefact report: [`results/weekend_sweep_full/report.md`](results/weekend_sweep_full/report.md). The aggregated baseline summary is in [`results/weekend_sweep_full/baseline_phase_summary.json`](results/weekend_sweep_full/baseline_phase_summary.json).
 
-These results are not a universal ranking. They describe the behavior of this harness, prompt set, local runtime, and stress policy.
-
-## Example Outputs
-
-Small deterministic example runs are checked into `examples/` for smoke testing and report generation. Treat mock outputs as pipeline verification artifacts, not model-quality evidence.
+These results are not a universal ranking. They describe this harness, prompt set, local runtime, and stress policy.
 
 ## Methodology
 
@@ -196,9 +191,9 @@ Small deterministic example runs are checked into `examples/` for smoke testing 
 
 ## Current Maturity
 
-The maintained product surface is the `lte/` package, the CLI, the configs, the suites, and the tests. The `research/` directory contains useful context, but not every research track is equally mature or intended as the main entry point.
+The maintained surface is the `lte/` package, CLI, configs, suites, and tests. The `research/` directory contains useful context, but not every track is equally mature or intended as the main entry point.
 
-LTE is currently best read as an evaluation harness and reproducibility artifact for operational degradation signals. It is not a finished benchmark suite with broad external validation.
+LTE is best read as an evaluation harness and reproducibility artefact for operational degradation signals. It is not a finished benchmark suite with broad external validation.
 
 ## Limitations
 
@@ -206,16 +201,16 @@ LTE is currently best read as an evaluation harness and reproducibility artifact
 - Current probes may not cover reasoning, truthfulness, or alignment.
 - Local hardware performance affects latency metrics.
 - Mock examples are for pipeline verification, not model-quality evidence.
-- Results should be interpreted as workflow-specific, not universal model rankings.
-- The current result schema is still evolving, so historical artifacts may not have identical fields.
+- Results are workflow-specific, not universal model rankings.
+- The result schema is still evolving, so historical artefacts may not have identical fields.
 
 ## Roadmap
 
 - Add task-correctness probes alongside operational metrics.
-- Stabilize reporting schemas for easier comparison across runs.
-- Improve model-routing and escalation policy examples.
+- Stabilise reporting schemas for comparison across runs.
+- Improve model-routing and escalation-policy examples.
 - Add richer Inspect integration examples.
-- Separate mature harness paths from exploratory research artifacts more clearly.
+- Separate maintained harness paths from exploratory research artefacts more clearly.
 - Expand reproducibility notes for local hardware and MLX model setup.
 
 ## Maintainer Notes
@@ -235,4 +230,4 @@ ai-safety
 
 ## Citation
 
-No formal citation metadata is provided yet. If you use the repository, cite the GitHub repository and the checked-in run artifacts you rely on.
+No formal citation metadata is provided yet. If you use the repository, cite the GitHub repository and the checked-in run artefacts you rely on.
