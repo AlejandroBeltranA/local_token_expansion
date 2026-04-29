@@ -258,6 +258,10 @@ def _dominant_failure_reasons(rows: list[dict[str, Any]]) -> list[str]:
     return [name for name, _count in counter.most_common(2)]
 
 
+def _is_api_backend(name: str) -> bool:
+    return name in {"openai", "anthropic"}
+
+
 def summarize_unified_run(*, records: list[dict[str, Any]]) -> dict[str, Any]:
     generation_rows = [row for row in records if "output_tokens" in row and "input_tokens" in row and "max_tokens" in row]
     benchmark_rows = [row for row in generation_rows if row.get("mode") == "benchmark"]
@@ -305,13 +309,15 @@ def summarize_unified_run(*, records: list[dict[str, Any]]) -> dict[str, Any]:
         ]
         over_expansion = len(budget_control_failures) >= 2 or bool(bounded_lorr_failures)
 
+        backend_names = {str(row.get("backend", "")) for row in model_rows}
+        is_api_backend = len(backend_names) == 1 and _is_api_backend(next(iter(backend_names)))
         stress_latency_rows = [
             row for row in model_stress_rows if int(row.get("latency_ms", 0)) > 2500 and int(row.get("input_tokens", 0)) >= 1500
         ]
         hard_latency = len(model_stress_rows[-3:]) >= 3 and sum(
             1 for row in model_stress_rows[-3:] if int(row.get("latency_ms", 0)) > 2500 and int(row.get("input_tokens", 0)) >= 1500
         ) >= 2
-        latency_cliff = bool(stress_latency_rows)
+        latency_cliff = hard_latency if is_api_backend else bool(stress_latency_rows)
 
         structured_lorr_mean = mean(
             [int(row.get("length_overrun_rate", 0)) for row in structured_failure_rows]
@@ -384,8 +390,14 @@ def summarize_unified_run(*, records: list[dict[str, Any]]) -> dict[str, Any]:
             ),
             "latency_cliff": _trigger_row(
                 status=latency_cliff,
-                threshold="stress latency_ms>2500 after input_tokens>=1500; hard trigger if 2 of last 3 stress steps exceed it",
+                threshold=(
+                    "API backends: hard trigger only when 2 of last 3 stress steps exceed latency gate "
+                    "(latency_ms>2500 after input_tokens>=1500)"
+                    if is_api_backend
+                    else "stress latency_ms>2500 after input_tokens>=1500; hard trigger if 2 of last 3 stress steps exceed it"
+                ),
                 evidence={
+                    "backend_mode": "api-hard-only" if is_api_backend else "local-any-gated",
                     "gated_latency_steps": [row["step"] for row in stress_latency_rows],
                     "hard_trigger_last_three": hard_latency,
                 },

@@ -4,7 +4,7 @@ from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from typing import Any, Literal
 
-TokenCountMethod = Literal["mlx-native", "approx"]
+TokenCountMethod = Literal["mlx-native", "openai-usage", "anthropic-usage", "approx"]
 
 
 @dataclass(frozen=True)
@@ -40,4 +40,3 @@ class GenerationRecord:
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
-
