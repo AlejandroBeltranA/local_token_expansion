@@ -12,7 +12,6 @@ from typing import Any
 
 import yaml
 
-
 RECOMMENDATION_ORDER = {
     "continue": 0,
     "retry": 1,
@@ -25,6 +24,7 @@ RECOMMENDATION_ORDER = {
 @dataclass(frozen=True)
 class RunSpec:
     stage: str
+    backend: str
     model_name: str
     model_path: str
     revision: str | None
@@ -85,6 +85,7 @@ def _models_from_config(path: Path) -> list[dict[str, Any]]:
         out.append(
             {
                 "name": str(model["name"]),
+                "backend": str(model.get("backend", raw.get("backend", "mlx"))),
                 "path": str(model["path"]),
                 "revision": model.get("revision"),
                 "context_limit_tokens": model.get("context_limit_tokens"),
@@ -109,6 +110,7 @@ def _build_run_specs(
                     specs.append(
                         RunSpec(
                             stage=stage,
+                            backend=str(model.get("backend", "mlx")),
                             model_name=str(model["name"]),
                             model_path=str(model["path"]),
                             revision=model.get("revision"),
@@ -125,6 +127,7 @@ def _build_run_specs(
 def _write_run_config(*, base_config: dict[str, Any], spec: RunSpec, config_path: Path, results_dir: Path) -> None:
     cfg = json.loads(json.dumps(base_config))
     cfg["run_name"] = spec.run_id
+    cfg["backend"] = spec.backend
     cfg["models"] = [
         {
             "name": spec.model_name,
@@ -155,7 +158,8 @@ def _run_summary(run_dir: Path) -> dict[str, Any]:
 def _extract_model_summary(summary: dict[str, Any]) -> dict[str, Any]:
     models = summary.get("models")
     if not isinstance(models, list) or not models:
-        raise ValueError("summary.json missing models[]")
+        error_rows = int((summary.get("records") or {}).get("error_rows", 0) or 0)
+        raise ValueError(f"summary.json missing models[] (error_rows={error_rows})")
     model_summary = models[0]
     recommendation = model_summary.get("recommendation") or {}
     if isinstance(recommendation, dict):
@@ -398,6 +402,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--progress", action="store_true", help="Pass through unified progress output for each run.")
     parser.add_argument("--resume", action="store_true", help="Skip runs whose summary.json already exists.")
     parser.add_argument("--stop-on-error", action="store_true", help="Abort the sweep on the first failed run.")
+    parser.add_argument("--skip-expansion", action="store_true", help="Run only the baseline phase.")
     return parser
 
 
@@ -423,18 +428,22 @@ def _execute_spec(
     summary_path = run_dir / "summary.json"
     if resume and summary_path.exists():
         summary = _run_summary(run_dir)
-        return RunOutcome(
-            stage=spec.stage,
-            model_name=spec.model_name,
-            temperature=spec.temperature,
-            max_tokens=spec.max_tokens,
-            seed=spec.seed,
-            run_id=spec.run_id,
-            status="completed",
-            run_dir=str(run_dir),
-            duration_sec=0.0,
-            **_extract_model_summary(summary),
-        )
+        if not isinstance(summary.get("models"), list) or not summary.get("models"):
+            # Treat error-only summaries as not resumable-complete; rerun them.
+            pass
+        else:
+            return RunOutcome(
+                stage=spec.stage,
+                model_name=spec.model_name,
+                temperature=spec.temperature,
+                max_tokens=spec.max_tokens,
+                seed=spec.seed,
+                run_id=spec.run_id,
+                status="completed",
+                run_dir=str(run_dir),
+                duration_sec=0.0,
+                **_extract_model_summary(summary),
+            )
 
     started = time.time()
     proc = _run_one(python_bin=python_bin, config_path=cfg_path, run_id=spec.run_id, progress=progress)
@@ -454,6 +463,19 @@ def _execute_spec(
         )
 
     summary = _run_summary(run_dir)
+    if not isinstance(summary.get("models"), list) or not summary.get("models"):
+        return RunOutcome(
+            stage=spec.stage,
+            model_name=spec.model_name,
+            temperature=spec.temperature,
+            max_tokens=spec.max_tokens,
+            seed=spec.seed,
+            run_id=spec.run_id,
+            status="failed",
+            run_dir=str(run_dir),
+            duration_sec=duration_sec,
+            error=f"invalid summary: {json.dumps(summary)}",
+        )
     return RunOutcome(
         stage=spec.stage,
         model_name=spec.model_name,
@@ -494,6 +516,7 @@ def main(argv: list[str] | None = None) -> int:
         "models_config": str(models_config_path),
         "baseline_runs": [asdict(spec) | {"run_id": spec.run_id} for spec in baseline_specs],
         "top_k": args.top_k,
+        "skip_expansion": bool(args.skip_expansion),
         "expansion_temps": list(_parse_csv_numbers(args.expansion_temps, float_mode=True)),
         "expansion_max_tokens": list(_parse_csv_numbers(args.expansion_max_tokens, float_mode=False)),
         "expansion_seeds": list(_parse_csv_numbers(args.expansion_seeds, float_mode=False)),
@@ -579,6 +602,19 @@ def main(argv: list[str] | None = None) -> int:
     baseline_results = [row for row in baseline_outcomes if row["status"] == "completed"]
     baseline_phase = _aggregate_phase(baseline_results) if baseline_results else {"models": []}
     (output_dir / "baseline_phase_summary.json").write_text(json.dumps(baseline_phase, indent=2), encoding="utf-8")
+
+    if args.skip_expansion:
+        _write_markdown_report(output_dir / "report.md", baseline=baseline_results, expansion=[])
+        _write_progress(
+            output_dir=output_dir,
+            total_runs=total_runs,
+            completed_runs=total_runs,
+            current=None,
+            completed_durations=completed_durations,
+            phase="completed",
+        )
+        print(str(output_dir / "report.md"))
+        return 0
 
     if int(args.top_k) <= 0:
         selected_models = list(models)

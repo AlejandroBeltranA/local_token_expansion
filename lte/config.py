@@ -6,8 +6,7 @@ from typing import Any, Literal
 
 import yaml
 
-
-BackendName = Literal["mlx", "mock"]
+BackendName = Literal["mlx", "mock", "openai", "anthropic"]
 
 
 @dataclass(frozen=True)
@@ -95,8 +94,8 @@ def load_config(path: str | Path) -> RunConfig:
 
     run_name = _as_str(raw.get("run_name", "run"), field="run_name")
     backend = raw.get("backend", "mlx")
-    if backend not in ("mlx", "mock"):
-        raise ValueError("backend must be one of: mlx, mock")
+    if backend not in ("mlx", "mock", "openai", "anthropic"):
+        raise ValueError("backend must be one of: mlx, mock, openai, anthropic")
 
     raw_models = raw.get("models")
     if not isinstance(raw_models, list) or not raw_models:
