@@ -2,10 +2,22 @@
 
 The accountability claim in the paper depends on the intervention regime being a
 property of the model, not an accident of where the thresholds were set. This
-script tests that directly. It perturbs the four stress-failure thresholds
-(latency, repetition, length-overrun, consecutive-failure count), runs the FULL
-unified evaluation freshly at each perturbed setting, and reports whether each
-model's regime holds.
+script tests that directly. It perturbs the continuous stress-failure
+thresholds, runs the FULL unified evaluation freshly at each perturbed
+setting, and reports whether each model's regime holds.
+
+The stress.failure block has five knobs:
+  - max_latency_ms (float)      — scaled by the grid factor
+  - max_rcs (float, 0..1)       — scaled by the grid factor, clipped to [0, 1]
+  - consecutive (int)           — scaled, rounded, floored at 1
+  - latency_only_after_input_tokens (int) — scaled, rounded, floored at 0
+  - fail_on_lorr (bool)         — toggle; no continuous range, swept
+                                  separately via --include-lorr-toggle
+
+A grid of 1.0 reproduces the baseline thresholds exactly. With the
+--include-lorr-toggle flag the script adds two extra conditions at factor 1.0
+with fail_on_lorr forced True/False so the binary knob also gets a sensitivity
+read.
 
 It deliberately reuses the existing unified runner (lte.unified.run_unified) so
 the perturbed runs use exactly the same code path as the headline results. The
@@ -20,7 +32,8 @@ Usage (run on a machine with the real backends/models):
     python scripts/run_threshold_sensitivity.py \
         --base-config configs/stress_all_models.yaml \
         --out results/threshold_sensitivity \
-        --grid 0.8,0.9,1.0,1.1,1.2
+        --grid 0.8,0.9,1.0,1.1,1.2 \
+        --include-lorr-toggle
 
 Use --backend mock for a dry run that exercises the whole pipeline without
 calling real models.
@@ -49,10 +62,12 @@ def _backend_from_name(name: str):
         "anthropic": AnthropicBackend,
     }[name]()
 
-# Thresholds that get scaled. consecutive is integer-valued so it is rounded and
-# floored at 1. fail_on_lorr is boolean and is toggled separately, not scaled.
+# Continuous thresholds the grid factor scales. fail_on_lorr is a boolean
+# toggle and is swept separately via --include-lorr-toggle, not scaled.
 SCALABLE = ("max_latency_ms", "max_rcs")
-INT_SCALABLE = ("consecutive",)
+INT_SCALABLE = ("consecutive", "latency_only_after_input_tokens")
+# max_rcs is a ratio in [0, 1]; the scale can push it out of range.
+CLIPPED = {"max_rcs": (0.0, 1.0)}
 
 RECOMMENDATION_ORDER = {
     "continue": 0,
@@ -67,14 +82,26 @@ def _load_yaml(path: Path) -> dict[str, Any]:
     return yaml.safe_load(path.read_text(encoding="utf-8"))
 
 
-def _perturbed_failure_block(base_failure: dict[str, Any], factor: float) -> dict[str, Any]:
+def _perturbed_failure_block(
+    base_failure: dict[str, Any],
+    factor: float,
+    *,
+    lorr_override: bool | None = None,
+) -> dict[str, Any]:
     out = copy.deepcopy(base_failure)
     for key in SCALABLE:
         if out.get(key) is not None:
-            out[key] = type(base_failure[key])(base_failure[key] * factor)
+            scaled = type(base_failure[key])(base_failure[key] * factor)
+            if key in CLIPPED:
+                lo, hi = CLIPPED[key]
+                scaled = type(scaled)(max(lo, min(hi, scaled)))
+            out[key] = scaled
     for key in INT_SCALABLE:
         if out.get(key) is not None:
-            out[key] = max(1, round(base_failure[key] * factor))
+            floor = 1 if key == "consecutive" else 0
+            out[key] = max(floor, round(base_failure[key] * factor))
+    if lorr_override is not None:
+        out["fail_on_lorr"] = lorr_override
     return out
 
 
@@ -101,6 +128,9 @@ def main() -> int:
                     help="comma-separated scaling factors applied to thresholds")
     ap.add_argument("--backend", default=None,
                     help="override backend (e.g. mock) for a dry run")
+    ap.add_argument("--include-lorr-toggle", action="store_true",
+                    help="add two extra factor-1.0 conditions with "
+                         "fail_on_lorr forced True/False to sweep the toggle")
     args = ap.parse_args()
 
     base_path = Path(args.base_config)
@@ -110,29 +140,40 @@ def main() -> int:
     out_root.mkdir(parents=True, exist_ok=True)
 
     factors = [float(x) for x in args.grid.split(",")]
-
-    # model -> factor -> recommendation
-    table: dict[str, dict[float, str]] = {}
-
+    # Build the condition list. Grid conditions are labelled by their float
+    # factor; lorr-toggle conditions get explicit names so they show up in the
+    # stability report separately from the grid.
+    conditions: list[tuple[str, dict[str, Any]]] = []
     for factor in factors:
-        failure_block = _perturbed_failure_block(base_failure, factor)
         tag = f"f{str(factor).replace('.', 'p')}"
-        run_name = f"sensitivity_{tag}"
-        variant_results = out_root / tag
+        conditions.append((tag, _perturbed_failure_block(base_failure, factor)))
+    if args.include_lorr_toggle:
+        for value in (True, False):
+            tag = f"lorr_{'on' if value else 'off'}"
+            conditions.append((tag, _perturbed_failure_block(
+                base_failure, 1.0, lorr_override=value)))
+    baseline_label = "f1p0"
+
+    # model -> condition_label -> recommendation
+    table: dict[str, dict[str, str]] = {}
+
+    for label, failure_block in conditions:
+        run_name = f"sensitivity_{label}"
+        variant_results = out_root / label
         cfg_path = _write_variant_config(base_raw, failure_block, run_name,
                                          variant_results, args.backend)
         cfg = load_config(str(cfg_path))
         backend = _backend_from_name(cfg.backend)
-        print(f"[sensitivity] factor={factor} thresholds={failure_block}")
+        print(f"[sensitivity] {label} thresholds={failure_block}")
         paths = run_unified(cfg=cfg, backend=backend, run_id=run_name, force=True)
         summary = json.loads(Path(paths.summary_json).read_text(encoding="utf-8"))
         for model_summary in summary.get("models", []):
             model_name = model_summary.get("model_name", "?")
             rec_obj = model_summary.get("recommendation") or {}
             rec = rec_obj.get("action") if isinstance(rec_obj, dict) else rec_obj
-            table.setdefault(model_name, {})[factor] = rec
+            table.setdefault(model_name, {})[label] = rec
 
-    stability = _build_stability_report(table, baseline_factor=1.0)
+    stability = _build_stability_report(table, baseline_label=baseline_label)
     report_path = out_root / "stability_report.json"
     report_path.write_text(json.dumps(stability, indent=2), encoding="utf-8")
     _print_stability(stability)
@@ -140,19 +181,20 @@ def main() -> int:
     return 0
 
 
-def _build_stability_report(table: dict[str, dict[float, str]],
-                            baseline_factor: float) -> dict[str, Any]:
-    report: dict[str, Any] = {"models": [], "all_stable": True}
-    for model, by_factor in sorted(table.items()):
-        baseline = by_factor.get(baseline_factor)
-        flips = {str(f): r for f, r in sorted(by_factor.items()) if r != baseline}
+def _build_stability_report(table: dict[str, dict[str, str]],
+                            baseline_label: str) -> dict[str, Any]:
+    report: dict[str, Any] = {"models": [], "all_stable": True,
+                              "baseline_label": baseline_label}
+    for model, by_label in sorted(table.items()):
+        baseline = by_label.get(baseline_label)
+        flips = {lab: r for lab, r in sorted(by_label.items()) if r != baseline}
         stable = len(flips) == 0
         if not stable:
             report["all_stable"] = False
         report["models"].append({
             "model": model,
             "baseline_regime": baseline,
-            "regimes_by_factor": {str(f): r for f, r in sorted(by_factor.items())},
+            "regimes_by_condition": {lab: r for lab, r in sorted(by_label.items())},
             "stable": stable,
             "flips": flips,
         })
