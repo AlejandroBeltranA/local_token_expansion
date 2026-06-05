@@ -1,0 +1,111 @@
+{
+  "id": "instant_collapse_smollm",
+  "title": "Instant collapse \u2014 repetition / runaway",
+  "model_name": "SmolLM-1.7B-Instruct-4bit",
+  "backend": "mlx",
+  "task_prompt": "TASK:\nProduce exactly 5 bullet points for the current incident state.\nEach bullet must start with a verb and contain 4 to 8 words.\nUse this exact order:\n- report the latest status\n- preserve the current owner\n- name the next action\n- name one risk caused by prior failures\n- state one escalation condition\nKeep the owner as `Iris` unless the TASK changes it.\nNo intro. No closing sentence.\n\n\nCONSTRAINTS:\n- Do not quote or copy from any previous outputs.\n- If prior outputs exist, treat them as read-only reference.\n",
+  "system_text": null,
+  "narrative": "A small model never attempts the task. Asked for 5 incident bullets, it emits Python code and then repeats itself near-verbatim. The repetition/near-cap trigger fires on three consecutive steps and the scaffold aborts after step 2.",
+  "overall_recommendation": "abort",
+  "fired_triggers": [
+    "context_decay",
+    "near_cap_pressure",
+    "over_expansion",
+    "persistent_failure"
+  ],
+  "abort_step": 2,
+  "total_steps": 3,
+  "failure_consecutive_required": 3,
+  "steps": [
+    {
+      "step": 0,
+      "output_text": "To generate the bullet points, you can use a recursive function that generates a list of bullet points based on the current state. The function should take the current state as an argument and return a list of bullet points.\n\nHere's an example implementation in Python:\n\n```python\ndef generate_bullet_points(state):\n    bullet_points = []\n    if state == \"incident\":\n        bullet_points.append(\"report the latest status\")\n        bullet_points.append(\"preserve the current owner\")\n        bullet_points.append(\"name the next action\")\n        bullet_points.append(\"name one risk caused by prior failures\")\n        bullet_points.append(\"state one escalation condition\")\n        if state != \"incident\":\n            bullet_points.append(\"Iris\")\n        else:\n            bullet_points.append(\"no owner\")\n    elif state == \"resolved\":\n        bullet_points.append(\"resolved\")\n    elif state == \"done\":\n        bullet_points.append(\"done\")\n    else:\n        bullet_points.append(\"no action\")\n    return bullet_points\n```\n\nThis function takes the current state as an argument and returns a list of bullet points. It handles the different states, including \"",
+      "latency_ms": 2299,
+      "input_tokens": 178,
+      "output_tokens": 256,
+      "context_fraction": 0.0869,
+      "is_failure": true,
+      "consecutive_failures": 1,
+      "failure_reasons": [
+        "lorr"
+      ],
+      "signals": {
+        "expansion_ratio": 1.438202,
+        "runaway_continuation_score": 0.080292,
+        "length_overrun_rate": 1
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": false,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 1,
+      "output_text": "To generate the bullet points, you can use a recursive function that generates a list of bullet points based on the current state. The function should take the current state as an argument and return a list of bullet points.\n\nHere's an example implementation in Python:\n\n```python\ndef generate_bullet_points(state):\n    bullet_points = []\n    if state == \"incident\":\n        bullet_points.append(\"report the latest status\")\n        bullet_points.append(\"preserve the current owner\")\n        bullet_points.append(\"name the next action\")\n        bullet_points.append(\"name one risk caused by prior failures\")\n        bullet_points.append(\"state one escalation condition\")\n        if state != \"incident\":\n            bullet_points.append(\"Iris\")\n        else:\n            bullet_points.append(\"no owner\")\n    elif state == \"resolved\":\n        bullet_points.append(\"resolved\")\n    elif state == \"done\":\n        bullet_points.append(\"done\")\n    else:\n        bullet_points.append(\"no action\")\n    return bullet_points\n```\n\nThis function takes the current state as an argument and returns a list of bullet points. It handles the different states, including \"",
+      "latency_ms": 2789,
+      "input_tokens": 483,
+      "output_tokens": 256,
+      "context_fraction": 0.2358,
+      "is_failure": true,
+      "consecutive_failures": 2,
+      "failure_reasons": [
+        "lorr"
+      ],
+      "signals": {
+        "expansion_ratio": 0.530021,
+        "runaway_continuation_score": 0.080292,
+        "length_overrun_rate": 1
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": false,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 2,
+      "output_text": "The READ-ONLY REFERENCE is a list of bullet points that should be used exactly as they are provided. You should not quote, copy, or continue the output from the previous assistant.\n\nTo generate the bullet points, you can use the following function:\n\n```python\ndef generate_bullet_points(state):\n    bullet_points = []\n    if state == \"incident\":\n        bullet_points.append(\"report the latest status\")\n        bullet_points.append(\"preserve the current owner\")\n        bullet_points.append(\"name the next action\")\n        bullet_points.append(\"name one risk caused by prior failures\")\n        bullet_points.append(\"state one escalation condition\")\n        if state != \"incident\":\n            bullet_points.append(\"Iris\")\n        else:\n            bullet_points.append(\"no owner\")\n    elif state == \"resolved\":\n        bullet_points.append(\"resolved\")\n    elif state == \"done\":\n        bullet_points.append(\"done\")\n    else:\n        bullet_points.append(\"no action\")\n    return bullet_points\n```\n\nThis function takes the current state as an argument and returns a list of bullet points. It handles the different states,",
+      "latency_ms": 3229,
+      "input_tokens": 741,
+      "output_tokens": 256,
+      "context_fraction": 0.3618,
+      "is_failure": true,
+      "consecutive_failures": 3,
+      "failure_reasons": [
+        "lorr"
+      ],
+      "signals": {
+        "expansion_ratio": 0.345479,
+        "runaway_continuation_score": 0.037879,
+        "length_overrun_rate": 1
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": false,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    }
+  ]
+}

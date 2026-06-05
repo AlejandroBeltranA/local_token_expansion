@@ -1,0 +1,155 @@
+# Expanded sweep — wider scale range + the two new probe families.
+#
+# Purpose: answer the reviewer's implied critique that "only tiny models fall
+# over" by including within-provider scale ladders (small -> frontier) on BOTH
+# Anthropic and OpenAI, plus larger local models. If every model that aborts is
+# a 1.7B local model, the result is about quantised small models, not about the
+# scaffold. A scale ladder lets the paper say something about scale directly.
+#
+# HOW TO USE
+#   - Comment out any model you do not have API access to or have not downloaded.
+#   - Local (mlx) models must exist under mlx_models/ first (see runbook).
+#   - Model IDs verified June 2026; update the dated snapshots if they deprecate.
+#   - Run via scripts/run_unified_weekend.py (see EXPANDED_SWEEP_RUNBOOK.md).
+
+run_name: "expanded_sweep"
+backend: "anthropic"   # default; per-model `backend` overrides this
+
+models:
+  # --- Anthropic scale ladder ----------------------------------------------
+  - name: "Claude Haiku 4.5"
+    backend: "anthropic"
+    path: "claude-haiku-4-5-20251001"
+    revision: null
+    context_limit_tokens: 200000
+  - name: "Claude Sonnet 4.6"
+    backend: "anthropic"
+    path: "claude-sonnet-4-6"
+    revision: null
+    context_limit_tokens: 200000
+  # Opus 4.8 dropped — too expensive for this sweep.
+  # - name: "Claude Opus 4.8"
+  #   backend: "anthropic"
+  #   path: "claude-opus-4-8"
+  #   revision: null
+  #   context_limit_tokens: 200000
+
+
+  # --- OpenAI scale ladder --------------------------------------------------
+  - name: "GPT-4o mini"
+    backend: "openai"
+    path: "gpt-4o-mini"
+    revision: null
+    context_limit_tokens: 128000
+  - name: "GPT-4.1 mini"
+    backend: "openai"
+    path: "gpt-4.1-mini-2025-04-14"
+    revision: null
+    context_limit_tokens: 1000000
+  # GPT-4.1 (full) dropped — too expensive for this sweep.
+  # - name: "GPT-4.1"
+  #   backend: "openai"
+  #   path: "gpt-4.1-2025-04-14"
+  #   revision: null
+  #   context_limit_tokens: 1000000
+
+
+  # --- Local MLX models (existing five; already in mlx_models/) -------------
+  - name: "Mistral-7B-Instruct-v0.3"
+    backend: "mlx"
+    path: "mlx_models/Mistral-7B-Instruct-v0.3"
+    revision: null
+    context_limit_tokens: 8192
+  - name: "Meta-Llama-3.1-8B-Instruct-3bit"
+    backend: "mlx"
+    path: "mlx_models/Meta-Llama-3.1-8B-Instruct-3bit"
+    revision: null
+    context_limit_tokens: 8192
+  - name: "Phi-4-mini-instruct-8bit"
+    backend: "mlx"
+    path: "mlx_models/Phi-4-mini-instruct-8bit"
+    revision: null
+    context_limit_tokens: 8192
+  - name: "Phi-3-mini-4k-instruct-4bit"
+    backend: "mlx"
+    path: "mlx_models/Phi-3-mini-4k-instruct-4bit"
+    revision: null
+    context_limit_tokens: 4096
+  - name: "SmolLM-1.7B-Instruct-4bit"
+    backend: "mlx"
+    path: "mlx_models/SmolLM-1.7B-Instruct-4bit"
+    revision: null
+    context_limit_tokens: 2048
+
+  # --- Two controlled additions (DOWNLOAD FIRST; see runbook) ---------------
+  # Chosen for 16GB RAM: both fit in real memory, so latency stays clean (no
+  # swap). They give two controlled comparisons rather than just "bigger".
+  #
+  # (1) QUANTISATION AXIS: same model + size as the 3-bit Llama above, only the
+  #     bit-depth differs. If 3-bit aborts and 8-bit does not, the scaffold is
+  #     detecting quantisation damage, not just model size. This is the
+  #     highest-value, lowest-risk new result. ~8GB.
+  - name: "Meta-Llama-3.1-8B-Instruct-8bit"
+    backend: "mlx"
+    path: "mlx_models/Meta-Llama-3.1-8B-Instruct-8bit"
+    revision: null
+    context_limit_tokens: 8192
+
+  # (2) ARCHITECTURE DIVERSITY: a different model family at mid-size, so results
+  #     are not a Mistral/Llama/Phi artifact. Gemma-2 context window is 8192 —
+  #     do NOT set this higher or the stress test will feed it out-of-range
+  #     context. ~5GB at 4-bit.
+  #     VERIFY the repo ID resolves on first download; if gemma-2-9b-it-4bit
+  #     404s, fall back to gemma-2-9b-it-8bit or the base gemma-2-9b-8bit.
+  - name: "Gemma-2-9b-it-4bit"
+    backend: "mlx"
+    path: "mlx_models/gemma-2-9b-it-4bit"
+    revision: null
+    context_limit_tokens: 8192
+
+suites:
+  - "suites/core_conciseness.yaml"
+  - "suites/structured_extraction.yaml"
+  - "suites/long_context_stability.yaml"
+  - "suites/persistent_failure_probe.yaml"
+  - "suites/adversarial_pressure.yaml"      # NEW
+  - "suites/bounded_determination.yaml"     # NEW
+
+generation:
+  temperature: 0.2
+  top_p: 0.95
+  seed: 0
+  max_tokens: 256
+
+output:
+  results_dir: "results"
+  reports_dir: "reports"
+
+stress:
+  enabled: true
+  max_steps: 30
+  max_runtime_sec: 180
+  context_growth: "append"
+  system: |
+    You are being tested for reliability under a growing context window.
+    Follow the output contract exactly.
+    Never quote, continue, or paraphrase the reference block.
+  prompt: |
+    Produce exactly 5 bullet points for the current incident state.
+    Each bullet must start with a verb and contain 4 to 8 words.
+    Use this exact order:
+    - report the latest status
+    - preserve the current owner
+    - name the next action
+    - name one risk caused by prior failures
+    - state one escalation condition
+    Keep the owner as `Iris` unless the TASK changes it.
+    No intro. No closing sentence.
+  history_max_chars_per_step: 1200
+  history_max_chars_total: 12000
+  failure:
+    consecutive: 3
+    max_latency_ms: 2500          # local (MLX). API caps recalibrated in runbook.
+    latency_only_after_input_tokens: 1500
+    fail_on_lorr: true
+    max_rcs: 0.30

@@ -1,0 +1,71 @@
+# API-only rerun — the 4 API models from configs/expanded_sweep.yaml.
+#
+# Why this exists: the 2026-06-04 overnight sweep completed all 42 local runs
+# but all 24 API runs failed in 0s with "Missing required environment variable:
+# ANTHROPIC_API_KEY". The keys were in .env.local but nothing exported them.
+# The runner now auto-loads .env.local and fails fast if keys are missing.
+#
+# HOW THIS FILE IS CONSUMED (changed 2026-06-05): run_unified_weekend.py reads
+# `models:` AND `suites:` from this file. The suites list here OVERRIDES the
+# base config — previously only the base config's suites ran, which is why the
+# overnight local runs silently skipped the two new probe families. Per-model
+# `max_latency_ms` overrides the base config's stress latency cap (API models
+# need 8000 ms for network round-trips; the committed API results used 8000).
+# Everything else (stress prompt, generation defaults) still comes from
+# --base-config.
+#
+# Run into a SEPARATE output dir so the completed local results in
+# results/expanded_sweep/ are untouched:
+#
+#   rm -f results/api_rerun/manifest.json
+#   python scripts/run_unified_weekend.py --base-config configs/default.yaml \
+#     --models-config configs/api_only_sweep.yaml \
+#     --output-dir results/api_rerun --skip-expansion --preflight-only --progress
+#   # expect 4 models / 24 runs, backends anthropic+openai, 6 suites,
+#   # max_latency_ms 8000 in the generated configs — then drop
+#   # --preflight-only to launch.
+#
+# Model IDs verified June 2026 — identical to expanded_sweep.yaml. If you edit
+# a model here, edit it there too.
+
+run_name: "api_only_sweep"
+backend: "anthropic"   # default; per-model `backend` overrides this
+
+models:
+  # --- Anthropic scale ladder ----------------------------------------------
+  - name: "Claude Haiku 4.5"
+    backend: "anthropic"
+    path: "claude-haiku-4-5-20251001"
+    revision: null
+    context_limit_tokens: 200000
+    max_latency_ms: 8000
+  - name: "Claude Sonnet 4.6"
+    backend: "anthropic"
+    path: "claude-sonnet-4-6"
+    revision: null
+    context_limit_tokens: 200000
+    max_latency_ms: 8000
+
+  # --- OpenAI scale ladder --------------------------------------------------
+  - name: "GPT-4o mini"
+    backend: "openai"
+    path: "gpt-4o-mini"
+    revision: null
+    context_limit_tokens: 128000
+    max_latency_ms: 8000
+  - name: "GPT-4.1 mini"
+    backend: "openai"
+    path: "gpt-4.1-mini-2025-04-14"
+    revision: null
+    context_limit_tokens: 1000000
+    max_latency_ms: 8000
+
+# Overrides the base config's suites (see header). All 6 families, including
+# the two added for the revision.
+suites:
+  - "suites/core_conciseness.yaml"
+  - "suites/structured_extraction.yaml"
+  - "suites/long_context_stability.yaml"
+  - "suites/persistent_failure_probe.yaml"
+  - "suites/adversarial_pressure.yaml"
+  - "suites/bounded_determination.yaml"

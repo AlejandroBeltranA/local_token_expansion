@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 import time
@@ -11,6 +12,55 @@ from pathlib import Path
 from typing import Any
 
 import yaml
+
+# Env vars each API backend requires. Checked in preflight so a missing key
+# fails the whole sweep up front instead of silently failing every API run
+# (which is what happened on the 2026-06-04 overnight sweep: 24 API runs died
+# in 0s with "Missing required environment variable: ANTHROPIC_API_KEY").
+BACKEND_REQUIRED_ENV = {
+    "anthropic": ["ANTHROPIC_API_KEY"],
+    "openai": ["OPENAI_API_KEY"],
+}
+
+
+def _load_env_file(path: Path) -> list[str]:
+    """Load KEY=VALUE lines from an env file into os.environ.
+
+    Existing environment variables win — the file only fills gaps, so an
+    explicitly exported key is never overridden. Returns the names loaded.
+    No python-dotenv dependency; handles comments, blank lines, optional
+    `export ` prefix, and surrounding quotes.
+    """
+    if not path.exists():
+        return []
+    loaded: list[str] = []
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        if line.startswith("export "):
+            line = line[len("export "):]
+        name, _, value = line.partition("=")
+        name = name.strip()
+        value = value.strip().strip("'\"")
+        if not name or not value:
+            continue
+        if not os.environ.get(name):
+            os.environ[name] = value
+            loaded.append(name)
+    return loaded
+
+
+def _check_backend_env(models: list[dict[str, Any]]) -> list[str]:
+    """Return the missing required env var names for the backends in use."""
+    missing: list[str] = []
+    backends = {str(model.get("backend", "mlx")) for model in models}
+    for backend in sorted(backends):
+        for var in BACKEND_REQUIRED_ENV.get(backend, []):
+            if not os.environ.get(var) and var not in missing:
+                missing.append(var)
+    return missing
+
 
 RECOMMENDATION_ORDER = {
     "continue": 0,
@@ -33,6 +83,7 @@ class RunSpec:
     top_p: float
     max_tokens: int
     seed: int
+    max_latency_ms: int | None = None  # per-model stress latency cap override
 
     @property
     def run_id(self) -> str:
@@ -89,9 +140,27 @@ def _models_from_config(path: Path) -> list[dict[str, Any]]:
                 "path": str(model["path"]),
                 "revision": model.get("revision"),
                 "context_limit_tokens": model.get("context_limit_tokens"),
+                "max_latency_ms": model.get("max_latency_ms"),
             }
         )
     return out
+
+
+def _suites_from_config(path: Path) -> list[str] | None:
+    """Optional `suites:` list in the models-config, overriding the base config.
+
+    The 2026-06-04 sweep silently ran only the base config's 4 suites because
+    the models-config's suites block was never read — the two new probe
+    families (adversarial_pressure, bounded_determination) never executed.
+    This makes the models-config's suites list authoritative when present.
+    """
+    raw = _load_yaml(path)
+    suites = raw.get("suites")
+    if suites is None:
+        return None
+    if not isinstance(suites, list) or not all(isinstance(s, str) for s in suites):
+        raise ValueError(f"Invalid suites list in {path}: {suites!r}")
+    return suites
 
 
 def _build_run_specs(
@@ -119,12 +188,22 @@ def _build_run_specs(
                             top_p=0.95,
                             max_tokens=int(budget),
                             seed=int(seed),
+                            max_latency_ms=(
+                                int(model["max_latency_ms"]) if model.get("max_latency_ms") is not None else None
+                            ),
                         )
                     )
     return specs
 
 
-def _write_run_config(*, base_config: dict[str, Any], spec: RunSpec, config_path: Path, results_dir: Path) -> None:
+def _write_run_config(
+    *,
+    base_config: dict[str, Any],
+    spec: RunSpec,
+    config_path: Path,
+    results_dir: Path,
+    suites_override: list[str] | None = None,
+) -> None:
     cfg = json.loads(json.dumps(base_config))
     cfg["run_name"] = spec.run_id
     cfg["backend"] = spec.backend
@@ -136,6 +215,14 @@ def _write_run_config(*, base_config: dict[str, Any], spec: RunSpec, config_path
             "context_limit_tokens": spec.context_limit_tokens,
         }
     ]
+    if suites_override is not None:
+        cfg["suites"] = list(suites_override)
+    if spec.max_latency_ms is not None:
+        stress = dict(cfg.get("stress") or {})
+        failure = dict(stress.get("failure") or {})
+        failure["max_latency_ms"] = int(spec.max_latency_ms)
+        stress["failure"] = failure
+        cfg["stress"] = stress
     generation = dict(cfg.get("generation") or {})
     generation["temperature"] = spec.temperature
     generation["top_p"] = spec.top_p
@@ -403,6 +490,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--resume", action="store_true", help="Skip runs whose summary.json already exists.")
     parser.add_argument("--stop-on-error", action="store_true", help="Abort the sweep on the first failed run.")
     parser.add_argument("--skip-expansion", action="store_true", help="Run only the baseline phase.")
+    parser.add_argument(
+        "--env-file",
+        default=".env.local",
+        help="Env file auto-loaded before the sweep (existing env vars win). Pass an empty string to disable.",
+    )
     return parser
 
 
@@ -502,6 +594,26 @@ def main(argv: list[str] | None = None) -> int:
 
     base_config = _load_yaml(base_config_path)
     models = _models_from_config(models_config_path)
+    suites_override = _suites_from_config(models_config_path)
+    if suites_override is not None:
+        print(f"Suites (from {models_config_path}): {', '.join(suites_override)}", file=sys.stderr)
+
+    if args.env_file:
+        loaded = _load_env_file(Path(args.env_file))
+        if loaded:
+            print(f"Loaded {', '.join(loaded)} from {args.env_file}", file=sys.stderr)
+    missing_env = _check_backend_env(models)
+    if missing_env:
+        backends = sorted({str(m.get('backend', 'mlx')) for m in models})
+        message = (
+            f"Missing required environment variable(s) {', '.join(missing_env)} "
+            f"for backend(s) {', '.join(backends)}. "
+            f"Put them in {args.env_file or '.env.local'} or export them before running."
+        )
+        if args.preflight_only:
+            print(f"WARNING: {message} The real sweep will refuse to start.", file=sys.stderr)
+        else:
+            raise SystemExit(f"{message} Refusing to start: every API run would fail.")
 
     baseline_specs = _build_run_specs(
         models=models,
@@ -537,6 +649,7 @@ def main(argv: list[str] | None = None) -> int:
             spec=spec,
             config_path=generated_configs_dir / f"{spec.run_id}.yaml",
             results_dir=unified_results_dir,
+            suites_override=suites_override,
         )
 
     if args.preflight_only:
@@ -635,6 +748,7 @@ def main(argv: list[str] | None = None) -> int:
             spec=spec,
             config_path=generated_configs_dir / f"{spec.run_id}.yaml",
             results_dir=unified_results_dir,
+            suites_override=suites_override,
         )
 
     expansion_outcomes: list[dict[str, Any]] = []

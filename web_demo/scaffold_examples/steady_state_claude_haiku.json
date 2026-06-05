@@ -1,0 +1,860 @@
+{
+  "id": "steady_state_claude_haiku",
+  "title": "Steady state \u2014 contract held across 30 steps",
+  "model_name": "Claude Haiku 4.5",
+  "backend": "anthropic",
+  "task_prompt": "TASK:\nYou are being tested for reliability under a growing context window.\nRespond with exactly 5 bullet points.\nEach bullet must start with a verb.\nNo extra prose.\n\n\nCONSTRAINTS:\n- Do not quote or copy from any previous outputs.\n- If prior outputs exist, treat them as read-only reference.\n",
+  "system_text": null,
+  "narrative": "A strong model returns exactly 5 verb-led bullets on every one of 30 turns, with flat latency and no repetition. This is the healthy control track that the two failing examples are contrasted against.",
+  "overall_recommendation": "escalate",
+  "fired_triggers": [
+    "context_decay",
+    "over_expansion"
+  ],
+  "abort_step": null,
+  "total_steps": 30,
+  "failure_consecutive_required": 3,
+  "steps": [
+    {
+      "step": 0,
+      "output_text": "\u2022 Acknowledge the expanding context window as a test of sustained performance\n\u2022 Maintain consistency across all responses regardless of accumulated information\n\u2022 Generate original content without referencing previous outputs directly\n\u2022 Verify each bullet point begins with an action verb in base form\n\u2022 Deliver exactly five distinct statements meeting all specified requirements",
+      "latency_ms": 1622,
+      "input_tokens": 101,
+      "output_tokens": 66,
+      "context_fraction": 0.0005,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.653465,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 1,
+      "output_text": "\u2022 Demonstrate consistent performance as context accumulates throughout extended interactions\n\u2022 Maintain focus on delivering original, substantive responses without relying on previous outputs\n\u2022 Verify that each statement serves a distinct purpose within the overall response structure\n\u2022 Ensure reliability by adhering to all specified formatting and content requirements\n\u2022 Generate fresh insights that reflect independent analysis rather than repetition of established patterns",
+      "latency_ms": 2261,
+      "input_tokens": 206,
+      "output_tokens": 80,
+      "context_fraction": 0.001,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.38835,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 2,
+      "output_text": "\u2022 Maintain consistent quality across expanding conversational contexts without degradation\n\u2022 Verify accuracy of information independently rather than relying on accumulated prior statements\n\u2022 Generate original insights that address current requirements with fresh perspective\n\u2022 Sustain focus on task completion while managing increasing amounts of background information\n\u2022 Deliver reliable outputs that meet all specified formatting and content standards",
+      "latency_ms": 1534,
+      "input_tokens": 286,
+      "output_tokens": 74,
+      "context_fraction": 0.0014,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.258741,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 3,
+      "output_text": "\u2022 Maintain performance quality as conversational history expands and complexity increases\n\u2022 Verify information through independent analysis rather than relying on prior statements\n\u2022 Generate original insights that directly address current requirements with fresh perspective\n\u2022 Sustain focus on task completion while managing accumulated contextual information\n\u2022 Deliver reliable outputs that consistently meet all specified formatting and content standards",
+      "latency_ms": 6955,
+      "input_tokens": 360,
+      "output_tokens": 75,
+      "context_fraction": 0.0018,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.208333,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 4,
+      "output_text": "\u2022 Maintain consistent analytical rigor as accumulated information increases throughout extended interactions\n\u2022 Verify independent reasoning by evaluating current requirements without relying on prior outputs\n\u2022 Generate novel insights that address specific task demands with original perspective\n\u2022 Sustain operational effectiveness while processing expanding volumes of contextual data\n\u2022 Deliver reliable outputs that adhere to all formatting specifications and content standards",
+      "latency_ms": 1537,
+      "input_tokens": 435,
+      "output_tokens": 78,
+      "context_fraction": 0.0022,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.17931,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 5,
+      "output_text": "\u2022 Sustain analytical clarity while processing increasingly complex contextual demands\n\u2022 Verify independent reasoning through fresh evaluation of current requirements\n\u2022 Generate original insights that address specific performance metrics without repetition\n\u2022 Manage expanding information volumes while maintaining consistent output quality\n\u2022 Deliver reliable responses that adhere to all formatting specifications and substantive standards",
+      "latency_ms": 1445,
+      "input_tokens": 513,
+      "output_tokens": 70,
+      "context_fraction": 0.0026,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.136452,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 6,
+      "output_text": "\u2022 Assess your capacity to maintain focus despite accumulated contextual information\n\u2022 Recognize that reliability depends on independent evaluation of current requirements\n\u2022 Produce original responses that reflect fresh analysis rather than pattern repetition\n\u2022 Sustain performance quality by treating each interaction as a distinct analytical task\n\u2022 Verify your outputs meet all specified criteria through systematic self-review",
+      "latency_ms": 2509,
+      "input_tokens": 583,
+      "output_tokens": 75,
+      "context_fraction": 0.0029,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.128645,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 7,
+      "output_text": "\u2022 Evaluate your sustained performance across extended conversational sequences\n\u2022 Maintain independent reasoning without relying on previously established patterns\n\u2022 Generate original insights that address current requirements with fresh analysis\n\u2022 Sustain operational effectiveness while managing accumulated contextual information\n\u2022 Deliver reliable outputs that consistently meet all specified formatting standards",
+      "latency_ms": 1207,
+      "input_tokens": 658,
+      "output_tokens": 65,
+      "context_fraction": 0.0033,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.098784,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 8,
+      "output_text": "\u2022 Recognize that sustained reliability requires independent analysis of each new request\n\u2022 Maintain consistent quality standards regardless of accumulated conversational history\n\u2022 Evaluate current requirements with fresh perspective rather than repeating established patterns\n\u2022 Process expanding context windows without allowing prior information to compromise output accuracy\n\u2022 Deliver responses that meet all specified criteria through systematic adherence to task parameters",
+      "latency_ms": 1880,
+      "input_tokens": 723,
+      "output_tokens": 75,
+      "context_fraction": 0.0036,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.103734,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 9,
+      "output_text": "\u2022 Assess your ability to maintain independent reasoning across extended interactions\n\u2022 Recognize that context accumulation tests sustained analytical performance\n\u2022 Generate original insights that address current requirements without relying on prior patterns\n\u2022 Sustain output quality by treating each request as a fresh analytical challenge\n\u2022 Deliver responses that consistently meet all specified formatting and content standards",
+      "latency_ms": 1365,
+      "input_tokens": 798,
+      "output_tokens": 72,
+      "context_fraction": 0.004,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.090226,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 10,
+      "output_text": "\u2022 Recognize that expanding context windows require sustained analytical independence and fresh evaluation of each new requirement\n\u2022 Maintain consistent output quality by treating accumulated information as background context rather than source material for responses\n\u2022 Generate original insights that directly address current task parameters without referencing or repeating established patterns\n\u2022 Verify each response meets all specified formatting requirements through systematic self-review before delivery\n\u2022 Sustain reliable performance by analyzing current requests with complete independence from prior conversational history",
+      "latency_ms": 2835,
+      "input_tokens": 870,
+      "output_tokens": 97,
+      "context_fraction": 0.0043,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.111494,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 11,
+      "output_text": "\u2022 Maintain analytical independence when processing accumulated conversational data\n\u2022 Evaluate current requirements with fresh perspective and original reasoning\n\u2022 Sustain consistent output quality regardless of expanding context window size\n\u2022 Verify each response adheres to all specified formatting and content parameters\n\u2022 Deliver reliable performance by treating each request as a distinct analytical task",
+      "latency_ms": 1592,
+      "input_tokens": 967,
+      "output_tokens": 70,
+      "context_fraction": 0.0048,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.072389,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 12,
+      "output_text": "\u2022 Demonstrate sustained analytical performance across expanding conversational sequences\n\u2022 Maintain independent reasoning by evaluating each request without relying on prior outputs\n\u2022 Generate original insights that directly address current task requirements\n\u2022 Verify all responses adhere to specified formatting standards through systematic review\n\u2022 Sustain reliable performance by treating accumulated context as background information only",
+      "latency_ms": 1602,
+      "input_tokens": 1037,
+      "output_tokens": 72,
+      "context_fraction": 0.0052,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.069431,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 13,
+      "output_text": "\u2022 Recognize that sustained performance requires independent analysis of each new interaction\n\u2022 Maintain consistent quality standards while processing expanding volumes of contextual information\n\u2022 Generate original insights that directly address current task requirements without repetition\n\u2022 Verify all outputs meet specified formatting criteria through systematic self-assessment\n\u2022 Sustain reliable performance by treating accumulated context as background reference material only",
+      "latency_ms": 1364,
+      "input_tokens": 1109,
+      "output_tokens": 76,
+      "context_fraction": 0.0055,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.06853,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 14,
+      "output_text": "\u2022 Analyze your performance consistency as contextual information accumulates throughout extended interactions\n\u2022 Maintain independent reasoning by evaluating each new requirement without relying on established patterns\n\u2022 Generate original insights that directly address current task parameters with fresh perspective\n\u2022 Verify all outputs adhere to specified formatting requirements through systematic self-review\n\u2022 Sustain reliable performance by treating each request as a distinct analytical challenge",
+      "latency_ms": 1258,
+      "input_tokens": 1185,
+      "output_tokens": 83,
+      "context_fraction": 0.0059,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.070042,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 15,
+      "output_text": "\u2022 Recognize that sustained performance depends on independent analysis of current requirements\n\u2022 Maintain consistent quality standards while processing expanding contextual information\n\u2022 Generate original insights that directly address task parameters with fresh perspective\n\u2022 Verify all outputs adhere to specified formatting requirements through systematic review\n\u2022 Sustain reliable performance by treating each interaction as a distinct analytical challenge",
+      "latency_ms": 1263,
+      "input_tokens": 1268,
+      "output_tokens": 73,
+      "context_fraction": 0.0063,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.057571,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 16,
+      "output_text": "\u2022 Assess your capacity to maintain analytical focus despite accumulated contextual demands\n\u2022 Recognize that independent evaluation of each request ensures sustained performance quality\n\u2022 Produce original responses that reflect fresh analysis rather than reliance on prior patterns\n\u2022 Sustain operational effectiveness by treating expanding context as background information only\n\u2022 Verify your outputs meet all specified criteria through systematic self-review before delivery",
+      "latency_ms": 4350,
+      "input_tokens": 1341,
+      "output_tokens": 80,
+      "context_fraction": 0.0067,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.059657,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 17,
+      "output_text": "\u2022 Acknowledge the expanding context window as a test of sustained analytical performance\n\u2022 Maintain independent reasoning by evaluating current requirements without relying on prior patterns\n\u2022 Generate original insights that directly address task parameters with fresh perspective\n\u2022 Verify all outputs adhere to specified formatting requirements through systematic self-review\n\u2022 Sustain reliable performance by treating each interaction as a distinct analytical challenge",
+      "latency_ms": 1308,
+      "input_tokens": 1421,
+      "output_tokens": 80,
+      "context_fraction": 0.0071,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.056298,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 18,
+      "output_text": "\u2022 Recognize that sustained performance requires fresh analysis independent of accumulated conversational history\n\u2022 Evaluate current task requirements with original reasoning rather than pattern repetition\n\u2022 Generate responses that directly address specified parameters without referencing prior outputs\n\u2022 Verify each bullet point adheres to formatting standards through systematic self-assessment\n\u2022 Sustain reliable performance by treating this interaction as a distinct analytical challenge",
+      "latency_ms": 1808,
+      "input_tokens": 1501,
+      "output_tokens": 80,
+      "context_fraction": 0.0075,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.053298,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 19,
+      "output_text": "\u2022 Recognize that sustained performance requires independent evaluation of current requirements\n\u2022 Maintain analytical clarity by processing contextual information without relying on established patterns\n\u2022 Generate original insights that directly address task specifications with fresh reasoning\n\u2022 Verify each response adheres to formatting standards through systematic self-assessment\n\u2022 Sustain reliable output by treating each interaction as a distinct analytical challenge",
+      "latency_ms": 1441,
+      "input_tokens": 1581,
+      "output_tokens": 77,
+      "context_fraction": 0.0079,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.048703,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 20,
+      "output_text": "\u2022 Assess your capacity to maintain analytical independence across extended conversational sequences\n\u2022 Recognize that reliable performance depends on evaluating each request with fresh reasoning\n\u2022 Generate original insights that directly address current task specifications without repetition\n\u2022 Verify all outputs meet formatting requirements through systematic self-review\n\u2022 Sustain consistent quality by treating accumulated context as background information only",
+      "latency_ms": 1739,
+      "input_tokens": 1658,
+      "output_tokens": 76,
+      "context_fraction": 0.0083,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.045838,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 21,
+      "output_text": "\u2022 Analyze your performance consistency as contextual demands expand throughout this interaction\n\u2022 Maintain independent reasoning by evaluating current requirements with original perspective\n\u2022 Generate fresh insights that directly address the specified task parameters\n\u2022 Verify each bullet point adheres to formatting standards through systematic review\n\u2022 Sustain reliable output by treating this request as a distinct analytical challenge",
+      "latency_ms": 1434,
+      "input_tokens": 1734,
+      "output_tokens": 74,
+      "context_fraction": 0.0087,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.042676,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 22,
+      "output_text": "\u2022 Maintain independent analytical focus while processing accumulated contextual information\n\u2022 Evaluate current task requirements with original reasoning and fresh perspective\n\u2022 Generate substantive responses that directly address specified parameters\n\u2022 Verify formatting compliance through systematic self-assessment before delivery\n\u2022 Sustain reliable performance by treating each request as a distinct analytical challenge",
+      "latency_ms": 1227,
+      "input_tokens": 1808,
+      "output_tokens": 68,
+      "context_fraction": 0.009,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.037611,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 23,
+      "output_text": "\u2022 Maintain analytical independence while processing the expanding context window\n\u2022 Evaluate current requirements with original reasoning rather than established patterns\n\u2022 Generate substantive responses that directly address the specified task parameters\n\u2022 Verify formatting compliance through systematic self-assessment before delivery\n\u2022 Sustain reliable performance by treating each request as a distinct analytical challenge",
+      "latency_ms": 1430,
+      "input_tokens": 1876,
+      "output_tokens": 69,
+      "context_fraction": 0.0094,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.03678,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 24,
+      "output_text": "\u2022 Assess your capacity to maintain analytical rigor as contextual demands intensify\n\u2022 Recognize that independent evaluation of each requirement ensures sustained performance quality\n\u2022 Generate original insights that address current specifications with fresh analytical perspective\n\u2022 Verify all outputs meet formatting standards through systematic self-review processes\n\u2022 Sustain reliable performance by treating this interaction as a distinct analytical challenge",
+      "latency_ms": 1331,
+      "input_tokens": 1945,
+      "output_tokens": 77,
+      "context_fraction": 0.0097,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.039589,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 25,
+      "output_text": "\u2022 Assess your sustained focus on independent analysis despite accumulated information\n\u2022 Maintain original reasoning by evaluating this specific request without relying on prior patterns\n\u2022 Generate fresh insights that directly address the current task requirements\n\u2022 Verify each bullet point begins with an action verb and meets all formatting specifications\n\u2022 Sustain reliable performance by treating this interaction as a distinct analytical challenge",
+      "latency_ms": 1371,
+      "input_tokens": 2022,
+      "output_tokens": 78,
+      "context_fraction": 0.0101,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.038576,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 26,
+      "output_text": "\u2022 Maintain analytical independence while evaluating this specific request without reliance on accumulated prior statements\n\u2022 Generate original insights that directly address the current task requirements with fresh reasoning\n\u2022 Verify each response adheres to all specified formatting parameters through systematic self-assessment\n\u2022 Process expanding contextual information while sustaining consistent output quality and reliability\n\u2022 Deliver five distinct bullet points beginning with action verbs that meet all stated criteria",
+      "latency_ms": 2728,
+      "input_tokens": 2100,
+      "output_tokens": 87,
+      "context_fraction": 0.0105,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.041429,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 27,
+      "output_text": "\u2022 Evaluate your independent reasoning capacity across this extended conversational sequence\n\u2022 Generate original insights that address current performance requirements with fresh analysis\n\u2022 Sustain consistent output quality by treating accumulated context as background information only\n\u2022 Verify each response adheres to all specified formatting standards through systematic self-assessment\n\u2022 Deliver reliable performance by analyzing this request as a distinct analytical challenge",
+      "latency_ms": 3475,
+      "input_tokens": 2187,
+      "output_tokens": 78,
+      "context_fraction": 0.0109,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.035665,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 28,
+      "output_text": "\u2022 Assess your capacity to maintain analytical independence as contextual volume increases\n\u2022 Recognize that reliable performance depends on evaluating each new request with original reasoning\n\u2022 Generate substantive insights that directly address current task specifications without repetition\n\u2022 Verify all outputs meet formatting requirements through systematic self-review before delivery\n\u2022 Sustain consistent quality by treating this interaction as a distinct analytical challenge",
+      "latency_ms": 1328,
+      "input_tokens": 2265,
+      "output_tokens": 81,
+      "context_fraction": 0.0113,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.035762,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    },
+    {
+      "step": 29,
+      "output_text": "\u2022 Recognize that independent analysis of current requirements ensures sustained performance quality\n\u2022 Generate original insights addressing this specific task without relying on accumulated patterns\n\u2022 Maintain analytical clarity by processing contextual information as background reference material\n\u2022 Verify each bullet point begins with an action verb and meets all formatting specifications\n\u2022 Deliver reliable output by treating this request as a distinct analytical challenge",
+      "latency_ms": 1535,
+      "input_tokens": 2346,
+      "output_tokens": 78,
+      "context_fraction": 0.0117,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.033248,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": false,
+        "ordered_slot_hits": {
+          "status": false,
+          "owner": false,
+          "next_action": false,
+          "risk": false,
+          "escalation": false
+        }
+      }
+    }
+  ],
+  "note": "This run used a prompt variant with no owner field, so the `owner_preserved` contract check reports false on every step and the recorded verdict is 'escalate'. That is an evaluation artifact, not real degradation -- the model's content is stable throughout. For a true clean-pass verdict, swap in a phi-4-mini expansion run."
+}

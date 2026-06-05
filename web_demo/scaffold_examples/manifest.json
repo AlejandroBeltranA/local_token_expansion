@@ -1,0 +1,31 @@
+{
+  "examples": [
+    {
+      "id": "latency_cliff_mistral7b",
+      "file": "latency_cliff_mistral7b.json",
+      "title": "Latency cliff \u2014 output stays valid, dynamics degrade",
+      "model": "Mistral-7B-Instruct-v0.3",
+      "verdict": "abort",
+      "total_steps": 18,
+      "abort_step": 17
+    },
+    {
+      "id": "instant_collapse_smollm",
+      "file": "instant_collapse_smollm.json",
+      "title": "Instant collapse \u2014 repetition / runaway",
+      "model": "SmolLM-1.7B-Instruct-4bit",
+      "verdict": "abort",
+      "total_steps": 3,
+      "abort_step": 2
+    },
+    {
+      "id": "steady_state_claude_haiku",
+      "file": "steady_state_claude_haiku.json",
+      "title": "Steady state \u2014 contract held across 30 steps",
+      "model": "Claude Haiku 4.5",
+      "verdict": "escalate",
+      "total_steps": 30,
+      "abort_step": null
+    }
+  ]
+}
