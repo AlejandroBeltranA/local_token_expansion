@@ -13,54 +13,18 @@ from typing import Any
 
 import yaml
 
-# Env vars each API backend requires. Checked in preflight so a missing key
-# fails the whole sweep up front instead of silently failing every API run
-# (which is what happened on the 2026-06-04 overnight sweep: 24 API runs died
-# in 0s with "Missing required environment variable: ANTHROPIC_API_KEY").
-BACKEND_REQUIRED_ENV = {
-    "anthropic": ["ANTHROPIC_API_KEY"],
-    "openai": ["OPENAI_API_KEY"],
-}
+# Ensure the repo root is on sys.path so `lte.*` resolves when this script
+# is invoked directly (e.g. `python scripts/run_unified_weekend.py ...`)
+# without PYTHONPATH=. set.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-
-def _load_env_file(path: Path) -> list[str]:
-    """Load KEY=VALUE lines from an env file into os.environ.
-
-    Existing environment variables win — the file only fills gaps, so an
-    explicitly exported key is never overridden. Returns the names loaded.
-    No python-dotenv dependency; handles comments, blank lines, optional
-    `export ` prefix, and surrounding quotes.
-    """
-    if not path.exists():
-        return []
-    loaded: list[str] = []
-    for raw_line in path.read_text(encoding="utf-8").splitlines():
-        line = raw_line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        if line.startswith("export "):
-            line = line[len("export "):]
-        name, _, value = line.partition("=")
-        name = name.strip()
-        value = value.strip().strip("'\"")
-        if not name or not value:
-            continue
-        if not os.environ.get(name):
-            os.environ[name] = value
-            loaded.append(name)
-    return loaded
-
-
-def _check_backend_env(models: list[dict[str, Any]]) -> list[str]:
-    """Return the missing required env var names for the backends in use."""
-    missing: list[str] = []
-    backends = {str(model.get("backend", "mlx")) for model in models}
-    for backend in sorted(backends):
-        for var in BACKEND_REQUIRED_ENV.get(backend, []):
-            if not os.environ.get(var) and var not in missing:
-                missing.append(var)
-    return missing
-
+from lte.runner_utils import (
+    check_backend_env as _check_backend_env,
+    load_env_file as _load_env_file,
+    load_yaml_mapping as _load_yaml,
+    models_from_config as _models_from_config,
+    suites_from_config as _suites_from_config,
+)
 
 RECOMMENDATION_ORDER = {
     "continue": 0,
@@ -115,52 +79,6 @@ class RunOutcome:
     stress_steps: int | None = None
     duration_sec: float | None = None
     error: str | None = None
-
-
-def _load_yaml(path: Path) -> dict[str, Any]:
-    raw = yaml.safe_load(path.read_text(encoding="utf-8"))
-    if not isinstance(raw, dict):
-        raise ValueError(f"Expected mapping in {path}")
-    return raw
-
-
-def _models_from_config(path: Path) -> list[dict[str, Any]]:
-    raw = _load_yaml(path)
-    models = raw.get("models")
-    if not isinstance(models, list) or not models:
-        raise ValueError(f"No models found in {path}")
-    out: list[dict[str, Any]] = []
-    for model in models:
-        if not isinstance(model, dict):
-            raise ValueError(f"Invalid model entry in {path}: {model!r}")
-        out.append(
-            {
-                "name": str(model["name"]),
-                "backend": str(model.get("backend", raw.get("backend", "mlx"))),
-                "path": str(model["path"]),
-                "revision": model.get("revision"),
-                "context_limit_tokens": model.get("context_limit_tokens"),
-                "max_latency_ms": model.get("max_latency_ms"),
-            }
-        )
-    return out
-
-
-def _suites_from_config(path: Path) -> list[str] | None:
-    """Optional `suites:` list in the models-config, overriding the base config.
-
-    The 2026-06-04 sweep silently ran only the base config's 4 suites because
-    the models-config's suites block was never read — the two new probe
-    families (adversarial_pressure, bounded_determination) never executed.
-    This makes the models-config's suites list authoritative when present.
-    """
-    raw = _load_yaml(path)
-    suites = raw.get("suites")
-    if suites is None:
-        return None
-    if not isinstance(suites, list) or not all(isinstance(s, str) for s in suites):
-        raise ValueError(f"Invalid suites list in {path}: {suites!r}")
-    return suites
 
 
 def _build_run_specs(
