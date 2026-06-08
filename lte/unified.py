@@ -565,7 +565,22 @@ def run_unified(
     run_id: str,
     progress: bool = False,
     force: bool = False,
+    reuse_benchmark_from: Path | str | None = None,
 ) -> UnifiedRunPaths:
+    """Run the unified evaluation (benchmark + stress) and write artifacts.
+
+    reuse_benchmark_from: path to a previous run's benchmark.jsonl. When set,
+    skip the benchmark generation pass and load rows from that file instead.
+    Benchmark contract outcomes are determined by deterministic checks over
+    model output (string/word/structure matching) and do not reference any
+    stress-failure threshold, so they are invariant across threshold
+    conditions. Reusing them across a sensitivity sweep is mathematically
+    identical to re-running them but saves a benchmark pass per condition.
+
+    The reused benchmark.jsonl is COPIED into the new run dir so each run dir
+    remains a self-contained artifact, and the summary records the source
+    path so the provenance is auditable.
+    """
     root_dir = ensure_dir(cfg.output.results_dir)
     dir_name = run_id if run_id.startswith("unified_") else f"unified_{run_id}"
     run_dir = root_dir / dir_name
@@ -579,7 +594,26 @@ def run_unified(
     summary_json = run_dir / "summary.json"
     report_md = run_dir / "report.md"
 
-    benchmark_rows = _benchmark_rows(cfg=cfg, backend=backend, run_id=run_id, progress=progress)
+    benchmark_source: Path | None = None
+    if reuse_benchmark_from is not None:
+        benchmark_source = Path(reuse_benchmark_from)
+        if not benchmark_source.exists():
+            raise SystemExit(
+                f"reuse_benchmark_from points to nonexistent file: {benchmark_source}"
+            )
+        benchmark_rows = list(read_jsonl(benchmark_source))
+        # Verify the reused rows match the configured models — guards against
+        # mixing benchmark rows from a different model set into this run.
+        cfg_models = {m.name for m in cfg.models}
+        reused_models = {str(row.get("model_name", "")) for row in benchmark_rows}
+        missing = cfg_models - reused_models
+        if missing:
+            raise SystemExit(
+                f"reuse_benchmark_from is missing model(s) {sorted(missing)}; "
+                f"refusing to merge an incomplete benchmark set."
+            )
+    else:
+        benchmark_rows = _benchmark_rows(cfg=cfg, backend=backend, run_id=run_id, progress=progress)
     write_jsonl(benchmark_jsonl, benchmark_rows)
 
     stress_rows: list[dict[str, Any]] = []
@@ -591,6 +625,8 @@ def run_unified(
     write_jsonl(merged_jsonl, merged_rows)
 
     summary = summarize_unified_run(records=merged_rows)
+    if benchmark_source is not None:
+        summary["benchmark_reused_from"] = str(benchmark_source)
     summary_json.write_text(json.dumps(summary, indent=2, sort_keys=True), encoding="utf-8")
     report_md.write_text(
         generate_unified_report_markdown(records=merged_rows, summary=summary),

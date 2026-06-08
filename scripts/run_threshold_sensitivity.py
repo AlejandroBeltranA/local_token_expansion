@@ -131,6 +131,11 @@ def main() -> int:
     ap.add_argument("--include-lorr-toggle", action="store_true",
                     help="add two extra factor-1.0 conditions with "
                          "fail_on_lorr forced True/False to sweep the toggle")
+    ap.add_argument("--no-reuse-benchmark", action="store_true",
+                    help="re-run the benchmark pass at every threshold "
+                         "condition (default: reuse the baseline's "
+                         "benchmark rows since benchmark outcomes do not "
+                         "depend on stress thresholds)")
     args = ap.parse_args()
 
     base_path = Path(args.base_config)
@@ -154,8 +159,24 @@ def main() -> int:
                 base_failure, 1.0, lorr_override=value)))
     baseline_label = "f1p0"
 
+    # Reorder so the baseline condition runs first. Its benchmark.jsonl is
+    # then reused by every other condition: benchmark contract outcomes do
+    # not depend on stress thresholds (only stress rows do), so re-running
+    # the benchmark pass per condition is wasted work — most of the API/MLX
+    # cost goes to the long stress runs, not the short benchmark probes.
+    reuse = not args.no_reuse_benchmark
+    if reuse:
+        conditions.sort(key=lambda lf: 0 if lf[0] == baseline_label else 1)
+        if conditions[0][0] != baseline_label:
+            raise SystemExit(
+                f"--no-reuse-benchmark not set but baseline {baseline_label!r} "
+                f"is not in the condition list; pass --grid that includes 1.0 "
+                f"or set --no-reuse-benchmark."
+            )
+
     # model -> condition_label -> recommendation
     table: dict[str, dict[str, str]] = {}
+    baseline_benchmark_jsonl: Path | None = None
 
     for label, failure_block in conditions:
         run_name = f"sensitivity_{label}"
@@ -164,8 +185,15 @@ def main() -> int:
                                          variant_results, args.backend)
         cfg = load_config(str(cfg_path))
         backend = _backend_from_name(cfg.backend)
-        print(f"[sensitivity] {label} thresholds={failure_block}")
-        paths = run_unified(cfg=cfg, backend=backend, run_id=run_name, force=True)
+        reuse_path = baseline_benchmark_jsonl if reuse and label != baseline_label else None
+        reuse_tag = " (benchmark reused)" if reuse_path else ""
+        print(f"[sensitivity] {label} thresholds={failure_block}{reuse_tag}")
+        paths = run_unified(
+            cfg=cfg, backend=backend, run_id=run_name, force=True,
+            reuse_benchmark_from=reuse_path,
+        )
+        if reuse and label == baseline_label:
+            baseline_benchmark_jsonl = paths.benchmark_jsonl
         summary = json.loads(Path(paths.summary_json).read_text(encoding="utf-8"))
         for model_summary in summary.get("models", []):
             model_name = model_summary.get("model_name", "?")
