@@ -87,10 +87,30 @@ def _backend_from_name(name: str):
 
 # Continuous thresholds the grid factor scales. fail_on_lorr is a boolean
 # toggle and is swept separately via --include-lorr-toggle, not scaled.
-SCALABLE = ("max_latency_ms", "max_rcs")
-INT_SCALABLE = ("consecutive", "latency_only_after_input_tokens")
-# max_rcs is a ratio in [0, 1]; the scale can push it out of range.
-CLIPPED = {"max_rcs": (0.0, 1.0)}
+# Every one of these knobs is now consumed end-to-end: the stress runner
+# applies them at gating time, AND summarize_unified_run applies them at
+# trigger-firing time (the second half was broken until lte/unified.py was
+# refactored to read from cfg.stress.failure).
+SCALABLE = (
+    "max_latency_ms",
+    "max_rcs",
+    "max_rcs_window_mean",
+    "max_lorr_mean",
+    "latency_only_after_context_fraction",
+)
+INT_SCALABLE = (
+    "consecutive",
+    "latency_only_after_input_tokens",
+    "near_cap_window_required",
+    "near_cap_window_size",
+)
+# Ratios in [0, 1]; scaling can push them out of range.
+CLIPPED = {
+    "max_rcs": (0.0, 1.0),
+    "max_rcs_window_mean": (0.0, 1.0),
+    "max_lorr_mean": (0.0, 1.0),
+    "latency_only_after_context_fraction": (0.0, 1.0),
+}
 
 RECOMMENDATION_ORDER = {
     "continue": 0,
@@ -119,10 +139,22 @@ def _perturbed_failure_block(
                 lo, hi = CLIPPED[key]
                 scaled = type(scaled)(max(lo, min(hi, scaled)))
             out[key] = scaled
+    INT_FLOORS = {
+        "consecutive": 1,
+        "near_cap_window_required": 1,
+        "near_cap_window_size": 1,
+    }
     for key in INT_SCALABLE:
         if out.get(key) is not None:
-            floor = 1 if key == "consecutive" else 0
+            floor = INT_FLOORS.get(key, 0)
             out[key] = max(floor, round(base_failure[key] * factor))
+    # Keep the near-cap window logically consistent: the required-hits count
+    # cannot exceed the window size. Without this, an aggressive factor can
+    # produce required > size which silently never fires.
+    if "near_cap_window_required" in out and "near_cap_window_size" in out:
+        out["near_cap_window_required"] = min(
+            out["near_cap_window_required"], out["near_cap_window_size"]
+        )
     if lorr_override is not None:
         out["fail_on_lorr"] = lorr_override
     return out

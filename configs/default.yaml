@@ -50,3 +50,11 @@ stress:
     latency_only_after_input_tokens: 1500
     fail_on_lorr: true
     max_rcs: 0.30
+    # Trigger-firing thresholds inside summarize_unified_run. Declared
+    # explicitly so the threshold-sensitivity sweep scales them. Until the
+    # 2026-06-08 fix these lived as hardcoded constants in lte/unified.py
+    # and ignored cfg, which made the sensitivity sweep partially broken.
+    max_rcs_window_mean: 0.22         # last-5 stress steps mean RCS firing repetition_loop
+    max_lorr_mean: 0.20               # benchmark LORR mean firing near_cap_pressure
+    near_cap_window_required: 2       # stress LORR=1 hits required in window
+    near_cap_window_size: 5           # window length for stress near_cap check

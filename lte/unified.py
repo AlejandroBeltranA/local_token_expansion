@@ -7,7 +7,7 @@ from pathlib import Path
 from statistics import mean
 from typing import Any
 
-from lte.config import RunConfig
+from lte.config import RunConfig, StressFailureConfig
 from lte.contracts import evaluate_contract
 from lte.io import ensure_dir, read_jsonl, write_jsonl
 from lte.metrics import (
@@ -262,7 +262,39 @@ def _is_api_backend(name: str) -> bool:
     return name in {"openai", "anthropic"}
 
 
-def summarize_unified_run(*, records: list[dict[str, Any]]) -> dict[str, Any]:
+def summarize_unified_run(
+    *,
+    records: list[dict[str, Any]],
+    failure: StressFailureConfig | None = None,
+) -> dict[str, Any]:
+    """Summarize a unified run. Trigger-firing thresholds come from `failure`.
+
+    `failure` is `cfg.stress.failure` for production callers. When None,
+    falls back to the legacy hardcoded constants (max_latency_ms=2500,
+    latency_only_after_input_tokens=1500, max_rcs=0.30, max_rcs_window_mean
+    =0.22, max_lorr_mean=0.20, near_cap_window=(2,5)) so existing
+    third-party callers and old tests keep working. The legacy fallback is
+    a back-compat shim, NOT the canonical path — production code paths in
+    run_unified always pass the cfg block.
+    """
+    if failure is None:
+        failure = StressFailureConfig(
+            max_latency_ms=2500,
+            latency_only_after_input_tokens=1500,
+            max_rcs=0.30,
+        )
+    # Resolve the per-trigger thresholds once. None values fall back to the
+    # legacy hardcoded defaults so a partially-populated failure block does
+    # not silently disable a trigger.
+    LATENCY_MS = int(failure.max_latency_ms if failure.max_latency_ms is not None else 2500)
+    LATENCY_AFTER_INPUT = int(failure.latency_only_after_input_tokens
+                              if failure.latency_only_after_input_tokens is not None else 1500)
+    RCS_STEP = float(failure.max_rcs if failure.max_rcs is not None else 0.30)
+    RCS_WINDOW_MEAN = float(failure.max_rcs_window_mean)
+    LORR_BENCHMARK_MEAN = float(failure.max_lorr_mean)
+    NEAR_CAP_REQUIRED = int(failure.near_cap_window_required)
+    NEAR_CAP_WINDOW = int(failure.near_cap_window_size)
+
     generation_rows = [row for row in records if "output_tokens" in row and "input_tokens" in row and "max_tokens" in row]
     benchmark_rows = [row for row in generation_rows if row.get("mode") == "benchmark"]
     stress_rows = [row for row in generation_rows if row.get("mode") == "stress"]
@@ -312,10 +344,12 @@ def summarize_unified_run(*, records: list[dict[str, Any]]) -> dict[str, Any]:
         backend_names = {str(row.get("backend", "")) for row in model_rows}
         is_api_backend = len(backend_names) == 1 and _is_api_backend(next(iter(backend_names)))
         stress_latency_rows = [
-            row for row in model_stress_rows if int(row.get("latency_ms", 0)) > 2500 and int(row.get("input_tokens", 0)) >= 1500
+            row for row in model_stress_rows
+            if int(row.get("latency_ms", 0)) > LATENCY_MS and int(row.get("input_tokens", 0)) >= LATENCY_AFTER_INPUT
         ]
         hard_latency = len(model_stress_rows[-3:]) >= 3 and sum(
-            1 for row in model_stress_rows[-3:] if int(row.get("latency_ms", 0)) > 2500 and int(row.get("input_tokens", 0)) >= 1500
+            1 for row in model_stress_rows[-3:]
+            if int(row.get("latency_ms", 0)) > LATENCY_MS and int(row.get("input_tokens", 0)) >= LATENCY_AFTER_INPUT
         ) >= 2
         latency_cliff = hard_latency if is_api_backend else bool(stress_latency_rows)
 
@@ -325,15 +359,15 @@ def summarize_unified_run(*, records: list[dict[str, Any]]) -> dict[str, Any]:
         stress_near_cap_window = _last_window_has_n(
             model_stress_rows,
             predicate=lambda row: int(row.get("length_overrun_rate", 0)) == 1,
-            required=2,
-            window=5,
+            required=NEAR_CAP_REQUIRED,
+            window=NEAR_CAP_WINDOW,
         )
-        near_cap_pressure = structured_lorr_mean >= 0.20 or stress_near_cap_window
+        near_cap_pressure = structured_lorr_mean >= LORR_BENCHMARK_MEAN or stress_near_cap_window
 
-        stress_rcs_rows = [row for row in model_stress_rows if float(row.get("runaway_continuation_score", 0.0)) >= 0.30]
+        stress_rcs_rows = [row for row in model_stress_rows if float(row.get("runaway_continuation_score", 0.0)) >= RCS_STEP]
         consecutive_rcs = any(
-            float(model_stress_rows[idx].get("runaway_continuation_score", 0.0)) >= 0.30
-            and float(model_stress_rows[idx - 1].get("runaway_continuation_score", 0.0)) >= 0.30
+            float(model_stress_rows[idx].get("runaway_continuation_score", 0.0)) >= RCS_STEP
+            and float(model_stress_rows[idx - 1].get("runaway_continuation_score", 0.0)) >= RCS_STEP
             for idx in range(1, len(model_stress_rows))
         )
         last_five_mean_rcs = (
@@ -341,7 +375,7 @@ def summarize_unified_run(*, records: list[dict[str, Any]]) -> dict[str, Any]:
             if len(model_stress_rows) >= 5
             else 0.0
         )
-        repetition_loop = consecutive_rcs or last_five_mean_rcs >= 0.22
+        repetition_loop = consecutive_rcs or last_five_mean_rcs >= RCS_WINDOW_MEAN
 
         context_benchmark_failures = [
             row for row in context_pressure_rows if not bool(row.get("contract_passed"))
@@ -350,12 +384,13 @@ def summarize_unified_run(*, records: list[dict[str, Any]]) -> dict[str, Any]:
             (
                 row
                 for row in model_stress_rows
-                if bool(row.get("is_failure")) and int(row.get("input_tokens", 0)) >= 1500
+                if bool(row.get("is_failure")) and int(row.get("input_tokens", 0)) >= LATENCY_AFTER_INPUT
             ),
             None,
         )
         dominant_reasons = _dominant_failure_reasons(
-            [row for row in model_stress_rows if int(row.get("input_tokens", 0)) >= 1500 and bool(row.get("is_failure"))]
+            [row for row in model_stress_rows
+             if int(row.get("input_tokens", 0)) >= LATENCY_AFTER_INPUT and bool(row.get("is_failure"))]
         )
         stress_contract_break_rows = [
             row for row in model_stress_rows if not bool((row.get("stress_contract_evaluation") or {}).get("passed", True))
@@ -391,10 +426,13 @@ def summarize_unified_run(*, records: list[dict[str, Any]]) -> dict[str, Any]:
             "latency_cliff": _trigger_row(
                 status=latency_cliff,
                 threshold=(
-                    "API backends: hard trigger only when 2 of last 3 stress steps exceed latency gate "
-                    "(latency_ms>2500 after input_tokens>=1500)"
+                    f"API backends: hard trigger only when 2 of last 3 stress steps "
+                    f"exceed latency gate (latency_ms>{LATENCY_MS} after "
+                    f"input_tokens>={LATENCY_AFTER_INPUT})"
                     if is_api_backend
-                    else "stress latency_ms>2500 after input_tokens>=1500; hard trigger if 2 of last 3 stress steps exceed it"
+                    else f"stress latency_ms>{LATENCY_MS} after input_tokens>="
+                         f"{LATENCY_AFTER_INPUT}; hard trigger if 2 of last 3 stress "
+                         f"steps exceed it"
                 ),
                 evidence={
                     "backend_mode": "api-hard-only" if is_api_backend else "local-any-gated",
@@ -405,7 +443,11 @@ def summarize_unified_run(*, records: list[dict[str, Any]]) -> dict[str, Any]:
             ),
             "near_cap_pressure": _trigger_row(
                 status=near_cap_pressure,
-                threshold="benchmark LORR mean across structured_contracts+failure_escalation >=0.20, or stress LORR=1 on any 2 steps within 5-step window",
+                threshold=(
+                    f"benchmark LORR mean across structured_contracts+failure_escalation "
+                    f">={LORR_BENCHMARK_MEAN}, or stress LORR=1 on any {NEAR_CAP_REQUIRED} "
+                    f"steps within {NEAR_CAP_WINDOW}-step window"
+                ),
                 evidence={
                     "structured_lorr_mean": round(structured_lorr_mean, 6),
                     "stress_window_hit": stress_near_cap_window,
@@ -414,7 +456,10 @@ def summarize_unified_run(*, records: list[dict[str, Any]]) -> dict[str, Any]:
             ),
             "repetition_loop": _trigger_row(
                 status=repetition_loop,
-                threshold="stress RCS>=0.30 on 2 consecutive steps, or last 5 stress steps mean RCS>=0.22",
+                threshold=(
+                    f"stress RCS>={RCS_STEP} on 2 consecutive steps, or last 5 "
+                    f"stress steps mean RCS>={RCS_WINDOW_MEAN}"
+                ),
                 evidence={
                     "high_rcs_steps": [row["step"] for row in stress_rcs_rows],
                     "two_consecutive": consecutive_rcs,
@@ -624,7 +669,7 @@ def run_unified(
     merged_rows = benchmark_rows + stress_rows
     write_jsonl(merged_jsonl, merged_rows)
 
-    summary = summarize_unified_run(records=merged_rows)
+    summary = summarize_unified_run(records=merged_rows, failure=cfg.stress.failure)
     if benchmark_source is not None:
         summary["benchmark_reused_from"] = str(benchmark_source)
     summary_json.write_text(json.dumps(summary, indent=2, sort_keys=True), encoding="utf-8")
