@@ -168,6 +168,7 @@ def _write_variant_config(
     backend_override: str | None,
     model: dict[str, Any] | None = None,
     suites_override: list[str] | None = None,
+    generation_seed: int | None = None,
 ) -> Path:
     """Write a variant config for one sensitivity condition.
 
@@ -196,6 +197,10 @@ def _write_variant_config(
         variant["backend"] = backend_override or model["backend"]
     elif backend_override:
         variant["backend"] = backend_override
+    if generation_seed is not None:
+        generation = dict(variant.get("generation") or {})
+        generation["seed"] = int(generation_seed)
+        variant["generation"] = generation
     cfg_path = results_dir / f"{run_name}.yaml"
     cfg_path.parent.mkdir(parents=True, exist_ok=True)
     cfg_path.write_text(yaml.safe_dump(variant, sort_keys=False), encoding="utf-8")
@@ -227,7 +232,15 @@ def main() -> int:
     ap.add_argument("--env-file", default=".env.local",
                     help="env file auto-loaded before the sweep (existing "
                          "env vars win). Pass an empty string to disable.")
+    ap.add_argument("--seeds", type=int, default=1,
+                    help="number of seeds per (model, condition) pair. Each "
+                         "seed runs with generation.seed = seed_idx, writing "
+                         "to a seed_K/ subdir under the condition. The "
+                         "stability report does majority-rule voting per "
+                         "condition. Default 1 (single-seed back-compat).")
     args = ap.parse_args()
+    if args.seeds < 1:
+        raise SystemExit("--seeds must be >= 1")
 
     base_path = Path(args.base_config)
     base_raw = load_yaml_mapping(base_path)
@@ -293,14 +306,18 @@ def main() -> int:
                 f"or set --no-reuse-benchmark."
             )
 
-    # model_name -> condition_label -> recommendation
-    table: dict[str, dict[str, str]] = {}
+    # model_name -> condition_label -> list[verdict] (one per seed)
+    table: dict[str, dict[str, list[str]]] = {}
 
-    # Per-(model, condition) loop. For each model we:
-    #   1. Build its baseline failure block (per-model max_latency_ms wins
+    # Per-(model, seed, condition) loop. For each model and each seed:
+    #   1. Build the baseline failure block (per-model max_latency_ms wins
     #      over the base config's).
-    #   2. Run the baseline condition first, capturing benchmark.jsonl.
-    #   3. Run every other condition reusing that benchmark.jsonl.
+    #   2. Run the baseline condition first, capturing this seed's
+    #      benchmark.jsonl.
+    #   3. Run every other condition for this seed reusing that benchmark.
+    # Benchmark reuse is PER-(model, seed) — each seed gets its own
+    # benchmark trajectory (different sampling), reused across the conditions
+    # for that one seed.
     for model in models:
         # Per-model baseline failure block: honour per-model max_latency_ms
         # if set. Otherwise inherit from base_failure. This is the whole
@@ -312,38 +329,52 @@ def main() -> int:
             model_base_failure["max_latency_ms"] = int(model["max_latency_ms"])
 
         model_slug = _model_slug(model["name"])
-        model_benchmark_jsonl: Path | None = None
-        for label, factor, lorr_override in conditions:
-            failure_block = _perturbed_failure_block(
-                model_base_failure, factor, lorr_override=lorr_override
-            )
-            run_name = f"sensitivity_{model_slug}_{label}"
-            variant_results = out_root / model_slug / label
-            cfg_path = _write_variant_config(
-                base_raw, failure_block, run_name, variant_results,
-                backend_override=args.backend, model=model,
-                suites_override=suites_override,
-            )
-            cfg = load_config(str(cfg_path))
-            backend = _backend_from_name(cfg.backend)
-            reuse_path = model_benchmark_jsonl if reuse and label != baseline_label else None
-            reuse_tag = " (benchmark reused)" if reuse_path else ""
-            print(f"[sensitivity] {model['name']:<34} {label} "
-                  f"thresholds={failure_block}{reuse_tag}")
-            paths = run_unified(
-                cfg=cfg, backend=backend, run_id=run_name, force=True,
-                reuse_benchmark_from=reuse_path,
-            )
-            if reuse and label == baseline_label:
-                model_benchmark_jsonl = paths.benchmark_jsonl
-            summary = json.loads(Path(paths.summary_json).read_text(encoding="utf-8"))
-            for model_summary in summary.get("models", []):
-                m_name = model_summary.get("model_name", "?")
-                rec_obj = model_summary.get("recommendation") or {}
-                rec = rec_obj.get("action") if isinstance(rec_obj, dict) else rec_obj
-                table.setdefault(m_name, {})[label] = rec
+        for seed_idx in range(args.seeds):
+            seed_benchmark_jsonl: Path | None = None
+            for label, factor, lorr_override in conditions:
+                failure_block = _perturbed_failure_block(
+                    model_base_failure, factor, lorr_override=lorr_override
+                )
+                run_name = f"sensitivity_{model_slug}_{label}_s{seed_idx}"
+                # Layout: out_root/<model>/<condition>/seed_K/ — keeps each
+                # seed's artefacts cleanly separated, and the resummariser
+                # can iterate seed dirs explicitly.
+                if args.seeds == 1:
+                    # Back-compat: single-seed mode preserves the old layout
+                    # without a seed_K/ subdir so existing tooling and the
+                    # resummariser script keep working on legacy runs.
+                    variant_results = out_root / model_slug / label
+                else:
+                    variant_results = out_root / model_slug / label / f"seed_{seed_idx}"
+                cfg_path = _write_variant_config(
+                    base_raw, failure_block, run_name, variant_results,
+                    backend_override=args.backend, model=model,
+                    suites_override=suites_override,
+                    generation_seed=seed_idx if args.seeds > 1 else None,
+                )
+                cfg = load_config(str(cfg_path))
+                backend = _backend_from_name(cfg.backend)
+                reuse_path = seed_benchmark_jsonl if reuse and label != baseline_label else None
+                reuse_tag = " (benchmark reused)" if reuse_path else ""
+                seed_tag = f" seed={seed_idx}" if args.seeds > 1 else ""
+                print(f"[sensitivity] {model['name']:<34} {label}{seed_tag} "
+                      f"thresholds={failure_block}{reuse_tag}")
+                paths = run_unified(
+                    cfg=cfg, backend=backend, run_id=run_name, force=True,
+                    reuse_benchmark_from=reuse_path,
+                )
+                if reuse and label == baseline_label:
+                    seed_benchmark_jsonl = paths.benchmark_jsonl
+                summary = json.loads(Path(paths.summary_json).read_text(encoding="utf-8"))
+                for model_summary in summary.get("models", []):
+                    m_name = model_summary.get("model_name", "?")
+                    rec_obj = model_summary.get("recommendation") or {}
+                    rec = rec_obj.get("action") if isinstance(rec_obj, dict) else rec_obj
+                    table.setdefault(m_name, {}).setdefault(label, []).append(rec)
 
-    stability = _build_stability_report(table, baseline_label=baseline_label)
+    stability = _build_stability_report(
+        table, baseline_label=baseline_label, n_seeds=args.seeds,
+    )
     report_path = out_root / "stability_report.json"
     report_path.write_text(json.dumps(stability, indent=2), encoding="utf-8")
     _print_stability(stability)
@@ -351,33 +382,91 @@ def main() -> int:
     return 0
 
 
-def _build_stability_report(table: dict[str, dict[str, str]],
-                            baseline_label: str) -> dict[str, Any]:
-    report: dict[str, Any] = {"models": [], "all_stable": True,
-                              "baseline_label": baseline_label}
+def _consensus(verdicts: list[str], n_seeds: int) -> tuple[str | None, str]:
+    """Return (consensus_verdict, agreement_string).
+
+    With single seed, the lone verdict is the consensus. With multiple seeds,
+    consensus is the verdict supported by a strict majority. If no verdict
+    has a majority (e.g. 3 distinct verdicts at N=3), returns (None, "split").
+    """
+    if not verdicts:
+        return None, "0/0"
+    counts: dict[str, int] = {}
+    for v in verdicts:
+        counts[v] = counts.get(v, 0) + 1
+    top_verdict, top_count = max(counts.items(), key=lambda kv: kv[1])
+    if top_count * 2 > len(verdicts):
+        return top_verdict, f"{top_count}/{len(verdicts)}"
+    return None, f"split ({', '.join(f'{v}={c}' for v, c in sorted(counts.items()))})"
+
+
+def _build_stability_report(
+    table: dict[str, dict[str, list[str]]],
+    baseline_label: str,
+    n_seeds: int = 1,
+) -> dict[str, Any]:
+    """Stability report with per-condition seed-vote agreement.
+
+    Each model's per-condition entry records:
+      - regimes_by_condition_seeds: raw list of verdicts per seed
+      - consensus_by_condition:     majority verdict per condition (or None)
+      - agreement_by_condition:     "K/N" string (or "split (...)") per condition
+    A flip is a condition whose consensus differs from baseline consensus.
+    Single-seed mode keeps regimes_by_condition for back-compat with the
+    legacy schema.
+    """
+    report: dict[str, Any] = {
+        "models": [], "all_stable": True,
+        "baseline_label": baseline_label, "n_seeds": n_seeds,
+    }
     for model, by_label in sorted(table.items()):
-        baseline = by_label.get(baseline_label)
-        flips = {lab: r for lab, r in sorted(by_label.items()) if r != baseline}
+        baseline_consensus, baseline_agreement = _consensus(
+            by_label.get(baseline_label, []), n_seeds
+        )
+        consensus_by_cond: dict[str, str | None] = {}
+        agreement_by_cond: dict[str, str] = {}
+        for lab, verdicts in sorted(by_label.items()):
+            cons, agree = _consensus(verdicts, n_seeds)
+            consensus_by_cond[lab] = cons
+            agreement_by_cond[lab] = agree
+        flips = {
+            lab: f"{consensus_by_cond[lab]} ({agreement_by_cond[lab]})"
+            for lab in consensus_by_cond
+            if consensus_by_cond[lab] != baseline_consensus
+        }
         stable = len(flips) == 0
         if not stable:
             report["all_stable"] = False
-        report["models"].append({
+        entry: dict[str, Any] = {
             "model": model,
-            "baseline_regime": baseline,
-            "regimes_by_condition": {lab: r for lab, r in sorted(by_label.items())},
+            "baseline_regime": baseline_consensus,
+            "baseline_agreement": baseline_agreement,
+            "regimes_by_condition_seeds": {lab: by_label[lab] for lab in sorted(by_label)},
+            "consensus_by_condition": consensus_by_cond,
+            "agreement_by_condition": agreement_by_cond,
             "stable": stable,
             "flips": flips,
-        })
+        }
+        # Back-compat field for single-seed mode: the prior schema had
+        # regimes_by_condition mapping label -> verdict (not list).
+        if n_seeds == 1:
+            entry["regimes_by_condition"] = {
+                lab: by_label[lab][0] for lab in sorted(by_label) if by_label[lab]
+            }
+        report["models"].append(entry)
     return report
 
 
 def _print_stability(report: dict[str, Any]) -> None:
-    print("\n=== Threshold-sensitivity stability ===")
+    n_seeds = report.get("n_seeds", 1)
+    print(f"\n=== Threshold-sensitivity stability (n_seeds={n_seeds}) ===")
     for m in report["models"]:
         mark = "STABLE" if m["stable"] else "FLIPS"
-        print(f"  {m['model']:<36} baseline={m['baseline_regime']:<9} {mark}")
+        baseline_str = f"{m['baseline_regime']} ({m.get('baseline_agreement', '?')})"
+        print(f"  {m['model']:<36} baseline={baseline_str:<22} {mark}")
         if not m["stable"]:
-            print(f"      flips: {m['flips']}")
+            for cond, flipped in m["flips"].items():
+                print(f"      {cond:<10} -> {flipped}")
     print(f"\nall_stable = {report['all_stable']}")
 
 
