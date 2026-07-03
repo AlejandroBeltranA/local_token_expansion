@@ -1,0 +1,80 @@
+# Locals-only rerun — the 7 MLX models from configs/expanded_sweep.yaml.
+#
+# Why this exists: the 2026-06-04 overnight sweep silently ran only the 4 old
+# suites against the local models because run_unified_weekend.py ignored the
+# models-config's `suites:` block. The two new probe families
+# (adversarial_pressure, bounded_determination) never executed on locals.
+# The runner has been fixed (suites block is now authoritative; preflight
+# prints the suites in effect to stderr), but the 42 completed local runs in
+# results/expanded_sweep/ remain valid only for the 4 old suites — they are
+# missing new-probe coverage.
+#
+# This config reruns the 7 locals through ALL 6 suites into a separate output
+# dir so the asymmetry between locals (4 suites) and API (6 suites) does not
+# survive into the paper. Free, ~90 minutes based on the previous overnight
+# pace.
+#
+# RUN
+#   rm -f results/locals_rerun/manifest.json
+#   python scripts/run_unified_weekend.py --base-config configs/default.yaml \
+#     --models-config configs/locals_only_sweep.yaml \
+#     --output-dir results/locals_rerun --skip-expansion --preflight-only --progress
+#   # expect 7 models / 42 runs, all backend=mlx, 6 suites, NO missing-key
+#   # warning (no API backends here), max_latency_ms 2500 in generated
+#   # configs — then drop --preflight-only and add --resume to launch.
+#
+# Model IDs and per-model context limits mirror expanded_sweep.yaml exactly.
+# If you edit a model here, edit it there too.
+
+run_name: "locals_rerun"
+backend: "mlx"
+
+models:
+  # --- Five originals (already in mlx_models/) ----------------------------
+  - name: "Mistral-7B-Instruct-v0.3"
+    backend: "mlx"
+    path: "mlx_models/Mistral-7B-Instruct-v0.3"
+    revision: null
+    context_limit_tokens: 8192
+  - name: "Meta-Llama-3.1-8B-Instruct-3bit"
+    backend: "mlx"
+    path: "mlx_models/Meta-Llama-3.1-8B-Instruct-3bit"
+    revision: null
+    context_limit_tokens: 8192
+  - name: "Phi-4-mini-instruct-8bit"
+    backend: "mlx"
+    path: "mlx_models/Phi-4-mini-instruct-8bit"
+    revision: null
+    context_limit_tokens: 8192
+  - name: "Phi-3-mini-4k-instruct-4bit"
+    backend: "mlx"
+    path: "mlx_models/Phi-3-mini-4k-instruct-4bit"
+    revision: null
+    context_limit_tokens: 4096
+  - name: "SmolLM-1.7B-Instruct-4bit"
+    backend: "mlx"
+    path: "mlx_models/SmolLM-1.7B-Instruct-4bit"
+    revision: null
+    context_limit_tokens: 2048
+
+  # --- Two controlled additions (download first; see runbook) -------------
+  - name: "Meta-Llama-3.1-8B-Instruct-8bit"
+    backend: "mlx"
+    path: "mlx_models/Meta-Llama-3.1-8B-Instruct-8bit"
+    revision: null
+    context_limit_tokens: 8192
+  - name: "Gemma-2-9b-it-4bit"
+    backend: "mlx"
+    path: "mlx_models/gemma-2-9b-it-4bit"
+    revision: null
+    context_limit_tokens: 8192
+
+# Overrides the base config's 4 suites. All 6 families — the point of the
+# rerun is to cover the two probes the original overnight run skipped.
+suites:
+  - "suites/core_conciseness.yaml"
+  - "suites/structured_extraction.yaml"
+  - "suites/long_context_stability.yaml"
+  - "suites/persistent_failure_probe.yaml"
+  - "suites/adversarial_pressure.yaml"
+  - "suites/bounded_determination.yaml"

@@ -3,12 +3,12 @@ requires = ["setuptools>=64"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "local-token-expansion"
+name = "local-threshold-evaluation"
 version = "0.1.0"
-description = "Local-first LLM evaluation harness for operational degradation and intervention signals"
+description = "Deployer-side LLM evaluation harness for operational degradation and intervention signals"
 readme = "README.md"
 requires-python = ">=3.10"
-authors = [{ name = "Local Token Expansion contributors" }]
+authors = [{ name = "Local Threshold Evaluation contributors" }]
 dependencies = [
   "PyYAML>=6.0",
   # Only installed on Apple Silicon macOS; CI remains MLX-free.

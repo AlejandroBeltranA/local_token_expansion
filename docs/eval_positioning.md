@@ -1,6 +1,6 @@
 # Evaluation Positioning
 
-Local Token Expansion (LTE) is a local-first evaluation harness for operational degradation. It is designed to measure when an LLM stops being useful in a constrained workflow, especially under prompt growth, output caps, repetition pressure, latency pressure, and persistent failure states.
+Local Threshold Evaluation (LTE) is a deployer-side evaluation harness for operational degradation. It is designed to measure when an LLM stops being useful in a constrained workflow, especially under prompt growth, output caps, repetition pressure, latency pressure, and persistent failure states.
 
 LTE complements standard evaluations. It is not a substitute for capability, factuality, safety, alignment, or preference evaluation.
 

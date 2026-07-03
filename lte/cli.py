@@ -5,13 +5,13 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-from lte.backends import MLXBackend, MockBackend
+from lte.backends import AnthropicBackend, MLXBackend, MockBackend, OpenAIBackend
 from lte.config import load_config
 from lte.io import append_jsonl, ensure_dir
-from lte.schema import GenerationRecord
-from lte.suites import list_suite_files, load_suite
 from lte.reporting import write_report
+from lte.schema import GenerationRecord
 from lte.stress import run_stress
+from lte.suites import list_suite_files, load_suite
 from lte.unified import run_unified
 
 
@@ -20,6 +20,10 @@ def _backend_from_name(name: str):
         return MLXBackend()
     if name == "mock":
         return MockBackend()
+    if name == "openai":
+        return OpenAIBackend()
+    if name == "anthropic":
+        return AnthropicBackend()
     raise ValueError(f"Unknown backend: {name}")
 
 
@@ -199,7 +203,7 @@ def cmd_unified(args: argparse.Namespace) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    p = argparse.ArgumentParser(prog="lte", description="Local Token Expansion (LTE) runner")
+    p = argparse.ArgumentParser(prog="lte", description="Local Threshold Evaluation (LTE) runner")
     sub = p.add_subparsers(dest="cmd", required=True)
 
     p_run = sub.add_parser("run", help="Run LTE suites and write results JSONL")

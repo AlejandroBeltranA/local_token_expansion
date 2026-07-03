@@ -1,0 +1,14 @@
+run_name: "api_baseline_models"
+backend: "openai"
+
+models:
+  - name: "GPT-4o mini"
+    backend: "openai"
+    path: "gpt-4o-mini"
+    revision: null
+    context_limit_tokens: 128000
+  - name: "Claude Haiku 4.5"
+    backend: "anthropic"
+    path: "claude-haiku-4-5-20251001"
+    revision: null
+    context_limit_tokens: 200000

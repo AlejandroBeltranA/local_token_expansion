@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 import time
@@ -12,6 +13,18 @@ from typing import Any
 
 import yaml
 
+# Ensure the repo root is on sys.path so `lte.*` resolves when this script
+# is invoked directly (e.g. `python scripts/run_unified_weekend.py ...`)
+# without PYTHONPATH=. set.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from lte.runner_utils import (
+    check_backend_env as _check_backend_env,
+    load_env_file as _load_env_file,
+    load_yaml_mapping as _load_yaml,
+    models_from_config as _models_from_config,
+    suites_from_config as _suites_from_config,
+)
 
 RECOMMENDATION_ORDER = {
     "continue": 0,
@@ -25,6 +38,7 @@ RECOMMENDATION_ORDER = {
 @dataclass(frozen=True)
 class RunSpec:
     stage: str
+    backend: str
     model_name: str
     model_path: str
     revision: str | None
@@ -33,6 +47,7 @@ class RunSpec:
     top_p: float
     max_tokens: int
     seed: int
+    max_latency_ms: int | None = None  # per-model stress latency cap override
 
     @property
     def run_id(self) -> str:
@@ -66,33 +81,6 @@ class RunOutcome:
     error: str | None = None
 
 
-def _load_yaml(path: Path) -> dict[str, Any]:
-    raw = yaml.safe_load(path.read_text(encoding="utf-8"))
-    if not isinstance(raw, dict):
-        raise ValueError(f"Expected mapping in {path}")
-    return raw
-
-
-def _models_from_config(path: Path) -> list[dict[str, Any]]:
-    raw = _load_yaml(path)
-    models = raw.get("models")
-    if not isinstance(models, list) or not models:
-        raise ValueError(f"No models found in {path}")
-    out: list[dict[str, Any]] = []
-    for model in models:
-        if not isinstance(model, dict):
-            raise ValueError(f"Invalid model entry in {path}: {model!r}")
-        out.append(
-            {
-                "name": str(model["name"]),
-                "path": str(model["path"]),
-                "revision": model.get("revision"),
-                "context_limit_tokens": model.get("context_limit_tokens"),
-            }
-        )
-    return out
-
-
 def _build_run_specs(
     *,
     models: list[dict[str, Any]],
@@ -109,6 +97,7 @@ def _build_run_specs(
                     specs.append(
                         RunSpec(
                             stage=stage,
+                            backend=str(model.get("backend", "mlx")),
                             model_name=str(model["name"]),
                             model_path=str(model["path"]),
                             revision=model.get("revision"),
@@ -117,14 +106,25 @@ def _build_run_specs(
                             top_p=0.95,
                             max_tokens=int(budget),
                             seed=int(seed),
+                            max_latency_ms=(
+                                int(model["max_latency_ms"]) if model.get("max_latency_ms") is not None else None
+                            ),
                         )
                     )
     return specs
 
 
-def _write_run_config(*, base_config: dict[str, Any], spec: RunSpec, config_path: Path, results_dir: Path) -> None:
+def _write_run_config(
+    *,
+    base_config: dict[str, Any],
+    spec: RunSpec,
+    config_path: Path,
+    results_dir: Path,
+    suites_override: list[str] | None = None,
+) -> None:
     cfg = json.loads(json.dumps(base_config))
     cfg["run_name"] = spec.run_id
+    cfg["backend"] = spec.backend
     cfg["models"] = [
         {
             "name": spec.model_name,
@@ -133,6 +133,14 @@ def _write_run_config(*, base_config: dict[str, Any], spec: RunSpec, config_path
             "context_limit_tokens": spec.context_limit_tokens,
         }
     ]
+    if suites_override is not None:
+        cfg["suites"] = list(suites_override)
+    if spec.max_latency_ms is not None:
+        stress = dict(cfg.get("stress") or {})
+        failure = dict(stress.get("failure") or {})
+        failure["max_latency_ms"] = int(spec.max_latency_ms)
+        stress["failure"] = failure
+        cfg["stress"] = stress
     generation = dict(cfg.get("generation") or {})
     generation["temperature"] = spec.temperature
     generation["top_p"] = spec.top_p
@@ -155,7 +163,8 @@ def _run_summary(run_dir: Path) -> dict[str, Any]:
 def _extract_model_summary(summary: dict[str, Any]) -> dict[str, Any]:
     models = summary.get("models")
     if not isinstance(models, list) or not models:
-        raise ValueError("summary.json missing models[]")
+        error_rows = int((summary.get("records") or {}).get("error_rows", 0) or 0)
+        raise ValueError(f"summary.json missing models[] (error_rows={error_rows})")
     model_summary = models[0]
     recommendation = model_summary.get("recommendation") or {}
     if isinstance(recommendation, dict):
@@ -398,6 +407,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--progress", action="store_true", help="Pass through unified progress output for each run.")
     parser.add_argument("--resume", action="store_true", help="Skip runs whose summary.json already exists.")
     parser.add_argument("--stop-on-error", action="store_true", help="Abort the sweep on the first failed run.")
+    parser.add_argument("--skip-expansion", action="store_true", help="Run only the baseline phase.")
+    parser.add_argument(
+        "--env-file",
+        default=".env.local",
+        help="Env file auto-loaded before the sweep (existing env vars win). Pass an empty string to disable.",
+    )
     return parser
 
 
@@ -423,18 +438,22 @@ def _execute_spec(
     summary_path = run_dir / "summary.json"
     if resume and summary_path.exists():
         summary = _run_summary(run_dir)
-        return RunOutcome(
-            stage=spec.stage,
-            model_name=spec.model_name,
-            temperature=spec.temperature,
-            max_tokens=spec.max_tokens,
-            seed=spec.seed,
-            run_id=spec.run_id,
-            status="completed",
-            run_dir=str(run_dir),
-            duration_sec=0.0,
-            **_extract_model_summary(summary),
-        )
+        if not isinstance(summary.get("models"), list) or not summary.get("models"):
+            # Treat error-only summaries as not resumable-complete; rerun them.
+            pass
+        else:
+            return RunOutcome(
+                stage=spec.stage,
+                model_name=spec.model_name,
+                temperature=spec.temperature,
+                max_tokens=spec.max_tokens,
+                seed=spec.seed,
+                run_id=spec.run_id,
+                status="completed",
+                run_dir=str(run_dir),
+                duration_sec=0.0,
+                **_extract_model_summary(summary),
+            )
 
     started = time.time()
     proc = _run_one(python_bin=python_bin, config_path=cfg_path, run_id=spec.run_id, progress=progress)
@@ -454,6 +473,19 @@ def _execute_spec(
         )
 
     summary = _run_summary(run_dir)
+    if not isinstance(summary.get("models"), list) or not summary.get("models"):
+        return RunOutcome(
+            stage=spec.stage,
+            model_name=spec.model_name,
+            temperature=spec.temperature,
+            max_tokens=spec.max_tokens,
+            seed=spec.seed,
+            run_id=spec.run_id,
+            status="failed",
+            run_dir=str(run_dir),
+            duration_sec=duration_sec,
+            error=f"invalid summary: {json.dumps(summary)}",
+        )
     return RunOutcome(
         stage=spec.stage,
         model_name=spec.model_name,
@@ -480,6 +512,26 @@ def main(argv: list[str] | None = None) -> int:
 
     base_config = _load_yaml(base_config_path)
     models = _models_from_config(models_config_path)
+    suites_override = _suites_from_config(models_config_path)
+    if suites_override is not None:
+        print(f"Suites (from {models_config_path}): {', '.join(suites_override)}", file=sys.stderr)
+
+    if args.env_file:
+        loaded = _load_env_file(Path(args.env_file))
+        if loaded:
+            print(f"Loaded {', '.join(loaded)} from {args.env_file}", file=sys.stderr)
+    missing_env = _check_backend_env(models)
+    if missing_env:
+        backends = sorted({str(m.get('backend', 'mlx')) for m in models})
+        message = (
+            f"Missing required environment variable(s) {', '.join(missing_env)} "
+            f"for backend(s) {', '.join(backends)}. "
+            f"Put them in {args.env_file or '.env.local'} or export them before running."
+        )
+        if args.preflight_only:
+            print(f"WARNING: {message} The real sweep will refuse to start.", file=sys.stderr)
+        else:
+            raise SystemExit(f"{message} Refusing to start: every API run would fail.")
 
     baseline_specs = _build_run_specs(
         models=models,
@@ -494,6 +546,7 @@ def main(argv: list[str] | None = None) -> int:
         "models_config": str(models_config_path),
         "baseline_runs": [asdict(spec) | {"run_id": spec.run_id} for spec in baseline_specs],
         "top_k": args.top_k,
+        "skip_expansion": bool(args.skip_expansion),
         "expansion_temps": list(_parse_csv_numbers(args.expansion_temps, float_mode=True)),
         "expansion_max_tokens": list(_parse_csv_numbers(args.expansion_max_tokens, float_mode=False)),
         "expansion_seeds": list(_parse_csv_numbers(args.expansion_seeds, float_mode=False)),
@@ -514,6 +567,7 @@ def main(argv: list[str] | None = None) -> int:
             spec=spec,
             config_path=generated_configs_dir / f"{spec.run_id}.yaml",
             results_dir=unified_results_dir,
+            suites_override=suites_override,
         )
 
     if args.preflight_only:
@@ -580,6 +634,19 @@ def main(argv: list[str] | None = None) -> int:
     baseline_phase = _aggregate_phase(baseline_results) if baseline_results else {"models": []}
     (output_dir / "baseline_phase_summary.json").write_text(json.dumps(baseline_phase, indent=2), encoding="utf-8")
 
+    if args.skip_expansion:
+        _write_markdown_report(output_dir / "report.md", baseline=baseline_results, expansion=[])
+        _write_progress(
+            output_dir=output_dir,
+            total_runs=total_runs,
+            completed_runs=total_runs,
+            current=None,
+            completed_durations=completed_durations,
+            phase="completed",
+        )
+        print(str(output_dir / "report.md"))
+        return 0
+
     if int(args.top_k) <= 0:
         selected_models = list(models)
     else:
@@ -599,6 +666,7 @@ def main(argv: list[str] | None = None) -> int:
             spec=spec,
             config_path=generated_configs_dir / f"{spec.run_id}.yaml",
             results_dir=unified_results_dir,
+            suites_override=suites_override,
         )
 
     expansion_outcomes: list[dict[str, Any]] = []

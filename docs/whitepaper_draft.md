@@ -1,4 +1,4 @@
-# When to Stop Trusting the Model: An Accountability Framework for AI Deployment
+# When to Stop: An Accountability Framework for AI Deployment
 
 *Alejandro Beltran — 2026*
 
@@ -6,9 +6,11 @@
 
 ## Introduction
 
-Deployment of agentic AI in government settings is quickly obscuring who is responsible for what, when, and where. Users are poorly equipped with the knowledge and experience needed to understand when a model is producing unreliable outputs or to detect hallucinations in real time. Although model developers are baking in mechanisms to prevent such occurrences, the deployment of these preventive mechanisms is much slower than the adoption of these tools into real workflows. In Civil Service and public-facing roles the products generated through AI can have dire consequences for the constituents at the receiving end: think an automated pipeline that determines who receives a public benefit. Traditionally, if an error is missed by an analyst, there is a chain of command that inherits responsibility based on how impactful the error was — where minor issues may merit a small reprimand and major errors can lead to the dismissal of directors or even testimony before legislators or regulators. How does AI fit into that dynamic when decisions are more obscured in chain-of-thought logs impossible to follow, when users are simply unaware of when the model is producing rubbish, or when directors are accelerating autonomous deployment without consideration of the downstream consequences?
+Deployment of agentic AI in government settings is quickly obscuring who is responsible for what, when, and where. Users are poorly equipped with the knowledge and experience needed to understand when a model is producing unreliable outputs or to detect hallucinations in real time. Although model developers are baking in mechanisms to prevent such occurrences, the deployment of these preventive mechanisms is much slower than the adoption of these tools into real workflows. In Civil Service and public-facing roles, the products generated through AI can have dire consequences for the constituents at the receiving end: think an automated pipeline that determines who receives a public benefit. Traditionally, if an error is missed by an analyst, there is a chain of command that inherits responsibility based on how impactful the error was — where minor issues may merit a small reprimand and major errors can lead to the dismissal of directors or even testimony before legislators or regulators. How does AI fit into that dynamic when decisions are more obscured in chain-of-thought logs that are impossible to follow, when users are simply unaware of when the model is producing rubbish, or when directors are accelerating autonomous deployment without consideration of the downstream consequences?
 
 In this project I attempt to bridge that accountability gap by proposing an internal framework for detecting when models are unreliable — one that signals unreliability ahead of time, establishes a record that consequent products may be unstable, and assigns responsibility at the correct level of deployment.
+
+This work does not claim a new model architecture or a new benchmark in isolation. Its contribution is an operational synthesis: contract-based reliability probes, explicit intervention states (`continue`/`retry`/`repair`/`escalate`/`abort`), and an auditable trail that ties technical failure signals to accountable deployment decisions. In that sense, LTE is novel less as a standalone evaluation method and more as a deployable accountability mechanism for real-world AI workflows.
 
 The question at the centre of this work is whether anyone in the deployment chain would know when a model stops being trustworthy. In most organizations today, the answer is no, and that absence of signal is what makes accountability unenforceable. You cannot hold a deploying organization responsible for ignoring a warning it was never equipped to receive.
 
@@ -44,7 +46,7 @@ All of these are gradual, hard to notice without instrumentation, and easy for a
 
 ## The Scaffold: Building an Accountability Signal
 
-LTE (Local Token Expansion) is a reliability and intervention pipeline designed to detect these failure modes and emit explicit signals that a downstream system or operator can act on. The framework runs a compact battery of behavioral probes against a model, measures its outputs along several dimensions, and maps the results to one of five intervention states: `continue`, `retry`, `repair`, `escalate`, or `abort`.
+LTE (Local Threshold Evaluation) is a reliability and intervention pipeline designed to detect these failure modes and emit explicit signals that a downstream system or operator can act on. The framework runs a compact battery of behavioral probes against a model, measures its outputs along several dimensions, and maps the results to one of five intervention states: `continue`, `retry`, `repair`, `escalate`, or `abort`.
 
 **Figure 1 — LTE Intervention Pipeline**
 
@@ -141,7 +143,7 @@ Detecting a failure mode is only useful if something happens as a result. I prop
 
 **Layer 2: Logged audit trail.** Every scaffold run produces a structured summary artifact containing trigger states, failure classifications, and the final intervention recommendation. This artifact should be retained as part of the deployment record. If an organization runs this framework, receives an `escalate` or `abort` signal, overrides that signal without documentation, and harm follows, the log exists. That is what makes accountability auditable and harder to evade.
 
-Governance frameworks name the relevant actors. What they cannot establish on their own is *when* a deploying organization should have known the model was unreliable — which is precisely the question that determines liability. The audit trail answers it. The gap between "the model failed" and "the deploying organization received an abort signal and continued operating the pipeline" is the gap between a policy statement and a mechanically defensible record. This framework is designed to close it.
+Governance frameworks name the relevant actors. What they cannot establish on their own is *when* a deploying organization should have known the model was unreliable — which is precisely the question that determines liability. The audit trail answers it. The gap between "the model failed" and "the deploying organization received an abort signal and continued operating the pipeline" is the gap between a policy statement and a mechanically defensible record. This framework is an attempt to close that gap and define what responsibilization (clear assignment of roles and accountability in the AI lifecycle) may look like.
 
 ---
 
@@ -149,7 +151,7 @@ Governance frameworks name the relevant actors. What they cannot establish on th
 
 Three groups in particular have a direct stake in this.
 
-**ML engineers building agentic pipelines** need circuit-breaker logic and they usually have to build it themselves from scratch. LTE offers a reusable scaffold with an explicit intervention vocabulary that can be wired into any pipeline backend. The mock backend included in the repo makes it possible to develop and test the integration without a live model, and the YAML-defined probe suites can be extended to cover domain-specific tasks.
+**ML engineers building agentic pipelines** need circuit-breaker logic and they usually have to build it themselves from scratch. LTE offers a reusable scaffold with an explicit intervention vocabulary that can be wired into any pipeline backend. Although the experiments are limited to locally run models, the expectation is that this same scaffold can be deployed in more complex environments with more capable models and still identify breakage.
 
 **AI safety and reliability researchers** working on evaluation methodology will find the intervention-centered framing a useful complement to capability benchmarking. The finding that benchmark-failure counts and stress-regime outcomes can diverge sharply — as they did with Mistral — is a concrete demonstration of why operational reliability needs its own measurement track rather than being inferred from task-accuracy scores. The probe design, contract evaluation logic, and trigger taxonomy are all open problems with significant room for improvement, and the framework is structured to make those components independently replaceable.
 
@@ -161,13 +163,19 @@ The framework is currently local-model-only, which limits direct applicability t
 
 ## Limitations
 
-Three constraints matter enough to be named directly.
-
 The framework was built and validated on Apple Silicon. Latency measurements in particular are hardware-dependent: the absolute threshold values used here would need recalibration for cloud-hosted or API-based models. The behavioral patterns — models entering stable regimes through reproducible pathways — should generalize, but that has to be demonstrated rather than assumed.
 
 The probe contracts encode normative assumptions about what a passing response looks like. A one-sentence summary that answers the question in twenty-two words but uses a semicolon is a harder case than the current contracts handle cleanly. Edge cases like this require human calibration, and the right thresholds for an escalate-vs-abort boundary will differ across deployment contexts. The current thresholds are a starting point, set by engineering judgment and validated against experimental consistency, rather than a final answer.
 
 The probe battery is compact by design. That is a strength for iteration speed and interpretability, but it means the current set tests the failure modes that appear most frequently in operational workflows rather than every possible way a model can go wrong. Domain-specific deployments — legal document review, medical triage support, financial modelling — would benefit from extended probe families tuned to the failure modes that matter in those contexts.
+
+---
+
+## Conclusion
+
+Local Threshold Evaluation is a first attempt to define evaluation criteria, a battery of probes, and actionable triggers for when models quietly fail. The motivation comes from direct experience observing AI deployment in settings where teams are not trained to detect model failure and may miss the cues that a model is no longer usable. The scaffold helps define internal triggers that tell users when to stop a workflow, transfer to a different agent, or review model outputs over a defined context window.
+
+Although these experiments were run on limited local hardware with locally hosted LLMs, the scaffold is designed to transfer to more resource-intensive deployments with minimal modification. My objective is to keep testing accountability frameworks that bridge the technical realities of real-time AI evaluation with human-facing responsibilization through tests, triggers, and actionable recommendations.
 
 ---
 

@@ -1,0 +1,83 @@
+<svg viewBox="0 0 1000 441" xmlns="http://www.w3.org/2000/svg" width="1000" height="441">
+<rect x="0.0" y="0.0" width="1000.0" height="441.0" rx="4" fill="#ffffff" stroke="none" stroke-width="1.0"/>
+<text x="500.0" y="22.0" font-size="13" fill="#1a1a2e" text-anchor="middle" font-weight="600" font-family="system-ui,-apple-system,sans-serif">LTE Scaffold: All Models, Shared Battery, Different Exit Points</text>
+<text x="297.5" y="46.0" font-size="7.5" fill="#999999" text-anchor="middle" font-weight="700" font-family="system-ui,-apple-system,sans-serif">PRE-STRESS</text>
+<text x="655.0" y="46.0" font-size="7.5" fill="#999999" text-anchor="middle" font-weight="700" font-family="system-ui,-apple-system,sans-serif">STRESS PHASE</text>
+<text x="203.4" y="58.0" font-size="6.5" fill="#777777" text-anchor="middle" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">PROBE</text>
+<text x="298.9" y="58.0" font-size="6.5" fill="#777777" text-anchor="middle" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">CONTRACT</text>
+<text x="393.0" y="58.0" font-size="6.5" fill="#777777" text-anchor="middle" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">TRIGGER</text>
+<text x="479.1" y="58.0" font-size="6.5" fill="#777777" text-anchor="middle" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">2</text>
+<text x="537.7" y="58.0" font-size="6.5" fill="#777777" text-anchor="middle" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">5</text>
+<text x="635.5" y="58.0" font-size="6.5" fill="#777777" text-anchor="middle" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">10</text>
+<text x="733.2" y="58.0" font-size="6.5" fill="#777777" text-anchor="middle" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">15</text>
+<text x="830.9" y="58.0" font-size="6.5" fill="#777777" text-anchor="middle" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">20</text>
+<text x="870.0" y="58.0" font-size="6.5" fill="#777777" text-anchor="middle" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">22</text>
+<line x1="155.0" y1="71.0" x2="870.0" y2="71.0" stroke="#e8e8ee" stroke-width="0.8"/>
+<line x1="251.9" y1="75.0" x2="251.9" y2="411.0" stroke="#e8e8ee" stroke-width="0.8"/>
+<line x1="346.0" y1="75.0" x2="346.0" y2="411.0" stroke="#e8e8ee" stroke-width="0.8"/>
+<line x1="440.0" y1="75.0" x2="440.0" y2="411.0" stroke="#e8e8ee" stroke-width="0.8"/>
+<line x1="537.7" y1="75.0" x2="537.7" y2="411.0" stroke="#f0f0f5" stroke-width="0.6"/>
+<line x1="635.5" y1="75.0" x2="635.5" y2="411.0" stroke="#f0f0f5" stroke-width="0.6"/>
+<line x1="830.9" y1="75.0" x2="830.9" y2="411.0" stroke="#f0f0f5" stroke-width="0.6"/>
+<line x1="479.1" y1="71.0" x2="479.1" y2="411.0" stroke="#ccccdd" stroke-width="1.0" stroke-dasharray="3 3"/>
+<line x1="733.2" y1="71.0" x2="733.2" y2="411.0" stroke="#ccccdd" stroke-width="1.0" stroke-dasharray="3 3"/>
+<line x1="870.0" y1="71.0" x2="870.0" y2="411.0" stroke="#ccccdd" stroke-width="1.0" stroke-dasharray="3 3"/>
+<rect x="155.0" y="75.0" width="715.0" height="48.0" rx="0" fill="#f9f9fb" stroke="none" stroke-width="1.0"/>
+<rect x="155.0" y="89.0" width="715.0" height="20.0" rx="3" fill="#f3f3f5" stroke="none" stroke-width="1.0"/>
+<rect x="155.0" y="89.0" width="715.0" height="20.0" rx="3" fill="#c8ecd6" stroke="#2d6a4f" stroke-width="0.8"/>
+<text x="147.0" y="94.0" font-size="9" fill="#111111" text-anchor="end" font-weight="600" font-family="system-ui,-apple-system,sans-serif">GPT-4o mini</text>
+<text x="147.0" y="106.0" font-size="7" fill="#777777" text-anchor="end" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">API · OpenAI</text>
+<line x1="870.0" y1="87.0" x2="870.0" y2="111.0" stroke="#2d6a4f" stroke-width="2"/>
+<text x="880.0" y="95.0" font-size="8.5" fill="#1b5236" text-anchor="start" font-weight="700" font-family="system-ui,-apple-system,sans-serif">RETRY</text>
+<text x="880.0" y="106.0" font-size="7" fill="#777777" text-anchor="start" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">3.5 fail  ·  1.167 unrec.</text>
+<rect x="155.0" y="137.0" width="715.0" height="20.0" rx="3" fill="#f3f3f5" stroke="none" stroke-width="1.0"/>
+<rect x="155.0" y="137.0" width="715.0" height="20.0" rx="3" fill="#fad9b0" stroke="#b56a20" stroke-width="0.8"/>
+<text x="147.0" y="142.0" font-size="9" fill="#111111" text-anchor="end" font-weight="600" font-family="system-ui,-apple-system,sans-serif">Claude Haiku 4.5</text>
+<text x="147.0" y="154.0" font-size="7" fill="#777777" text-anchor="end" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">API · Anthropic</text>
+<line x1="870.0" y1="135.0" x2="870.0" y2="159.0" stroke="#b56a20" stroke-width="2"/>
+<text x="880.0" y="143.0" font-size="8.5" fill="#7a4510" text-anchor="start" font-weight="700" font-family="system-ui,-apple-system,sans-serif">ESCALATE</text>
+<text x="880.0" y="154.0" font-size="7" fill="#777777" text-anchor="start" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">4.0 fail  ·  2.0 unrec.</text>
+<rect x="155.0" y="171.0" width="715.0" height="48.0" rx="0" fill="#f9f9fb" stroke="none" stroke-width="1.0"/>
+<rect x="155.0" y="185.0" width="715.0" height="20.0" rx="3" fill="#f3f3f5" stroke="none" stroke-width="1.0"/>
+<rect x="155.0" y="185.0" width="715.0" height="20.0" rx="3" fill="#fad9b0" stroke="#b56a20" stroke-width="0.8"/>
+<text x="147.0" y="190.0" font-size="9" fill="#111111" text-anchor="end" font-weight="600" font-family="system-ui,-apple-system,sans-serif">Phi-4-mini</text>
+<text x="147.0" y="202.0" font-size="7" fill="#777777" text-anchor="end" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">local · MLX</text>
+<line x1="870.0" y1="183.0" x2="870.0" y2="207.0" stroke="#b56a20" stroke-width="2"/>
+<text x="880.0" y="191.0" font-size="8.5" fill="#7a4510" text-anchor="start" font-weight="700" font-family="system-ui,-apple-system,sans-serif">ESCALATE</text>
+<text x="880.0" y="202.0" font-size="7" fill="#777777" text-anchor="start" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">7.0 fail  ·  3.0 unrec.</text>
+<rect x="155.0" y="233.0" width="715.0" height="20.0" rx="3" fill="#f3f3f5" stroke="none" stroke-width="1.0"/>
+<rect x="155.0" y="233.0" width="715.0" height="20.0" rx="3" fill="#fad9b0" stroke="#b56a20" stroke-width="0.8"/>
+<text x="147.0" y="238.0" font-size="9" fill="#111111" text-anchor="end" font-weight="600" font-family="system-ui,-apple-system,sans-serif">Llama-3.1-8B</text>
+<text x="147.0" y="250.0" font-size="7" fill="#777777" text-anchor="end" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">local · MLX</text>
+<line x1="870.0" y1="231.0" x2="870.0" y2="255.0" stroke="#b56a20" stroke-width="2"/>
+<text x="880.0" y="239.0" font-size="8.5" fill="#7a4510" text-anchor="start" font-weight="700" font-family="system-ui,-apple-system,sans-serif">ESCALATE</text>
+<text x="880.0" y="250.0" font-size="7" fill="#777777" text-anchor="start" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">9.0 fail  ·  4.0 unrec.</text>
+<rect x="155.0" y="267.0" width="715.0" height="48.0" rx="0" fill="#f9f9fb" stroke="none" stroke-width="1.0"/>
+<rect x="155.0" y="281.0" width="715.0" height="20.0" rx="3" fill="#f3f3f5" stroke="none" stroke-width="1.0"/>
+<rect x="155.0" y="281.0" width="578.2" height="20.0" rx="3" fill="#f5c4c4" stroke="#b03030" stroke-width="0.8"/>
+<text x="147.0" y="286.0" font-size="9" fill="#111111" text-anchor="end" font-weight="600" font-family="system-ui,-apple-system,sans-serif">Mistral-7B</text>
+<text x="147.0" y="298.0" font-size="7" fill="#777777" text-anchor="end" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">local · MLX</text>
+<circle cx="733.2" cy="291.0" r="8" fill="#b03030" stroke="white" stroke-width="1.5"/>
+<text x="733.2" y="295.0" font-size="9" fill="white" text-anchor="middle" font-weight="700" font-family="system-ui,-apple-system,sans-serif">✕</text>
+<text x="745.2" y="287.0" font-size="8.5" fill="#7a1f1f" text-anchor="start" font-weight="700" font-family="system-ui,-apple-system,sans-serif">ABORT</text>
+<text x="745.2" y="298.0" font-size="7" fill="#777777" text-anchor="start" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">step 15  ·  4.0 fail</text>
+<rect x="155.0" y="329.0" width="715.0" height="20.0" rx="3" fill="#f3f3f5" stroke="none" stroke-width="1.0"/>
+<rect x="155.0" y="329.0" width="324.1" height="20.0" rx="3" fill="#f5c4c4" stroke="#b03030" stroke-width="0.8"/>
+<text x="147.0" y="334.0" font-size="9" fill="#111111" text-anchor="end" font-weight="600" font-family="system-ui,-apple-system,sans-serif">Phi-3-mini</text>
+<text x="147.0" y="346.0" font-size="7" fill="#777777" text-anchor="end" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">local · MLX</text>
+<circle cx="479.1" cy="339.0" r="8" fill="#b03030" stroke="white" stroke-width="1.5"/>
+<text x="479.1" y="343.0" font-size="9" fill="white" text-anchor="middle" font-weight="700" font-family="system-ui,-apple-system,sans-serif">✕</text>
+<text x="491.1" y="335.0" font-size="8.5" fill="#7a1f1f" text-anchor="start" font-weight="700" font-family="system-ui,-apple-system,sans-serif">ABORT</text>
+<text x="491.1" y="346.0" font-size="7" fill="#777777" text-anchor="start" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">step 2  ·  11.0 fail</text>
+<rect x="155.0" y="363.0" width="715.0" height="48.0" rx="0" fill="#f9f9fb" stroke="none" stroke-width="1.0"/>
+<rect x="155.0" y="377.0" width="715.0" height="20.0" rx="3" fill="#f3f3f5" stroke="none" stroke-width="1.0"/>
+<rect x="155.0" y="377.0" width="324.1" height="20.0" rx="3" fill="#f5c4c4" stroke="#b03030" stroke-width="0.8"/>
+<text x="147.0" y="382.0" font-size="9" fill="#111111" text-anchor="end" font-weight="600" font-family="system-ui,-apple-system,sans-serif">SmolLM-1.7B</text>
+<text x="147.0" y="394.0" font-size="7" fill="#777777" text-anchor="end" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">local · MLX</text>
+<circle cx="479.1" cy="387.0" r="8" fill="#b03030" stroke="white" stroke-width="1.5"/>
+<text x="479.1" y="391.0" font-size="9" fill="white" text-anchor="middle" font-weight="700" font-family="system-ui,-apple-system,sans-serif">✕</text>
+<text x="491.1" y="383.0" font-size="8.5" fill="#7a1f1f" text-anchor="start" font-weight="700" font-family="system-ui,-apple-system,sans-serif">ABORT</text>
+<text x="491.1" y="394.0" font-size="7" fill="#777777" text-anchor="start" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">step 2  ·  12.0 fail</text>
+<line x1="870.0" y1="75.0" x2="870.0" y2="411.0" stroke="#e8e8ee" stroke-width="1"/>
+<text x="155.0" y="431.0" font-size="7.5" fill="#777777" text-anchor="start" font-weight="normal" font-family="system-ui,-apple-system,sans-serif">◆  Mistral-7B exits at step 15 with 4.0 mean failures — the same count as Claude Haiku 4.5, which completes the full battery (step 22).</text>
+</svg>

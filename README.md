@@ -1,10 +1,10 @@
-# Local Token Expansion (LTE)
+# Local Threshold Evaluation (LTE)
 
-Local Token Expansion (LTE) is a local-first evaluation harness for measuring when LLMs stop being operationally useful under workflow pressure.
+Local Threshold Evaluation (LTE) is a deployer-side evaluation harness for measuring when LLMs stop being operationally useful under workflow pressure.
 
 Most LLM benchmarks ask whether a model can complete a task. LTE asks a different question: when does the model stop being useful inside a constrained workflow? It measures output expansion, cap pressure, verbosity drift, repetition, context stress, latency cliffs, and persistent failure states, then maps those signals to intervention decisions: `continue`, `retry`, `repair`, `escalate`, or `abort`.
 
-This repository is not a general model leaderboard. It is a harness for producing deployment-relevant signals from local model runs.
+This repository is not a general model leaderboard. It is a harness for producing deployment-relevant signals from local and API-backed model runs.
 
 ## Why This Matters
 
@@ -151,6 +151,57 @@ For a deterministic smoke test without MLX:
 ```bash
 lte stress --config examples/stress_mock_config.yaml --run-id demo_stress --force
 ```
+
+## Backends
+
+LTE currently supports:
+
+- `mock` for deterministic smoke tests
+- `mlx` for local Apple Silicon runs
+- `openai` for OpenAI Chat Completions models
+- `anthropic` for Anthropic Messages API models
+
+The deployer-side scaffold remains local in all four cases: prompts, contracts, metrics, trigger logic, and audit artifacts are still computed in LTE. Only inference moves remote when an API backend is used.
+
+### API Setup
+
+Create a project-local env file for API keys:
+
+```bash
+cp .env.example .env.local
+```
+
+Fill in `.env.local`, then load it into your shell before running LTE:
+
+```bash
+set -a
+source .env.local
+set +a
+```
+
+OpenAI backend:
+
+```bash
+export OPENAI_API_KEY=...
+lte unified --config configs/unified_openai_api.yaml --run-id openai_demo --progress
+```
+
+Anthropic backend:
+
+```bash
+export ANTHROPIC_API_KEY=...
+lte unified --config configs/unified_anthropic_api.yaml --run-id anthropic_demo --progress
+```
+
+The API configs use looser latency thresholds than the local MLX configs because they measure end-to-end service latency rather than on-device generation time.
+
+## Token Counting
+
+- `mlx` runs require native tokenizer counts and now fail fast if native counting is unavailable.
+- `openai` and `anthropic` runs record provider-reported token usage.
+- `mock` continues to use approximate counts for deterministic fixture output.
+
+This means approximate token counting should only appear in mock/example artifacts unless you deliberately add another approximate-only backend.
 
 ## MLX Setup
 

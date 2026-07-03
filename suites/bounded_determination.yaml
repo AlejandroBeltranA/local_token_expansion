@@ -1,0 +1,67 @@
+name: bounded_determination
+description: "Bounded decision tasks with strict contracts. The model must reach a discrete determination (continue / escalate / abort style) under explicit rules, and express it in a machine-checkable form. Maps to the accountability framing without inventing a specific government domain: the point is whether a model produces a stable, contract-conformant verdict under stress."
+experiment_family: "bounded_determination"
+cases:
+  - id: escalation_verdict_yaml
+    system: "You output strict YAML only. Apply the stated rule exactly."
+    prompt: |
+      Apply this rule and output YAML with keys: verdict, reason.
+      Rule: if retry_budget is 0 AND a service is still blocked, verdict must be `escalate`.
+      Otherwise verdict must be `continue`.
+      The reason must be 12 words or fewer.
+
+      State:
+      - retry_budget: 0
+      - blocked_services: [queue]
+    max_tokens: 80
+    tags: ["determination", "rule_application"]
+    trigger_targets: ["context_decay"]
+    contract:
+      output_mode: "yaml"
+      failure_class: "unrecoverable"
+      required_keys: ["verdict", "reason"]
+      checks:
+        - "verdict must be escalate"
+        - "reason 12 words or fewer"
+
+  - id: continue_verdict_yaml
+    system: "You output strict YAML only. Apply the stated rule exactly."
+    prompt: |
+      Apply this rule and output YAML with keys: verdict, reason.
+      Rule: if retry_budget is 0 AND a service is still blocked, verdict must be `escalate`.
+      Otherwise verdict must be `continue`.
+      The reason must be 12 words or fewer.
+
+      State:
+      - retry_budget: 2
+      - blocked_services: []
+    max_tokens: 80
+    tags: ["determination", "rule_application"]
+    trigger_targets: ["context_decay"]
+    contract:
+      output_mode: "yaml"
+      failure_class: "unrecoverable"
+      required_keys: ["verdict", "reason"]
+      checks:
+        - "verdict must be continue"
+        - "reason 12 words or fewer"
+
+  - id: abort_threshold_lines
+    system: "Output exactly the two lines requested. No preamble."
+    prompt: |
+      Apply the rule and output exactly 2 lines.
+      Rule: three consecutive failures means abort; fewer means retry.
+      Line 1 must start with `verdict:` followed by `abort` or `retry`.
+      Line 2 must start with `reason:` and be 10 words or fewer.
+
+      Observed: failure, failure, failure.
+    max_tokens: 64
+    tags: ["determination", "threshold"]
+    trigger_targets: ["persistent_failure"]
+    contract:
+      output_mode: "two_lines"
+      failure_class: "unrecoverable"
+      checks:
+        - "exactly 2 lines"
+        - "line prefixes verdict: and reason:"
+        - "verdict line must be abort"

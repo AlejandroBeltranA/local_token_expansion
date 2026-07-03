@@ -1,6 +1,6 @@
+import json
 import subprocess
 import sys
-import json
 
 
 def test_cli_list_suites():

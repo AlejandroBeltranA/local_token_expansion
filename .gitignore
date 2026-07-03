@@ -27,3 +27,14 @@ docs/internal/
 
 # Logs
 *.log
+
+# Local env / secrets
+.env.local
+.env.*.local
+
+# Local paper/submission working material
+/research/draft/
+/taigr_paper*.md
+/literature_review.md
+/CLAUDE.md
+/docs/whitepaper_draft.pdf

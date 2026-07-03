@@ -1,0 +1,530 @@
+{
+  "id": "latency_cliff_mistral7b",
+  "title": "Latency cliff \u2014 output stays valid, dynamics degrade",
+  "model_name": "Mistral-7B-Instruct-v0.3",
+  "backend": "mlx",
+  "task_prompt": "TASK:\nProduce exactly 5 bullet points for the current incident state.\nEach bullet must start with a verb and contain 4 to 8 words.\nUse this exact order:\n- report the latest status\n- preserve the current owner\n- name the next action\n- name one risk caused by prior failures\n- state one escalation condition\nKeep the owner as `Iris` unless the TASK changes it.\nNo intro. No closing sentence.\n\n\nCONSTRAINTS:\n- Do not quote or copy from any previous outputs.\n- If prior outputs exist, treat them as read-only reference.\n",
+  "system_text": null,
+  "narrative": "The model returns a correct 5-bullet incident summary at every step. Content never breaks. But per-step latency climbs monotonically as the context window grows (3.5s -> 9.5s). The scaffold aborts when 2 of the last 3 steps exceed the latency threshold, catching a failure that is invisible in the text itself.",
+  "overall_recommendation": "abort",
+  "fired_triggers": [
+    "latency_cliff",
+    "over_expansion",
+    "persistent_failure"
+  ],
+  "abort_step": 17,
+  "total_steps": 18,
+  "failure_consecutive_required": 3,
+  "steps": [
+    {
+      "step": 0,
+      "output_text": "- Iris reports: Incident ongoing, system instability persists.\n- Iris preserves: Current owner: John Doe.\n- Iris names: Investigate root cause of system instability.\n- Iris identifies: Risk of data loss due to recurring system failures.\n- Iris states: Escalation condition: System instability persists for more than 2 hours.",
+      "latency_ms": 3485,
+      "input_tokens": 177,
+      "output_tokens": 87,
+      "context_fraction": 0.0216,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.491525,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": true,
+        "ordered_slot_hits": {
+          "status": true,
+          "owner": true,
+          "next_action": false,
+          "risk": true,
+          "escalation": true
+        }
+      }
+    },
+    {
+      "step": 1,
+      "output_text": "- Iris reports: System instability persists, incident ongoing.\n- Iris preserves: Current owner: John Doe.\n- Iris names: Investigate root cause of system instability.\n- Iris identifies: Risk of data loss due to recurring system failures.\n- Iris states: Escalation condition: System instability persists for more than 2 hours.",
+      "latency_ms": 3561,
+      "input_tokens": 311,
+      "output_tokens": 86,
+      "context_fraction": 0.038,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.276527,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": true,
+        "ordered_slot_hits": {
+          "status": true,
+          "owner": true,
+          "next_action": false,
+          "risk": true,
+          "escalation": true
+        }
+      }
+    },
+    {
+      "step": 2,
+      "output_text": "- Iris reports: System instability persists, incident ongoing.\n- Iris preserves: Current owner: John Doe.\n- Iris names: Investigate root cause of system instability.\n- Iris identifies: Risk of data loss due to recurring system failures.\n- Iris states: Escalation condition: System instability persists for more than 2 hours.",
+      "latency_ms": 3931,
+      "input_tokens": 398,
+      "output_tokens": 86,
+      "context_fraction": 0.0486,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.21608,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": true,
+        "ordered_slot_hits": {
+          "status": true,
+          "owner": true,
+          "next_action": false,
+          "risk": true,
+          "escalation": true
+        }
+      }
+    },
+    {
+      "step": 3,
+      "output_text": "- Iris reports: System instability persists, incident ongoing.\n- Iris preserves: Current owner: John Doe.\n- Iris names: Investigate root cause of system instability.\n- Iris identifies: Risk of data loss due to recurring system failures.\n- Iris states: Escalation condition: System instability persists for more than 2 hours.",
+      "latency_ms": 4328,
+      "input_tokens": 485,
+      "output_tokens": 86,
+      "context_fraction": 0.0592,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.17732,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": true,
+        "ordered_slot_hits": {
+          "status": true,
+          "owner": true,
+          "next_action": false,
+          "risk": true,
+          "escalation": true
+        }
+      }
+    },
+    {
+      "step": 4,
+      "output_text": "- Iris reports: System instability persists, incident ongoing.\n- Iris preserves: Current owner: John Doe.\n- Iris names: Investigate root cause of system instability.\n- Iris identifies: Risk of data loss due to recurring system failures.\n- Iris states: Escalation condition: System instability persists for more than 2 hours.",
+      "latency_ms": 4599,
+      "input_tokens": 572,
+      "output_tokens": 86,
+      "context_fraction": 0.0698,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.15035,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": true,
+        "ordered_slot_hits": {
+          "status": true,
+          "owner": true,
+          "next_action": false,
+          "risk": true,
+          "escalation": true
+        }
+      }
+    },
+    {
+      "step": 5,
+      "output_text": "- Iris reports: System instability persists, incident ongoing.\n- Iris preserves: Current owner: John Doe.\n- Iris names: Investigate root cause of system instability.\n- Iris identifies: Risk of data loss due to recurring system failures.\n- Iris states: Escalation condition: System instability persists for more than 2 hours.",
+      "latency_ms": 4990,
+      "input_tokens": 659,
+      "output_tokens": 86,
+      "context_fraction": 0.0804,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.130501,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": true,
+        "ordered_slot_hits": {
+          "status": true,
+          "owner": true,
+          "next_action": false,
+          "risk": true,
+          "escalation": true
+        }
+      }
+    },
+    {
+      "step": 6,
+      "output_text": "- Iris reports: System instability persists, incident ongoing.\n- Iris preserves: Current owner: John Doe.\n- Iris names: Investigate root cause of system instability.\n- Iris identifies: Risk of data loss due to recurring system failures.\n- Iris states: Escalation condition: System instability persists for more than 2 hours.",
+      "latency_ms": 5399,
+      "input_tokens": 746,
+      "output_tokens": 86,
+      "context_fraction": 0.0911,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.115282,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": true,
+        "ordered_slot_hits": {
+          "status": true,
+          "owner": true,
+          "next_action": false,
+          "risk": true,
+          "escalation": true
+        }
+      }
+    },
+    {
+      "step": 7,
+      "output_text": "- Iris reports: System instability persists, incident ongoing.\n- Iris preserves: Current owner: John Doe.\n- Iris names: Investigate root cause of system instability.\n- Iris identifies: Risk of data loss due to recurring system failures.\n- Iris states: Escalation condition: System instability persists for more than 2 hours.",
+      "latency_ms": 5702,
+      "input_tokens": 833,
+      "output_tokens": 86,
+      "context_fraction": 0.1017,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.103241,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": true,
+        "ordered_slot_hits": {
+          "status": true,
+          "owner": true,
+          "next_action": false,
+          "risk": true,
+          "escalation": true
+        }
+      }
+    },
+    {
+      "step": 8,
+      "output_text": "- Iris reports: System instability persists, incident ongoing.\n- Iris preserves: Current owner: John Doe.\n- Iris names: Investigate root cause of system instability.\n- Iris identifies: Risk of data loss due to recurring system failures.\n- Iris states: Escalation condition: System instability persists for more than 2 hours.",
+      "latency_ms": 6095,
+      "input_tokens": 920,
+      "output_tokens": 86,
+      "context_fraction": 0.1123,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.093478,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": true,
+        "ordered_slot_hits": {
+          "status": true,
+          "owner": true,
+          "next_action": false,
+          "risk": true,
+          "escalation": true
+        }
+      }
+    },
+    {
+      "step": 9,
+      "output_text": "- Iris reports: System instability persists, incident ongoing.\n- Iris preserves: Current owner: John Doe.\n- Iris names: Investigate root cause of system instability.\n- Iris identifies: Risk of data loss due to recurring system failures.\n- Iris states: Escalation condition: System instability persists for more than 2 hours.",
+      "latency_ms": 6496,
+      "input_tokens": 1007,
+      "output_tokens": 86,
+      "context_fraction": 0.1229,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.085402,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": true,
+        "ordered_slot_hits": {
+          "status": true,
+          "owner": true,
+          "next_action": false,
+          "risk": true,
+          "escalation": true
+        }
+      }
+    },
+    {
+      "step": 10,
+      "output_text": "- Iris reports: System instability persists, incident ongoing.\n- Iris preserves: Current owner: John Doe.\n- Iris names: Investigate root cause of system instability.\n- Iris identifies: Risk of data loss due to recurring system failures.\n- Iris states: Escalation condition: System instability persists for more than 2 hours.",
+      "latency_ms": 6890,
+      "input_tokens": 1094,
+      "output_tokens": 86,
+      "context_fraction": 0.1335,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.078611,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": true,
+        "ordered_slot_hits": {
+          "status": true,
+          "owner": true,
+          "next_action": false,
+          "risk": true,
+          "escalation": true
+        }
+      }
+    },
+    {
+      "step": 11,
+      "output_text": "- Iris reports: System instability persists, incident ongoing.\n- Iris preserves: Current owner: John Doe.\n- Iris names: Investigate root cause of system instability.\n- Iris identifies: Risk of data loss due to recurring system failures.\n- Iris states: Escalation condition: System instability persists for more than 2 hours.",
+      "latency_ms": 7163,
+      "input_tokens": 1181,
+      "output_tokens": 86,
+      "context_fraction": 0.1442,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.07282,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": true,
+        "ordered_slot_hits": {
+          "status": true,
+          "owner": true,
+          "next_action": false,
+          "risk": true,
+          "escalation": true
+        }
+      }
+    },
+    {
+      "step": 12,
+      "output_text": "- Iris reports: System instability persists, incident ongoing.\n- Iris preserves: Current owner: John Doe.\n- Iris names: Investigate root cause of system instability.\n- Iris identifies: Risk of data loss due to recurring system failures.\n- Iris states: Escalation condition: System instability persists for more than 2 hours.",
+      "latency_ms": 7575,
+      "input_tokens": 1268,
+      "output_tokens": 86,
+      "context_fraction": 0.1548,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.067823,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": true,
+        "ordered_slot_hits": {
+          "status": true,
+          "owner": true,
+          "next_action": false,
+          "risk": true,
+          "escalation": true
+        }
+      }
+    },
+    {
+      "step": 13,
+      "output_text": "- Iris reports: System instability persists, incident ongoing.\n- Iris preserves: Current owner: John Doe.\n- Iris names: Investigate root cause of system instability.\n- Iris identifies: Risk of data loss due to recurring system failures.\n- Iris states: Escalation condition: System instability persists for more than 2 hours.",
+      "latency_ms": 7981,
+      "input_tokens": 1355,
+      "output_tokens": 86,
+      "context_fraction": 0.1654,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.063469,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": true,
+        "ordered_slot_hits": {
+          "status": true,
+          "owner": true,
+          "next_action": false,
+          "risk": true,
+          "escalation": true
+        }
+      }
+    },
+    {
+      "step": 14,
+      "output_text": "- Iris reports: System instability persists, incident ongoing.\n- Iris preserves: Current owner: John Doe.\n- Iris names: Investigate root cause of system instability.\n- Iris identifies: Risk of data loss due to recurring system failures.\n- Iris states: Escalation condition: System instability persists for more than 2 hours.",
+      "latency_ms": 8225,
+      "input_tokens": 1442,
+      "output_tokens": 86,
+      "context_fraction": 0.176,
+      "is_failure": false,
+      "consecutive_failures": 0,
+      "failure_reasons": [],
+      "signals": {
+        "expansion_ratio": 0.059639,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": true,
+        "ordered_slot_hits": {
+          "status": true,
+          "owner": true,
+          "next_action": false,
+          "risk": true,
+          "escalation": true
+        }
+      }
+    },
+    {
+      "step": 15,
+      "output_text": "- Iris reports: System instability persists, incident ongoing.\n- Iris preserves: Current owner: John Doe.\n- Iris names: Investigate root cause of system instability.\n- Iris identifies: Risk of data loss due to recurring system failures.\n- Iris states: Escalation condition: System instability persists for more than 2 hours.",
+      "latency_ms": 8683,
+      "input_tokens": 1529,
+      "output_tokens": 86,
+      "context_fraction": 0.1866,
+      "is_failure": true,
+      "consecutive_failures": 1,
+      "failure_reasons": [
+        "latency"
+      ],
+      "signals": {
+        "expansion_ratio": 0.056246,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": true,
+        "ordered_slot_hits": {
+          "status": true,
+          "owner": true,
+          "next_action": false,
+          "risk": true,
+          "escalation": true
+        }
+      }
+    },
+    {
+      "step": 16,
+      "output_text": "- Iris reports: System instability persists, incident ongoing.\n- Iris preserves: Current owner: John Doe.\n- Iris names: Investigate root cause of system instability.\n- Iris identifies: Risk of data loss due to recurring system failures.\n- Iris states: Escalation condition: System instability persists for more than 2 hours.",
+      "latency_ms": 9084,
+      "input_tokens": 1616,
+      "output_tokens": 86,
+      "context_fraction": 0.1973,
+      "is_failure": true,
+      "consecutive_failures": 2,
+      "failure_reasons": [
+        "latency"
+      ],
+      "signals": {
+        "expansion_ratio": 0.053218,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": true,
+        "ordered_slot_hits": {
+          "status": true,
+          "owner": true,
+          "next_action": false,
+          "risk": true,
+          "escalation": true
+        }
+      }
+    },
+    {
+      "step": 17,
+      "output_text": "- Iris reports: System instability persists, incident ongoing.\n- Iris preserves: Current owner: John Doe.\n- Iris names: Investigate root cause of system instability.\n- Iris identifies: Risk of data loss due to recurring system failures.\n- Iris states: Escalation condition: System instability persists for more than 2 hours.",
+      "latency_ms": 9496,
+      "input_tokens": 1703,
+      "output_tokens": 86,
+      "context_fraction": 0.2079,
+      "is_failure": true,
+      "consecutive_failures": 3,
+      "failure_reasons": [
+        "latency"
+      ],
+      "signals": {
+        "expansion_ratio": 0.050499,
+        "runaway_continuation_score": 0.0,
+        "length_overrun_rate": 0
+      },
+      "contract": {
+        "passed": false,
+        "exact_bullet_count": true,
+        "owner_preserved": true,
+        "ordered_slot_hits": {
+          "status": true,
+          "owner": true,
+          "next_action": false,
+          "risk": true,
+          "escalation": true
+        }
+      }
+    }
+  ]
+}

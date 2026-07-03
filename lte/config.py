@@ -6,8 +6,7 @@ from typing import Any, Literal
 
 import yaml
 
-
-BackendName = Literal["mlx", "mock"]
+BackendName = Literal["mlx", "mock", "openai", "anthropic"]
 
 
 @dataclass(frozen=True)
@@ -40,6 +39,14 @@ class StressFailureConfig:
     latency_only_after_context_fraction: float | None = None
     max_rcs: float | None = None
     fail_on_lorr: bool = True
+    # Trigger-firing thresholds in summarize_unified_run that previously lived
+    # as hardcoded constants. Lifting them into cfg lets the threshold-
+    # sensitivity sweep actually exercise them. Defaults preserve the
+    # pre-fix behaviour for any caller that doesn't set them.
+    max_rcs_window_mean: float = 0.22   # last-5 mean RCS firing repetition_loop
+    max_lorr_mean: float = 0.20         # benchmark mean LORR firing near_cap_pressure
+    near_cap_window_required: int = 2   # stress LORR=1 hits in window
+    near_cap_window_size: int = 5       # window length for near_cap stress check
 
 
 @dataclass(frozen=True)
@@ -95,8 +102,8 @@ def load_config(path: str | Path) -> RunConfig:
 
     run_name = _as_str(raw.get("run_name", "run"), field="run_name")
     backend = raw.get("backend", "mlx")
-    if backend not in ("mlx", "mock"):
-        raise ValueError("backend must be one of: mlx, mock")
+    if backend not in ("mlx", "mock", "openai", "anthropic"):
+        raise ValueError("backend must be one of: mlx, mock, openai, anthropic")
 
     raw_models = raw.get("models")
     if not isinstance(raw_models, list) or not raw_models:
@@ -164,6 +171,10 @@ def load_config(path: str | Path) -> RunConfig:
         latency_only_after_context_fraction=failure_raw.get("latency_only_after_context_fraction"),
         max_rcs=failure_raw.get("max_rcs"),
         fail_on_lorr=bool(failure_raw.get("fail_on_lorr", True)),
+        max_rcs_window_mean=float(failure_raw.get("max_rcs_window_mean", 0.22)),
+        max_lorr_mean=float(failure_raw.get("max_lorr_mean", 0.20)),
+        near_cap_window_required=int(failure_raw.get("near_cap_window_required", 2)),
+        near_cap_window_size=int(failure_raw.get("near_cap_window_size", 5)),
     )
     stress = StressConfig(
         enabled=bool(stress_raw.get("enabled", False)),

@@ -4,7 +4,7 @@ import time
 from typing import Any
 
 from lte.backends.base import Backend, GenerationResult
-from lte.token_count import count_tokens_native_or_approx
+from lte.token_count import count_tokens_native
 
 
 def _safe_import_mlx() -> tuple[Any, Any]:
@@ -118,7 +118,7 @@ class MLXBackend(Backend):
         model, tokenizer = self._load_for_path(model_path)
 
         prompt = _format_prompt(tokenizer, prompt_text, system_text)
-        in_count = count_tokens_native_or_approx(tokenizer, prompt)
+        in_count = count_tokens_native(tokenizer, prompt)
 
         if seed is not None:
             try:
@@ -141,15 +141,14 @@ class MLXBackend(Backend):
         output_text = generate(**kwargs)
         latency_ms = int((time.time() - start) * 1000)
 
-        out_count = count_tokens_native_or_approx(tokenizer, output_text)
-        method = "mlx-native" if (in_count.method == "mlx-native" and out_count.method == "mlx-native") else "approx"
+        out_count = count_tokens_native(tokenizer, output_text)
 
         stop_reason = "length" if out_count.tokens >= int(0.95 * max_tokens) else "eos/other"
         return GenerationResult(
             output_text=output_text,
             input_tokens=in_count.tokens,
             output_tokens=out_count.tokens,
-            token_count_method=method,
+            token_count_method="mlx-native",
             stop_reason=stop_reason,
             latency_ms=latency_ms,
         )
