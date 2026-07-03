@@ -294,6 +294,7 @@ def summarize_unified_run(
     LORR_BENCHMARK_MEAN = float(failure.max_lorr_mean)
     NEAR_CAP_REQUIRED = int(failure.near_cap_window_required)
     NEAR_CAP_WINDOW = int(failure.near_cap_window_size)
+    CONSECUTIVE = int(failure.consecutive if failure.consecutive is not None else 3)
 
     generation_rows = [row for row in records if "output_tokens" in row and "input_tokens" in row and "max_tokens" in row]
     benchmark_rows = [row for row in generation_rows if row.get("mode") == "benchmark"]
@@ -480,7 +481,10 @@ def summarize_unified_run(
             ),
             "persistent_failure": _trigger_row(
                 status=persistent_failure,
-                threshold="stress reaches 3 consecutive failed steps, or both failure_escalation benchmark cases fail contract",
+                threshold=(
+                    f"stress reaches {CONSECUTIVE} consecutive failed steps, "
+                    f"or both failure_escalation benchmark cases fail contract"
+                ),
                 evidence={
                     "stress_step": persistent_failure_row.get("step") if persistent_failure_row else None,
                     "stress_reasons": persistent_failure_row.get("failure_reasons") if persistent_failure_row else [],
