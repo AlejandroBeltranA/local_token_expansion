@@ -1,0 +1,25 @@
+{
+  "title": "Local Threshold Evaluation (LTE): deployer-side reliability evaluation for LLMs",
+  "description": "Evaluation harness for measuring when LLMs stop being operationally useful under workflow pressure. Includes probe suites, contracts, intervention triggers, and the full experimental artefacts (baseline and stress trajectories) behind the accompanying Data & Policy paper.",
+  "creators": [
+    {
+      "name": "Beltran, Alejandro"
+    }
+  ],
+  "license": "MIT",
+  "upload_type": "software",
+  "keywords": [
+    "LLM evaluation",
+    "AI governance",
+    "reliability",
+    "accountability",
+    "deployment"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/AlejandroBeltranA/local_threshold_evaluation",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}
