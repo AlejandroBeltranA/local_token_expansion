@@ -1,0 +1,11 @@
+{
+  "models": [],
+  "overall_recommendation": "continue",
+  "records": {
+    "benchmark_rows": 0,
+    "error_rows": 2,
+    "generation_rows": 0,
+    "stress_rows": 0,
+    "total": 2
+  }
+}

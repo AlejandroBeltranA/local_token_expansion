@@ -1,0 +1,186 @@
+{
+  "models": [
+    {
+      "model_name": "Phi-4-mini-instruct-8bit",
+      "runs": 6,
+      "recommendation_counts": {
+        "escalate": 6
+      },
+      "trigger_fire_counts": {
+        "context_decay": 6,
+        "over_expansion": 6
+      },
+      "benchmark_contract_failures_mean": 7.0,
+      "recoverable_contract_failures_mean": 4.0,
+      "unrecoverable_contract_failures_mean": 3.0,
+      "mean_stress_latency_ms_mean": 2866.868,
+      "first_gated_failure_step_range": null
+    },
+    {
+      "model_name": "Meta-Llama-3.1-8B-Instruct-3bit",
+      "runs": 6,
+      "recommendation_counts": {
+        "escalate": 6
+      },
+      "trigger_fire_counts": {
+        "context_decay": 6,
+        "over_expansion": 6
+      },
+      "benchmark_contract_failures_mean": 9.0,
+      "recoverable_contract_failures_mean": 5.0,
+      "unrecoverable_contract_failures_mean": 4.0,
+      "mean_stress_latency_ms_mean": 4429.146,
+      "first_gated_failure_step_range": null
+    },
+    {
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "runs": 6,
+      "recommendation_counts": {
+        "abort": 6
+      },
+      "trigger_fire_counts": {
+        "latency_cliff": 6,
+        "over_expansion": 6,
+        "persistent_failure": 6
+      },
+      "benchmark_contract_failures_mean": 4.0,
+      "recoverable_contract_failures_mean": 3.0,
+      "unrecoverable_contract_failures_mean": 1.0,
+      "mean_stress_latency_ms_mean": 6301.343,
+      "first_gated_failure_step_range": [
+        15,
+        15
+      ]
+    },
+    {
+      "model_name": "Phi-3-mini-4k-instruct-4bit",
+      "runs": 6,
+      "recommendation_counts": {
+        "abort": 6
+      },
+      "trigger_fire_counts": {
+        "context_decay": 6,
+        "near_cap_pressure": 6,
+        "over_expansion": 6,
+        "persistent_failure": 6
+      },
+      "benchmark_contract_failures_mean": 11.0,
+      "recoverable_contract_failures_mean": 8.0,
+      "unrecoverable_contract_failures_mean": 3.0,
+      "mean_stress_latency_ms_mean": 5226.111,
+      "first_gated_failure_step_range": null
+    },
+    {
+      "model_name": "SmolLM-1.7B-Instruct-4bit",
+      "runs": 6,
+      "recommendation_counts": {
+        "abort": 6
+      },
+      "trigger_fire_counts": {
+        "context_decay": 6,
+        "near_cap_pressure": 6,
+        "over_expansion": 6,
+        "persistent_failure": 6
+      },
+      "benchmark_contract_failures_mean": 12.0,
+      "recoverable_contract_failures_mean": 6.0,
+      "unrecoverable_contract_failures_mean": 6.0,
+      "mean_stress_latency_ms_mean": 2924.556,
+      "first_gated_failure_step_range": null
+    }
+  ],
+  "regimes": {
+    "escalate": [
+      {
+        "model_name": "Phi-4-mini-instruct-8bit",
+        "runs": 6,
+        "recommendation_counts": {
+          "escalate": 6
+        },
+        "trigger_fire_counts": {
+          "context_decay": 6,
+          "over_expansion": 6
+        },
+        "benchmark_contract_failures_mean": 7.0,
+        "recoverable_contract_failures_mean": 4.0,
+        "unrecoverable_contract_failures_mean": 3.0,
+        "mean_stress_latency_ms_mean": 2866.868,
+        "first_gated_failure_step_range": null
+      },
+      {
+        "model_name": "Meta-Llama-3.1-8B-Instruct-3bit",
+        "runs": 6,
+        "recommendation_counts": {
+          "escalate": 6
+        },
+        "trigger_fire_counts": {
+          "context_decay": 6,
+          "over_expansion": 6
+        },
+        "benchmark_contract_failures_mean": 9.0,
+        "recoverable_contract_failures_mean": 5.0,
+        "unrecoverable_contract_failures_mean": 4.0,
+        "mean_stress_latency_ms_mean": 4429.146,
+        "first_gated_failure_step_range": null
+      }
+    ],
+    "abort": [
+      {
+        "model_name": "Mistral-7B-Instruct-v0.3",
+        "runs": 6,
+        "recommendation_counts": {
+          "abort": 6
+        },
+        "trigger_fire_counts": {
+          "latency_cliff": 6,
+          "over_expansion": 6,
+          "persistent_failure": 6
+        },
+        "benchmark_contract_failures_mean": 4.0,
+        "recoverable_contract_failures_mean": 3.0,
+        "unrecoverable_contract_failures_mean": 1.0,
+        "mean_stress_latency_ms_mean": 6301.343,
+        "first_gated_failure_step_range": [
+          15,
+          15
+        ]
+      },
+      {
+        "model_name": "Phi-3-mini-4k-instruct-4bit",
+        "runs": 6,
+        "recommendation_counts": {
+          "abort": 6
+        },
+        "trigger_fire_counts": {
+          "context_decay": 6,
+          "near_cap_pressure": 6,
+          "over_expansion": 6,
+          "persistent_failure": 6
+        },
+        "benchmark_contract_failures_mean": 11.0,
+        "recoverable_contract_failures_mean": 8.0,
+        "unrecoverable_contract_failures_mean": 3.0,
+        "mean_stress_latency_ms_mean": 5226.111,
+        "first_gated_failure_step_range": null
+      },
+      {
+        "model_name": "SmolLM-1.7B-Instruct-4bit",
+        "runs": 6,
+        "recommendation_counts": {
+          "abort": 6
+        },
+        "trigger_fire_counts": {
+          "context_decay": 6,
+          "near_cap_pressure": 6,
+          "over_expansion": 6,
+          "persistent_failure": 6
+        },
+        "benchmark_contract_failures_mean": 12.0,
+        "recoverable_contract_failures_mean": 6.0,
+        "unrecoverable_contract_failures_mean": 6.0,
+        "mean_stress_latency_ms_mean": 2924.556,
+        "first_gated_failure_step_range": null
+      }
+    ]
+  }
+}

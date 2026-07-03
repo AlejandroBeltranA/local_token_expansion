@@ -1,4 +1,7 @@
-mlx-lm
-pandas
-matplotlib
-jupyter
+# Convenience list for notebook/analysis work; the authoritative
+# runtime dependencies live in pyproject.toml (pip install -e .).
+mlx-lm>=0.20.0; platform_system == "Darwin" and platform_machine == "arm64"
+PyYAML>=6.0
+pandas>=2.0
+matplotlib>=3.8
+jupyter>=1.0

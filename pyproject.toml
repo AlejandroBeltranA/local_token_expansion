@@ -8,7 +8,8 @@ version = "0.1.0"
 description = "Deployer-side LLM evaluation harness for operational degradation and intervention signals"
 readme = "README.md"
 requires-python = ">=3.10"
-authors = [{ name = "Local Threshold Evaluation contributors" }]
+authors = [{ name = "Alejandro Beltran" }]
+license = { file = "LICENSE" }
 dependencies = [
   "PyYAML>=6.0",
   # Only installed on Apple Silicon macOS; CI remains MLX-free.
@@ -25,8 +26,8 @@ dev = [
 lte = "lte.cli:main"
 
 [project.urls]
-Repository = "https://github.com/AlejandroBeltranA/local_token_expansion"
-Documentation = "https://github.com/AlejandroBeltranA/local_token_expansion#readme"
+Repository = "https://github.com/AlejandroBeltranA/local_threshold_evaluation"
+Documentation = "https://github.com/AlejandroBeltranA/local_threshold_evaluation#readme"
 
 [tool.setuptools]
 packages = ["lte", "lte.backends"]

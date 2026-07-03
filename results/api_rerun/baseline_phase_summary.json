@@ -1,0 +1,146 @@
+{
+  "models": [
+    {
+      "model_name": "GPT-4.1 mini",
+      "runs": 6,
+      "recommendation_counts": {
+        "retry": 6
+      },
+      "trigger_fire_counts": {
+        "over_expansion": 6
+      },
+      "benchmark_contract_failures_mean": 3.167,
+      "recoverable_contract_failures_mean": 2.0,
+      "unrecoverable_contract_failures_mean": 1.167,
+      "mean_stress_latency_ms_mean": 1490.375,
+      "first_gated_failure_step_range": null
+    },
+    {
+      "model_name": "GPT-4o mini",
+      "runs": 6,
+      "recommendation_counts": {
+        "retry": 6
+      },
+      "trigger_fire_counts": {
+        "over_expansion": 6
+      },
+      "benchmark_contract_failures_mean": 3.167,
+      "recoverable_contract_failures_mean": 2.167,
+      "unrecoverable_contract_failures_mean": 1.0,
+      "mean_stress_latency_ms_mean": 1687.576,
+      "first_gated_failure_step_range": [
+        21,
+        21
+      ]
+    },
+    {
+      "model_name": "Claude Haiku 4.5",
+      "runs": 6,
+      "recommendation_counts": {
+        "escalate": 6
+      },
+      "trigger_fire_counts": {
+        "context_decay": 6,
+        "over_expansion": 6
+      },
+      "benchmark_contract_failures_mean": 5.0,
+      "recoverable_contract_failures_mean": 2.0,
+      "unrecoverable_contract_failures_mean": 3.0,
+      "mean_stress_latency_ms_mean": 1286.055,
+      "first_gated_failure_step_range": null
+    },
+    {
+      "model_name": "Claude Sonnet 4.6",
+      "runs": 6,
+      "recommendation_counts": {
+        "escalate": 6
+      },
+      "trigger_fire_counts": {
+        "context_decay": 6,
+        "over_expansion": 6
+      },
+      "benchmark_contract_failures_mean": 6.0,
+      "recoverable_contract_failures_mean": 3.0,
+      "unrecoverable_contract_failures_mean": 3.0,
+      "mean_stress_latency_ms_mean": 3153.368,
+      "first_gated_failure_step_range": [
+        23,
+        23
+      ]
+    }
+  ],
+  "regimes": {
+    "retry": [
+      {
+        "model_name": "GPT-4.1 mini",
+        "runs": 6,
+        "recommendation_counts": {
+          "retry": 6
+        },
+        "trigger_fire_counts": {
+          "over_expansion": 6
+        },
+        "benchmark_contract_failures_mean": 3.167,
+        "recoverable_contract_failures_mean": 2.0,
+        "unrecoverable_contract_failures_mean": 1.167,
+        "mean_stress_latency_ms_mean": 1490.375,
+        "first_gated_failure_step_range": null
+      },
+      {
+        "model_name": "GPT-4o mini",
+        "runs": 6,
+        "recommendation_counts": {
+          "retry": 6
+        },
+        "trigger_fire_counts": {
+          "over_expansion": 6
+        },
+        "benchmark_contract_failures_mean": 3.167,
+        "recoverable_contract_failures_mean": 2.167,
+        "unrecoverable_contract_failures_mean": 1.0,
+        "mean_stress_latency_ms_mean": 1687.576,
+        "first_gated_failure_step_range": [
+          21,
+          21
+        ]
+      }
+    ],
+    "escalate": [
+      {
+        "model_name": "Claude Haiku 4.5",
+        "runs": 6,
+        "recommendation_counts": {
+          "escalate": 6
+        },
+        "trigger_fire_counts": {
+          "context_decay": 6,
+          "over_expansion": 6
+        },
+        "benchmark_contract_failures_mean": 5.0,
+        "recoverable_contract_failures_mean": 2.0,
+        "unrecoverable_contract_failures_mean": 3.0,
+        "mean_stress_latency_ms_mean": 1286.055,
+        "first_gated_failure_step_range": null
+      },
+      {
+        "model_name": "Claude Sonnet 4.6",
+        "runs": 6,
+        "recommendation_counts": {
+          "escalate": 6
+        },
+        "trigger_fire_counts": {
+          "context_decay": 6,
+          "over_expansion": 6
+        },
+        "benchmark_contract_failures_mean": 6.0,
+        "recoverable_contract_failures_mean": 3.0,
+        "unrecoverable_contract_failures_mean": 3.0,
+        "mean_stress_latency_ms_mean": 3153.368,
+        "first_gated_failure_step_range": [
+          23,
+          23
+        ]
+      }
+    ]
+  }
+}

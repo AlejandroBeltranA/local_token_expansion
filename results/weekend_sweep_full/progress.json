@@ -1,0 +1,10 @@
+{
+  "phase": "completed",
+  "total_runs": 60,
+  "completed_runs": 60,
+  "remaining_runs": 0,
+  "current_run": null,
+  "average_duration_sec": 92.898,
+  "eta_sec": 0.0,
+  "eta_human": "0s"
+}

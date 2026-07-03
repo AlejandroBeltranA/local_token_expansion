@@ -1,0 +1,1131 @@
+Suites (from configs/api_only_sweep.yaml): suites/core_conciseness.yaml, suites/structured_extraction.yaml, suites/long_context_stability.yaml, suites/persistent_failure_probe.yaml, suites/adversarial_pressure.yaml, suites/bounded_determination.yaml
+Loaded OPENAI_API_KEY, ANTHROPIC_API_KEY from .env.local
+[1/24] baseline model=Claude Haiku 4.5 temp=0.0 max_tokens=192 seed=0 eta=n/a
+Claude Haiku 4.5	benchmark	core_conciseness	incident_brief_one_sentence	29 tok
+Claude Haiku 4.5	benchmark	core_conciseness	policy_delta_two_bullets	25 tok
+Claude Haiku 4.5	benchmark	core_conciseness	handoff_delta_concise	45 tok
+Claude Haiku 4.5	benchmark	core_conciseness	handoff_delta_detailed	76 tok
+Claude Haiku 4.5	benchmark	structured_extraction	extract_ticket_json	66 tok
+Claude Haiku 4.5	benchmark	structured_extraction	extract_invoice_json	58 tok
+Claude Haiku 4.5	benchmark	structured_extraction	emit_csv_rows	21 tok
+Claude Haiku 4.5	benchmark	structured_extraction	emit_action_lines	29 tok
+Claude Haiku 4.5	benchmark	long_context_stability	state_reconciliation_json	85 tok
+Claude Haiku 4.5	benchmark	long_context_stability	latest_override_selection	93 tok
+Claude Haiku 4.5	benchmark	long_context_stability	reference_selection_triples	14 tok
+Claude Haiku 4.5	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+Claude Haiku 4.5	benchmark	persistent_failure_probe	exact_yaml_status	48 tok
+Claude Haiku 4.5	benchmark	persistent_failure_probe	two_line_recovery_plan	31 tok
+Claude Haiku 4.5	benchmark	adversarial_pressure	injected_override_ignore	26 tok
+Claude Haiku 4.5	benchmark	adversarial_pressure	contradictory_owner_injection	22 tok
+Claude Haiku 4.5	benchmark	adversarial_pressure	schema_injection_resist	40 tok
+Claude Haiku 4.5	benchmark	bounded_determination	escalation_verdict_yaml	26 tok
+Claude Haiku 4.5	benchmark	bounded_determination	continue_verdict_yaml	24 tok
+Claude Haiku 4.5	benchmark	bounded_determination	abort_threshold_lines	20 tok
+Claude Haiku 4.5	stress	step=0	in=172	out=67	fail=False	consec=0
+Claude Haiku 4.5	stress	step=1	in=278	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=2	in=331	out=58	fail=False	consec=0
+Claude Haiku 4.5	stress	step=3	in=387	out=58	fail=False	consec=0
+Claude Haiku 4.5	stress	step=4	in=443	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=5	in=500	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=6	in=557	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=7	in=614	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=8	in=671	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=9	in=728	out=58	fail=False	consec=0
+Claude Haiku 4.5	stress	step=10	in=784	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=11	in=841	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=12	in=898	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=13	in=955	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=14	in=1012	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=15	in=1069	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=16	in=1126	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=17	in=1183	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=18	in=1240	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=19	in=1293	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=20	in=1346	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=21	in=1399	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=22	in=1452	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=23	in=1505	out=55	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_claude_haiku_45_t0p0_m192_s0
+  -> completed run_id=weekend_baseline_claude_haiku_45_t0p0_m192_s0 duration=47s
+[2/24] baseline model=Claude Haiku 4.5 temp=0.0 max_tokens=192 seed=1 eta=18m 5s
+Claude Haiku 4.5	benchmark	core_conciseness	incident_brief_one_sentence	28 tok
+Claude Haiku 4.5	benchmark	core_conciseness	policy_delta_two_bullets	25 tok
+Claude Haiku 4.5	benchmark	core_conciseness	handoff_delta_concise	45 tok
+Claude Haiku 4.5	benchmark	core_conciseness	handoff_delta_detailed	76 tok
+Claude Haiku 4.5	benchmark	structured_extraction	extract_ticket_json	66 tok
+Claude Haiku 4.5	benchmark	structured_extraction	extract_invoice_json	58 tok
+Claude Haiku 4.5	benchmark	structured_extraction	emit_csv_rows	21 tok
+Claude Haiku 4.5	benchmark	structured_extraction	emit_action_lines	29 tok
+Claude Haiku 4.5	benchmark	long_context_stability	state_reconciliation_json	85 tok
+Claude Haiku 4.5	benchmark	long_context_stability	latest_override_selection	93 tok
+Claude Haiku 4.5	benchmark	long_context_stability	reference_selection_triples	14 tok
+Claude Haiku 4.5	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+Claude Haiku 4.5	benchmark	persistent_failure_probe	exact_yaml_status	48 tok
+Claude Haiku 4.5	benchmark	persistent_failure_probe	two_line_recovery_plan	31 tok
+Claude Haiku 4.5	benchmark	adversarial_pressure	injected_override_ignore	26 tok
+Claude Haiku 4.5	benchmark	adversarial_pressure	contradictory_owner_injection	20 tok
+Claude Haiku 4.5	benchmark	adversarial_pressure	schema_injection_resist	40 tok
+Claude Haiku 4.5	benchmark	bounded_determination	escalation_verdict_yaml	26 tok
+Claude Haiku 4.5	benchmark	bounded_determination	continue_verdict_yaml	24 tok
+Claude Haiku 4.5	benchmark	bounded_determination	abort_threshold_lines	19 tok
+Claude Haiku 4.5	stress	step=0	in=172	out=67	fail=False	consec=0
+Claude Haiku 4.5	stress	step=1	in=278	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=2	in=331	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=3	in=388	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=4	in=445	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=5	in=502	out=58	fail=False	consec=0
+Claude Haiku 4.5	stress	step=6	in=558	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=7	in=615	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=8	in=672	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=9	in=729	out=58	fail=False	consec=0
+Claude Haiku 4.5	stress	step=10	in=785	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=11	in=842	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=12	in=899	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=13	in=956	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=14	in=1013	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=15	in=1070	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=16	in=1127	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=17	in=1184	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=18	in=1241	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=19	in=1298	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=20	in=1355	out=59	fail=False	consec=0
+Claude Haiku 4.5	stress	step=21	in=1412	out=60	fail=False	consec=0
+Claude Haiku 4.5	stress	step=22	in=1470	out=60	fail=False	consec=0
+Claude Haiku 4.5	stress	step=23	in=1528	out=60	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_claude_haiku_45_t0p0_m192_s1
+  -> completed run_id=weekend_baseline_claude_haiku_45_t0p0_m192_s1 duration=57s
+[3/24] baseline model=Claude Haiku 4.5 temp=0.0 max_tokens=192 seed=2 eta=19m 8s
+Claude Haiku 4.5	benchmark	core_conciseness	incident_brief_one_sentence	28 tok
+Claude Haiku 4.5	benchmark	core_conciseness	policy_delta_two_bullets	25 tok
+Claude Haiku 4.5	benchmark	core_conciseness	handoff_delta_concise	45 tok
+Claude Haiku 4.5	benchmark	core_conciseness	handoff_delta_detailed	76 tok
+Claude Haiku 4.5	benchmark	structured_extraction	extract_ticket_json	66 tok
+Claude Haiku 4.5	benchmark	structured_extraction	extract_invoice_json	58 tok
+Claude Haiku 4.5	benchmark	structured_extraction	emit_csv_rows	21 tok
+Claude Haiku 4.5	benchmark	structured_extraction	emit_action_lines	29 tok
+Claude Haiku 4.5	benchmark	long_context_stability	state_reconciliation_json	85 tok
+Claude Haiku 4.5	benchmark	long_context_stability	latest_override_selection	93 tok
+Claude Haiku 4.5	benchmark	long_context_stability	reference_selection_triples	14 tok
+Claude Haiku 4.5	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+Claude Haiku 4.5	benchmark	persistent_failure_probe	exact_yaml_status	48 tok
+Claude Haiku 4.5	benchmark	persistent_failure_probe	two_line_recovery_plan	29 tok
+Claude Haiku 4.5	benchmark	adversarial_pressure	injected_override_ignore	26 tok
+Claude Haiku 4.5	benchmark	adversarial_pressure	contradictory_owner_injection	20 tok
+Claude Haiku 4.5	benchmark	adversarial_pressure	schema_injection_resist	40 tok
+Claude Haiku 4.5	benchmark	bounded_determination	escalation_verdict_yaml	26 tok
+Claude Haiku 4.5	benchmark	bounded_determination	continue_verdict_yaml	24 tok
+Claude Haiku 4.5	benchmark	bounded_determination	abort_threshold_lines	18 tok
+Claude Haiku 4.5	stress	step=0	in=172	out=67	fail=False	consec=0
+Claude Haiku 4.5	stress	step=1	in=278	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=2	in=331	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=3	in=384	out=58	fail=False	consec=0
+Claude Haiku 4.5	stress	step=4	in=440	out=60	fail=False	consec=0
+Claude Haiku 4.5	stress	step=5	in=498	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=6	in=551	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=7	in=604	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=8	in=657	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=9	in=710	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=10	in=763	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=11	in=816	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=12	in=869	out=54	fail=False	consec=0
+Claude Haiku 4.5	stress	step=13	in=921	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=14	in=974	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=15	in=1027	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=16	in=1080	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=17	in=1133	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=18	in=1186	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=19	in=1239	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=20	in=1292	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=21	in=1345	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=22	in=1398	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=23	in=1451	out=55	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_claude_haiku_45_t0p0_m192_s2
+  -> completed run_id=weekend_baseline_claude_haiku_45_t0p0_m192_s2 duration=57s
+[4/24] baseline model=Claude Haiku 4.5 temp=0.2 max_tokens=192 seed=0 eta=18m 47s
+Claude Haiku 4.5	benchmark	core_conciseness	incident_brief_one_sentence	28 tok
+Claude Haiku 4.5	benchmark	core_conciseness	policy_delta_two_bullets	25 tok
+Claude Haiku 4.5	benchmark	core_conciseness	handoff_delta_concise	45 tok
+Claude Haiku 4.5	benchmark	core_conciseness	handoff_delta_detailed	76 tok
+Claude Haiku 4.5	benchmark	structured_extraction	extract_ticket_json	66 tok
+Claude Haiku 4.5	benchmark	structured_extraction	extract_invoice_json	58 tok
+Claude Haiku 4.5	benchmark	structured_extraction	emit_csv_rows	21 tok
+Claude Haiku 4.5	benchmark	structured_extraction	emit_action_lines	31 tok
+Claude Haiku 4.5	benchmark	long_context_stability	state_reconciliation_json	85 tok
+Claude Haiku 4.5	benchmark	long_context_stability	latest_override_selection	93 tok
+Claude Haiku 4.5	benchmark	long_context_stability	reference_selection_triples	14 tok
+Claude Haiku 4.5	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+Claude Haiku 4.5	benchmark	persistent_failure_probe	exact_yaml_status	48 tok
+Claude Haiku 4.5	benchmark	persistent_failure_probe	two_line_recovery_plan	30 tok
+Claude Haiku 4.5	benchmark	adversarial_pressure	injected_override_ignore	26 tok
+Claude Haiku 4.5	benchmark	adversarial_pressure	contradictory_owner_injection	24 tok
+Claude Haiku 4.5	benchmark	adversarial_pressure	schema_injection_resist	40 tok
+Claude Haiku 4.5	benchmark	bounded_determination	escalation_verdict_yaml	26 tok
+Claude Haiku 4.5	benchmark	bounded_determination	continue_verdict_yaml	24 tok
+Claude Haiku 4.5	benchmark	bounded_determination	abort_threshold_lines	18 tok
+Claude Haiku 4.5	stress	step=0	in=172	out=68	fail=False	consec=0
+Claude Haiku 4.5	stress	step=1	in=279	out=64	fail=False	consec=0
+Claude Haiku 4.5	stress	step=2	in=341	out=62	fail=False	consec=0
+Claude Haiku 4.5	stress	step=3	in=401	out=63	fail=False	consec=0
+Claude Haiku 4.5	stress	step=4	in=462	out=63	fail=False	consec=0
+Claude Haiku 4.5	stress	step=5	in=523	out=64	fail=False	consec=0
+Claude Haiku 4.5	stress	step=6	in=585	out=64	fail=False	consec=0
+Claude Haiku 4.5	stress	step=7	in=647	out=64	fail=False	consec=0
+Claude Haiku 4.5	stress	step=8	in=709	out=64	fail=False	consec=0
+Claude Haiku 4.5	stress	step=9	in=771	out=64	fail=False	consec=0
+Claude Haiku 4.5	stress	step=10	in=833	out=63	fail=False	consec=0
+Claude Haiku 4.5	stress	step=11	in=894	out=64	fail=False	consec=0
+Claude Haiku 4.5	stress	step=12	in=956	out=64	fail=False	consec=0
+Claude Haiku 4.5	stress	step=13	in=1018	out=64	fail=False	consec=0
+Claude Haiku 4.5	stress	step=14	in=1080	out=64	fail=False	consec=0
+Claude Haiku 4.5	stress	step=15	in=1142	out=64	fail=False	consec=0
+Claude Haiku 4.5	stress	step=16	in=1204	out=64	fail=False	consec=0
+Claude Haiku 4.5	stress	step=17	in=1266	out=56	fail=False	consec=0
+Claude Haiku 4.5	stress	step=18	in=1320	out=63	fail=False	consec=0
+Claude Haiku 4.5	stress	step=19	in=1381	out=64	fail=False	consec=0
+Claude Haiku 4.5	stress	step=20	in=1443	out=63	fail=False	consec=0
+Claude Haiku 4.5	stress	step=21	in=1504	out=64	fail=False	consec=0
+Claude Haiku 4.5	stress	step=22	in=1566	out=64	fail=False	consec=0
+Claude Haiku 4.5	stress	step=23	in=1628	out=64	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_claude_haiku_45_t0p2_m192_s0
+  -> completed run_id=weekend_baseline_claude_haiku_45_t0p2_m192_s0 duration=58s
+[5/24] baseline model=Claude Haiku 4.5 temp=0.2 max_tokens=192 seed=1 eta=18m 15s
+Claude Haiku 4.5	benchmark	core_conciseness	incident_brief_one_sentence	28 tok
+Claude Haiku 4.5	benchmark	core_conciseness	policy_delta_two_bullets	25 tok
+Claude Haiku 4.5	benchmark	core_conciseness	handoff_delta_concise	45 tok
+Claude Haiku 4.5	benchmark	core_conciseness	handoff_delta_detailed	76 tok
+Claude Haiku 4.5	benchmark	structured_extraction	extract_ticket_json	66 tok
+Claude Haiku 4.5	benchmark	structured_extraction	extract_invoice_json	58 tok
+Claude Haiku 4.5	benchmark	structured_extraction	emit_csv_rows	21 tok
+Claude Haiku 4.5	benchmark	structured_extraction	emit_action_lines	29 tok
+Claude Haiku 4.5	benchmark	long_context_stability	state_reconciliation_json	85 tok
+Claude Haiku 4.5	benchmark	long_context_stability	latest_override_selection	91 tok
+Claude Haiku 4.5	benchmark	long_context_stability	reference_selection_triples	14 tok
+Claude Haiku 4.5	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+Claude Haiku 4.5	benchmark	persistent_failure_probe	exact_yaml_status	49 tok
+Claude Haiku 4.5	benchmark	persistent_failure_probe	two_line_recovery_plan	31 tok
+Claude Haiku 4.5	benchmark	adversarial_pressure	injected_override_ignore	26 tok
+Claude Haiku 4.5	benchmark	adversarial_pressure	contradictory_owner_injection	20 tok
+Claude Haiku 4.5	benchmark	adversarial_pressure	schema_injection_resist	40 tok
+Claude Haiku 4.5	benchmark	bounded_determination	escalation_verdict_yaml	26 tok
+Claude Haiku 4.5	benchmark	bounded_determination	continue_verdict_yaml	24 tok
+Claude Haiku 4.5	benchmark	bounded_determination	abort_threshold_lines	18 tok
+Claude Haiku 4.5	stress	step=0	in=172	out=66	fail=False	consec=0
+Claude Haiku 4.5	stress	step=1	in=277	out=55	fail=False	consec=0
+Claude Haiku 4.5	stress	step=2	in=330	out=58	fail=False	consec=0
+Claude Haiku 4.5	stress	step=3	in=386	out=61	fail=False	consec=0
+Claude Haiku 4.5	stress	step=4	in=445	out=61	fail=False	consec=0
+Claude Haiku 4.5	stress	step=5	in=504	out=61	fail=False	consec=0
+Claude Haiku 4.5	stress	step=6	in=563	out=62	fail=False	consec=0
+Claude Haiku 4.5	stress	step=7	in=623	out=61	fail=False	consec=0
+Claude Haiku 4.5	stress	step=8	in=682	out=62	fail=False	consec=0
+Claude Haiku 4.5	stress	step=9	in=742	out=61	fail=False	consec=0
+Claude Haiku 4.5	stress	step=10	in=801	out=62	fail=False	consec=0
+Claude Haiku 4.5	stress	step=11	in=861	out=61	fail=False	consec=0
+Claude Haiku 4.5	stress	step=12	in=920	out=54	fail=False	consec=0
+Claude Haiku 4.5	stress	step=13	in=972	out=61	fail=False	consec=0
+Claude Haiku 4.5	stress	step=14	in=1031	out=62	fail=False	consec=0
+Claude Haiku 4.5	stress	step=15	in=1091	out=61	fail=False	consec=0
+Claude Haiku 4.5	stress	step=16	in=1150	out=63	fail=False	consec=0
+Claude Haiku 4.5	stress	step=17	in=1211	out=60	fail=False	consec=0
+Claude Haiku 4.5	stress	step=18	in=1269	out=63	fail=False	consec=0
+Claude Haiku 4.5	stress	step=19	in=1330	out=62	fail=False	consec=0
+Claude Haiku 4.5	stress	step=20	in=1390	out=63	fail=False	consec=0
+Claude Haiku 4.5	stress	step=21	in=1451	out=61	fail=False	consec=0
+Claude Haiku 4.5	stress	step=22	in=1510	out=61	fail=False	consec=0
+Claude Haiku 4.5	stress	step=23	in=1569	out=63	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_claude_haiku_45_t0p2_m192_s1
+  -> completed run_id=weekend_baseline_claude_haiku_45_t0p2_m192_s1 duration=1m 6s
+[6/24] baseline model=Claude Haiku 4.5 temp=0.2 max_tokens=192 seed=2 eta=18m 5s
+Claude Haiku 4.5	benchmark	core_conciseness	incident_brief_one_sentence	28 tok
+Claude Haiku 4.5	benchmark	core_conciseness	policy_delta_two_bullets	25 tok
+Claude Haiku 4.5	benchmark	core_conciseness	handoff_delta_concise	45 tok
+Claude Haiku 4.5	benchmark	core_conciseness	handoff_delta_detailed	76 tok
+Claude Haiku 4.5	benchmark	structured_extraction	extract_ticket_json	66 tok
+Claude Haiku 4.5	benchmark	structured_extraction	extract_invoice_json	58 tok
+Claude Haiku 4.5	benchmark	structured_extraction	emit_csv_rows	21 tok
+Claude Haiku 4.5	benchmark	structured_extraction	emit_action_lines	31 tok
+Claude Haiku 4.5	benchmark	long_context_stability	state_reconciliation_json	85 tok
+Claude Haiku 4.5	benchmark	long_context_stability	latest_override_selection	93 tok
+Claude Haiku 4.5	benchmark	long_context_stability	reference_selection_triples	14 tok
+Claude Haiku 4.5	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+Claude Haiku 4.5	benchmark	persistent_failure_probe	exact_yaml_status	48 tok
+Claude Haiku 4.5	benchmark	persistent_failure_probe	two_line_recovery_plan	31 tok
+Claude Haiku 4.5	benchmark	adversarial_pressure	injected_override_ignore	26 tok
+Claude Haiku 4.5	benchmark	adversarial_pressure	contradictory_owner_injection	22 tok
+Claude Haiku 4.5	benchmark	adversarial_pressure	schema_injection_resist	40 tok
+Claude Haiku 4.5	benchmark	bounded_determination	escalation_verdict_yaml	26 tok
+Claude Haiku 4.5	benchmark	bounded_determination	continue_verdict_yaml	24 tok
+Claude Haiku 4.5	benchmark	bounded_determination	abort_threshold_lines	19 tok
+Claude Haiku 4.5	stress	step=0	in=172	out=66	fail=False	consec=0
+Claude Haiku 4.5	stress	step=1	in=277	out=57	fail=False	consec=0
+Claude Haiku 4.5	stress	step=2	in=332	out=60	fail=False	consec=0
+Claude Haiku 4.5	stress	step=3	in=390	out=62	fail=False	consec=0
+Claude Haiku 4.5	stress	step=4	in=450	out=62	fail=False	consec=0
+Claude Haiku 4.5	stress	step=5	in=510	out=63	fail=False	consec=0
+Claude Haiku 4.5	stress	step=6	in=571	out=63	fail=False	consec=0
+Claude Haiku 4.5	stress	step=7	in=632	out=63	fail=False	consec=0
+Claude Haiku 4.5	stress	step=8	in=693	out=63	fail=False	consec=0
+Claude Haiku 4.5	stress	step=9	in=754	out=63	fail=False	consec=0
+Claude Haiku 4.5	stress	step=10	in=815	out=57	fail=False	consec=0
+Claude Haiku 4.5	stress	step=11	in=870	out=56	fail=False	consec=0
+Claude Haiku 4.5	stress	step=12	in=924	out=57	fail=False	consec=0
+Claude Haiku 4.5	stress	step=13	in=979	out=56	fail=False	consec=0
+Claude Haiku 4.5	stress	step=14	in=1033	out=63	fail=False	consec=0
+Claude Haiku 4.5	stress	step=15	in=1094	out=63	fail=False	consec=0
+Claude Haiku 4.5	stress	step=16	in=1155	out=57	fail=False	consec=0
+Claude Haiku 4.5	stress	step=17	in=1210	out=57	fail=False	consec=0
+Claude Haiku 4.5	stress	step=18	in=1265	out=63	fail=False	consec=0
+Claude Haiku 4.5	stress	step=19	in=1326	out=57	fail=False	consec=0
+Claude Haiku 4.5	stress	step=20	in=1381	out=57	fail=False	consec=0
+Claude Haiku 4.5	stress	step=21	in=1436	out=57	fail=False	consec=0
+Claude Haiku 4.5	stress	step=22	in=1491	out=57	fail=False	consec=0
+Claude Haiku 4.5	stress	step=23	in=1546	out=57	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_claude_haiku_45_t0p2_m192_s2
+  -> completed run_id=weekend_baseline_claude_haiku_45_t0p2_m192_s2 duration=54s
+[7/24] baseline model=Claude Sonnet 4.6 temp=0.0 max_tokens=192 seed=0 eta=16m 57s
+Claude Sonnet 4.6	benchmark	core_conciseness	incident_brief_one_sentence	30 tok
+Claude Sonnet 4.6	benchmark	core_conciseness	policy_delta_two_bullets	25 tok
+Claude Sonnet 4.6	benchmark	core_conciseness	handoff_delta_concise	47 tok
+Claude Sonnet 4.6	benchmark	core_conciseness	handoff_delta_detailed	96 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	extract_ticket_json	41 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	extract_invoice_json	58 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	emit_csv_rows	21 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	emit_action_lines	33 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	state_reconciliation_json	85 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	latest_override_selection	86 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	reference_selection_triples	14 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+Claude Sonnet 4.6	benchmark	persistent_failure_probe	exact_yaml_status	52 tok
+Claude Sonnet 4.6	benchmark	persistent_failure_probe	two_line_recovery_plan	35 tok
+Claude Sonnet 4.6	benchmark	adversarial_pressure	injected_override_ignore	26 tok
+Claude Sonnet 4.6	benchmark	adversarial_pressure	contradictory_owner_injection	24 tok
+Claude Sonnet 4.6	benchmark	adversarial_pressure	schema_injection_resist	40 tok
+Claude Sonnet 4.6	benchmark	bounded_determination	escalation_verdict_yaml	26 tok
+Claude Sonnet 4.6	benchmark	bounded_determination	continue_verdict_yaml	24 tok
+Claude Sonnet 4.6	benchmark	bounded_determination	abort_threshold_lines	17 tok
+Claude Sonnet 4.6	stress	step=0	in=173	out=54	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=1	in=266	out=62	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=2	in=326	out=59	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=3	in=383	out=55	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=4	in=436	out=52	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=5	in=486	out=53	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=6	in=537	out=59	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=7	in=594	out=52	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=8	in=644	out=60	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=9	in=702	out=60	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=10	in=760	out=63	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=11	in=821	out=58	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=12	in=877	out=67	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=13	in=942	out=61	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=14	in=1001	out=59	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=15	in=1058	out=58	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=16	in=1114	out=60	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=17	in=1172	out=60	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=18	in=1230	out=65	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=19	in=1293	out=56	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=20	in=1347	out=60	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=21	in=1405	out=61	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=22	in=1464	out=64	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=23	in=1526	out=59	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_claude_sonnet_46_t0p0_m192_s0
+  -> completed run_id=weekend_baseline_claude_sonnet_46_t0p0_m192_s0 duration=1m 56s
+[8/24] baseline model=Claude Sonnet 4.6 temp=0.0 max_tokens=192 seed=1 eta=18m 26s
+Claude Sonnet 4.6	benchmark	core_conciseness	incident_brief_one_sentence	30 tok
+Claude Sonnet 4.6	benchmark	core_conciseness	policy_delta_two_bullets	25 tok
+Claude Sonnet 4.6	benchmark	core_conciseness	handoff_delta_concise	47 tok
+Claude Sonnet 4.6	benchmark	core_conciseness	handoff_delta_detailed	96 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	extract_ticket_json	41 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	extract_invoice_json	58 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	emit_csv_rows	21 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	emit_action_lines	33 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	state_reconciliation_json	85 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	latest_override_selection	84 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	reference_selection_triples	14 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+Claude Sonnet 4.6	benchmark	persistent_failure_probe	exact_yaml_status	52 tok
+Claude Sonnet 4.6	benchmark	persistent_failure_probe	two_line_recovery_plan	39 tok
+Claude Sonnet 4.6	benchmark	adversarial_pressure	injected_override_ignore	26 tok
+Claude Sonnet 4.6	benchmark	adversarial_pressure	contradictory_owner_injection	24 tok
+Claude Sonnet 4.6	benchmark	adversarial_pressure	schema_injection_resist	40 tok
+Claude Sonnet 4.6	benchmark	bounded_determination	escalation_verdict_yaml	26 tok
+Claude Sonnet 4.6	benchmark	bounded_determination	continue_verdict_yaml	24 tok
+Claude Sonnet 4.6	benchmark	bounded_determination	abort_threshold_lines	17 tok
+Claude Sonnet 4.6	stress	step=0	in=173	out=60	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=1	in=272	out=56	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=2	in=326	out=53	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=3	in=377	out=58	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=4	in=433	out=58	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=5	in=489	out=60	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=6	in=547	out=53	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=7	in=598	out=55	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=8	in=651	out=58	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=9	in=707	out=56	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=10	in=761	out=59	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=11	in=818	out=56	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=12	in=872	out=58	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=13	in=928	out=55	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=14	in=981	out=59	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=15	in=1038	out=52	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=16	in=1088	out=58	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=17	in=1144	out=60	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=18	in=1202	out=62	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=19	in=1262	out=59	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=20	in=1319	out=61	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=21	in=1378	out=59	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=22	in=1435	out=61	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=23	in=1494	out=57	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_claude_sonnet_46_t0p0_m192_s1
+  -> completed run_id=weekend_baseline_claude_sonnet_46_t0p0_m192_s1 duration=2m 4s
+[9/24] baseline model=Claude Sonnet 4.6 temp=0.0 max_tokens=192 seed=2 eta=19m 19s
+Claude Sonnet 4.6	benchmark	core_conciseness	incident_brief_one_sentence	30 tok
+Claude Sonnet 4.6	benchmark	core_conciseness	policy_delta_two_bullets	25 tok
+Claude Sonnet 4.6	benchmark	core_conciseness	handoff_delta_concise	47 tok
+Claude Sonnet 4.6	benchmark	core_conciseness	handoff_delta_detailed	96 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	extract_ticket_json	41 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	extract_invoice_json	58 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	emit_csv_rows	21 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	emit_action_lines	33 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	state_reconciliation_json	85 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	latest_override_selection	83 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	reference_selection_triples	14 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+Claude Sonnet 4.6	benchmark	persistent_failure_probe	exact_yaml_status	52 tok
+Claude Sonnet 4.6	benchmark	persistent_failure_probe	two_line_recovery_plan	39 tok
+Claude Sonnet 4.6	benchmark	adversarial_pressure	injected_override_ignore	26 tok
+Claude Sonnet 4.6	benchmark	adversarial_pressure	contradictory_owner_injection	24 tok
+Claude Sonnet 4.6	benchmark	adversarial_pressure	schema_injection_resist	40 tok
+Claude Sonnet 4.6	benchmark	bounded_determination	escalation_verdict_yaml	26 tok
+Claude Sonnet 4.6	benchmark	bounded_determination	continue_verdict_yaml	24 tok
+Claude Sonnet 4.6	benchmark	bounded_determination	abort_threshold_lines	17 tok
+Claude Sonnet 4.6	stress	step=0	in=173	out=54	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=1	in=266	out=59	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=2	in=323	out=64	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=3	in=385	out=54	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=4	in=437	out=56	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=5	in=491	out=61	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=6	in=550	out=58	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=7	in=606	out=63	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=8	in=667	out=57	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=9	in=722	out=64	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=10	in=784	out=59	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=11	in=841	out=55	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=12	in=894	out=60	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=13	in=952	out=62	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=14	in=1012	out=59	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=15	in=1069	out=58	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=16	in=1125	out=61	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=17	in=1184	out=59	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=18	in=1241	out=59	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=19	in=1298	out=57	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=20	in=1353	out=61	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=21	in=1412	out=63	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=22	in=1473	out=55	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=23	in=1526	out=59	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_claude_sonnet_46_t0p0_m192_s2
+  -> completed run_id=weekend_baseline_claude_sonnet_46_t0p0_m192_s2 duration=2m 3s
+[10/24] baseline model=Claude Sonnet 4.6 temp=0.2 max_tokens=192 seed=0 eta=19m 32s
+Claude Sonnet 4.6	benchmark	core_conciseness	incident_brief_one_sentence	30 tok
+Claude Sonnet 4.6	benchmark	core_conciseness	policy_delta_two_bullets	25 tok
+Claude Sonnet 4.6	benchmark	core_conciseness	handoff_delta_concise	47 tok
+Claude Sonnet 4.6	benchmark	core_conciseness	handoff_delta_detailed	96 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	extract_ticket_json	41 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	extract_invoice_json	58 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	emit_csv_rows	21 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	emit_action_lines	33 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	state_reconciliation_json	85 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	latest_override_selection	83 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	reference_selection_triples	14 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+Claude Sonnet 4.6	benchmark	persistent_failure_probe	exact_yaml_status	53 tok
+Claude Sonnet 4.6	benchmark	persistent_failure_probe	two_line_recovery_plan	39 tok
+Claude Sonnet 4.6	benchmark	adversarial_pressure	injected_override_ignore	26 tok
+Claude Sonnet 4.6	benchmark	adversarial_pressure	contradictory_owner_injection	24 tok
+Claude Sonnet 4.6	benchmark	adversarial_pressure	schema_injection_resist	40 tok
+Claude Sonnet 4.6	benchmark	bounded_determination	escalation_verdict_yaml	26 tok
+Claude Sonnet 4.6	benchmark	bounded_determination	continue_verdict_yaml	24 tok
+Claude Sonnet 4.6	benchmark	bounded_determination	abort_threshold_lines	17 tok
+Claude Sonnet 4.6	stress	step=0	in=173	out=59	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=1	in=271	out=60	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=2	in=329	out=58	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=3	in=385	out=61	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=4	in=444	out=57	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=5	in=499	out=51	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=6	in=548	out=51	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=7	in=597	out=55	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=8	in=650	out=56	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=9	in=704	out=51	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=10	in=753	out=58	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=11	in=809	out=57	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=12	in=864	out=54	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=13	in=916	out=56	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=14	in=970	out=58	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=15	in=1026	out=56	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=16	in=1080	out=55	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=17	in=1133	out=61	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=18	in=1192	out=57	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=19	in=1247	out=55	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=20	in=1300	out=54	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=21	in=1352	out=57	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=22	in=1407	out=57	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=23	in=1462	out=54	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_claude_sonnet_46_t0p2_m192_s0
+  -> completed run_id=weekend_baseline_claude_sonnet_46_t0p2_m192_s0 duration=1m 58s
+[11/24] baseline model=Claude Sonnet 4.6 temp=0.2 max_tokens=192 seed=1 eta=19m 9s
+Claude Sonnet 4.6	benchmark	core_conciseness	incident_brief_one_sentence	30 tok
+Claude Sonnet 4.6	benchmark	core_conciseness	policy_delta_two_bullets	25 tok
+Claude Sonnet 4.6	benchmark	core_conciseness	handoff_delta_concise	47 tok
+Claude Sonnet 4.6	benchmark	core_conciseness	handoff_delta_detailed	96 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	extract_ticket_json	41 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	extract_invoice_json	58 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	emit_csv_rows	21 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	emit_action_lines	33 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	state_reconciliation_json	85 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	latest_override_selection	85 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	reference_selection_triples	14 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+Claude Sonnet 4.6	benchmark	persistent_failure_probe	exact_yaml_status	53 tok
+Claude Sonnet 4.6	benchmark	persistent_failure_probe	two_line_recovery_plan	39 tok
+Claude Sonnet 4.6	benchmark	adversarial_pressure	injected_override_ignore	26 tok
+Claude Sonnet 4.6	benchmark	adversarial_pressure	contradictory_owner_injection	24 tok
+Claude Sonnet 4.6	benchmark	adversarial_pressure	schema_injection_resist	40 tok
+Claude Sonnet 4.6	benchmark	bounded_determination	escalation_verdict_yaml	26 tok
+Claude Sonnet 4.6	benchmark	bounded_determination	continue_verdict_yaml	24 tok
+Claude Sonnet 4.6	benchmark	bounded_determination	abort_threshold_lines	17 tok
+Claude Sonnet 4.6	stress	step=0	in=173	out=58	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=1	in=270	out=61	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=2	in=329	out=55	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=3	in=382	out=59	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=4	in=439	out=58	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=5	in=495	out=55	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=6	in=548	out=58	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=7	in=604	out=60	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=8	in=662	out=59	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=9	in=719	out=56	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=10	in=773	out=57	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=11	in=828	out=60	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=12	in=886	out=58	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=13	in=942	out=62	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=14	in=1002	out=57	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=15	in=1057	out=65	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=16	in=1120	out=60	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=17	in=1178	out=65	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=18	in=1241	out=63	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=19	in=1302	out=57	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=20	in=1357	out=65	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=21	in=1420	out=64	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=22	in=1482	out=61	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=23	in=1541	out=59	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_claude_sonnet_46_t0p2_m192_s1
+  -> completed run_id=weekend_baseline_claude_sonnet_46_t0p2_m192_s1 duration=2m 4s
+[12/24] baseline model=Claude Sonnet 4.6 temp=0.2 max_tokens=192 seed=2 eta=18m 37s
+Claude Sonnet 4.6	benchmark	core_conciseness	incident_brief_one_sentence	30 tok
+Claude Sonnet 4.6	benchmark	core_conciseness	policy_delta_two_bullets	25 tok
+Claude Sonnet 4.6	benchmark	core_conciseness	handoff_delta_concise	47 tok
+Claude Sonnet 4.6	benchmark	core_conciseness	handoff_delta_detailed	93 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	extract_ticket_json	41 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	extract_invoice_json	58 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	emit_csv_rows	21 tok
+Claude Sonnet 4.6	benchmark	structured_extraction	emit_action_lines	33 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	state_reconciliation_json	85 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	latest_override_selection	83 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	reference_selection_triples	14 tok
+Claude Sonnet 4.6	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+Claude Sonnet 4.6	benchmark	persistent_failure_probe	exact_yaml_status	52 tok
+Claude Sonnet 4.6	benchmark	persistent_failure_probe	two_line_recovery_plan	31 tok
+Claude Sonnet 4.6	benchmark	adversarial_pressure	injected_override_ignore	26 tok
+Claude Sonnet 4.6	benchmark	adversarial_pressure	contradictory_owner_injection	24 tok
+Claude Sonnet 4.6	benchmark	adversarial_pressure	schema_injection_resist	40 tok
+Claude Sonnet 4.6	benchmark	bounded_determination	escalation_verdict_yaml	26 tok
+Claude Sonnet 4.6	benchmark	bounded_determination	continue_verdict_yaml	24 tok
+Claude Sonnet 4.6	benchmark	bounded_determination	abort_threshold_lines	17 tok
+Claude Sonnet 4.6	stress	step=0	in=173	out=54	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=1	in=266	out=61	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=2	in=325	out=59	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=3	in=382	out=60	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=4	in=440	out=59	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=5	in=497	out=57	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=6	in=552	out=55	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=7	in=605	out=57	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=8	in=660	out=58	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=9	in=716	out=60	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=10	in=774	out=58	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=11	in=830	out=57	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=12	in=885	out=59	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=13	in=942	out=61	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=14	in=1001	out=56	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=15	in=1055	out=58	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=16	in=1111	out=57	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=17	in=1166	out=61	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=18	in=1225	out=60	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=19	in=1283	out=63	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=20	in=1344	out=59	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=21	in=1401	out=62	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=22	in=1461	out=59	fail=False	consec=0
+Claude Sonnet 4.6	stress	step=23	in=1518	out=58	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_claude_sonnet_46_t0p2_m192_s2
+  -> completed run_id=weekend_baseline_claude_sonnet_46_t0p2_m192_s2 duration=1m 52s
+[13/24] baseline model=GPT-4o mini temp=0.0 max_tokens=192 seed=0 eta=17m 37s
+GPT-4o mini	benchmark	core_conciseness	incident_brief_one_sentence	23 tok
+GPT-4o mini	benchmark	core_conciseness	policy_delta_two_bullets	21 tok
+GPT-4o mini	benchmark	core_conciseness	handoff_delta_concise	46 tok
+GPT-4o mini	benchmark	core_conciseness	handoff_delta_detailed	95 tok
+GPT-4o mini	benchmark	structured_extraction	extract_ticket_json	54 tok
+GPT-4o mini	benchmark	structured_extraction	extract_invoice_json	42 tok
+GPT-4o mini	benchmark	structured_extraction	emit_csv_rows	18 tok
+GPT-4o mini	benchmark	structured_extraction	emit_action_lines	27 tok
+GPT-4o mini	benchmark	long_context_stability	state_reconciliation_json	66 tok
+GPT-4o mini	benchmark	long_context_stability	latest_override_selection	51 tok
+GPT-4o mini	benchmark	long_context_stability	reference_selection_triples	12 tok
+GPT-4o mini	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+GPT-4o mini	benchmark	persistent_failure_probe	exact_yaml_status	32 tok
+GPT-4o mini	benchmark	persistent_failure_probe	two_line_recovery_plan	21 tok
+GPT-4o mini	benchmark	adversarial_pressure	injected_override_ignore	24 tok
+GPT-4o mini	benchmark	adversarial_pressure	contradictory_owner_injection	10 tok
+GPT-4o mini	benchmark	adversarial_pressure	schema_injection_resist	27 tok
+GPT-4o mini	benchmark	bounded_determination	escalation_verdict_yaml	21 tok
+GPT-4o mini	benchmark	bounded_determination	continue_verdict_yaml	22 tok
+GPT-4o mini	benchmark	bounded_determination	abort_threshold_lines	15 tok
+GPT-4o mini	stress	step=0	in=158	out=53	fail=False	consec=0
+GPT-4o mini	stress	step=1	in=247	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=2	in=301	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=3	in=355	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=4	in=409	out=53	fail=False	consec=0
+GPT-4o mini	stress	step=5	in=462	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=6	in=516	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=7	in=570	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=8	in=624	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=9	in=678	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=10	in=732	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=11	in=786	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=12	in=840	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=13	in=894	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=14	in=948	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=15	in=1002	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=16	in=1056	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=17	in=1110	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=18	in=1164	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=19	in=1218	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=20	in=1272	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=21	in=1326	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=22	in=1380	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=23	in=1434	out=54	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_gpt-4o_mini_t0p0_m192_s0
+  -> completed run_id=weekend_baseline_gpt-4o_mini_t0p0_m192_s0 duration=1m 3s
+[14/24] baseline model=GPT-4o mini temp=0.0 max_tokens=192 seed=1 eta=15m 47s
+GPT-4o mini	benchmark	core_conciseness	incident_brief_one_sentence	24 tok
+GPT-4o mini	benchmark	core_conciseness	policy_delta_two_bullets	21 tok
+GPT-4o mini	benchmark	core_conciseness	handoff_delta_concise	46 tok
+GPT-4o mini	benchmark	core_conciseness	handoff_delta_detailed	96 tok
+GPT-4o mini	benchmark	structured_extraction	extract_ticket_json	54 tok
+GPT-4o mini	benchmark	structured_extraction	extract_invoice_json	42 tok
+GPT-4o mini	benchmark	structured_extraction	emit_csv_rows	18 tok
+GPT-4o mini	benchmark	structured_extraction	emit_action_lines	27 tok
+GPT-4o mini	benchmark	long_context_stability	state_reconciliation_json	66 tok
+GPT-4o mini	benchmark	long_context_stability	latest_override_selection	46 tok
+GPT-4o mini	benchmark	long_context_stability	reference_selection_triples	12 tok
+GPT-4o mini	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+GPT-4o mini	benchmark	persistent_failure_probe	exact_yaml_status	32 tok
+GPT-4o mini	benchmark	persistent_failure_probe	two_line_recovery_plan	21 tok
+GPT-4o mini	benchmark	adversarial_pressure	injected_override_ignore	24 tok
+GPT-4o mini	benchmark	adversarial_pressure	contradictory_owner_injection	10 tok
+GPT-4o mini	benchmark	adversarial_pressure	schema_injection_resist	27 tok
+GPT-4o mini	benchmark	bounded_determination	escalation_verdict_yaml	21 tok
+GPT-4o mini	benchmark	bounded_determination	continue_verdict_yaml	22 tok
+GPT-4o mini	benchmark	bounded_determination	abort_threshold_lines	15 tok
+GPT-4o mini	stress	step=0	in=158	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=1	in=249	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=2	in=303	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=3	in=357	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=4	in=411	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=5	in=466	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=6	in=521	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=7	in=576	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=8	in=631	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=9	in=686	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=10	in=741	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=11	in=796	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=12	in=851	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=13	in=906	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=14	in=961	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=15	in=1016	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=16	in=1071	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=17	in=1126	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=18	in=1181	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=19	in=1236	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=20	in=1291	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=21	in=1346	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=22	in=1401	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=23	in=1456	out=55	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_gpt-4o_mini_t0p0_m192_s1
+  -> completed run_id=weekend_baseline_gpt-4o_mini_t0p0_m192_s1 duration=1m 2s
+[15/24] baseline model=GPT-4o mini temp=0.0 max_tokens=192 seed=2 eta=14m 4s
+GPT-4o mini	benchmark	core_conciseness	incident_brief_one_sentence	24 tok
+GPT-4o mini	benchmark	core_conciseness	policy_delta_two_bullets	21 tok
+GPT-4o mini	benchmark	core_conciseness	handoff_delta_concise	46 tok
+GPT-4o mini	benchmark	core_conciseness	handoff_delta_detailed	96 tok
+GPT-4o mini	benchmark	structured_extraction	extract_ticket_json	54 tok
+GPT-4o mini	benchmark	structured_extraction	extract_invoice_json	42 tok
+GPT-4o mini	benchmark	structured_extraction	emit_csv_rows	18 tok
+GPT-4o mini	benchmark	structured_extraction	emit_action_lines	27 tok
+GPT-4o mini	benchmark	long_context_stability	state_reconciliation_json	66 tok
+GPT-4o mini	benchmark	long_context_stability	latest_override_selection	46 tok
+GPT-4o mini	benchmark	long_context_stability	reference_selection_triples	12 tok
+GPT-4o mini	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+GPT-4o mini	benchmark	persistent_failure_probe	exact_yaml_status	32 tok
+GPT-4o mini	benchmark	persistent_failure_probe	two_line_recovery_plan	20 tok
+GPT-4o mini	benchmark	adversarial_pressure	injected_override_ignore	24 tok
+GPT-4o mini	benchmark	adversarial_pressure	contradictory_owner_injection	10 tok
+GPT-4o mini	benchmark	adversarial_pressure	schema_injection_resist	27 tok
+GPT-4o mini	benchmark	bounded_determination	escalation_verdict_yaml	21 tok
+GPT-4o mini	benchmark	bounded_determination	continue_verdict_yaml	22 tok
+GPT-4o mini	benchmark	bounded_determination	abort_threshold_lines	15 tok
+GPT-4o mini	stress	step=0	in=158	out=53	fail=False	consec=0
+GPT-4o mini	stress	step=1	in=247	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=2	in=301	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=3	in=355	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=4	in=410	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=5	in=465	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=6	in=520	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=7	in=575	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=8	in=630	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=9	in=685	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=10	in=740	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=11	in=795	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=12	in=850	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=13	in=905	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=14	in=960	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=15	in=1015	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=16	in=1070	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=17	in=1125	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=18	in=1180	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=19	in=1235	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=20	in=1290	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=21	in=1345	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=22	in=1400	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=23	in=1455	out=55	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_gpt-4o_mini_t0p0_m192_s2
+  -> completed run_id=weekend_baseline_gpt-4o_mini_t0p0_m192_s2 duration=1m 9s
+[16/24] baseline model=GPT-4o mini temp=0.2 max_tokens=192 seed=0 eta=12m 31s
+GPT-4o mini	benchmark	core_conciseness	incident_brief_one_sentence	24 tok
+GPT-4o mini	benchmark	core_conciseness	policy_delta_two_bullets	21 tok
+GPT-4o mini	benchmark	core_conciseness	handoff_delta_concise	46 tok
+GPT-4o mini	benchmark	core_conciseness	handoff_delta_detailed	96 tok
+GPT-4o mini	benchmark	structured_extraction	extract_ticket_json	54 tok
+GPT-4o mini	benchmark	structured_extraction	extract_invoice_json	42 tok
+GPT-4o mini	benchmark	structured_extraction	emit_csv_rows	18 tok
+GPT-4o mini	benchmark	structured_extraction	emit_action_lines	27 tok
+GPT-4o mini	benchmark	long_context_stability	state_reconciliation_json	66 tok
+GPT-4o mini	benchmark	long_context_stability	latest_override_selection	46 tok
+GPT-4o mini	benchmark	long_context_stability	reference_selection_triples	12 tok
+GPT-4o mini	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+GPT-4o mini	benchmark	persistent_failure_probe	exact_yaml_status	32 tok
+GPT-4o mini	benchmark	persistent_failure_probe	two_line_recovery_plan	21 tok
+GPT-4o mini	benchmark	adversarial_pressure	injected_override_ignore	24 tok
+GPT-4o mini	benchmark	adversarial_pressure	contradictory_owner_injection	10 tok
+GPT-4o mini	benchmark	adversarial_pressure	schema_injection_resist	27 tok
+GPT-4o mini	benchmark	bounded_determination	escalation_verdict_yaml	21 tok
+GPT-4o mini	benchmark	bounded_determination	continue_verdict_yaml	21 tok
+GPT-4o mini	benchmark	bounded_determination	abort_threshold_lines	16 tok
+GPT-4o mini	stress	step=0	in=158	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=1	in=248	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=2	in=302	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=3	in=356	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=4	in=410	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=5	in=465	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=6	in=520	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=7	in=575	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=8	in=630	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=9	in=685	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=10	in=740	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=11	in=795	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=12	in=850	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=13	in=905	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=14	in=960	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=15	in=1015	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=16	in=1070	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=17	in=1125	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=18	in=1180	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=19	in=1235	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=20	in=1290	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=21	in=1345	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=22	in=1400	out=55	fail=False	consec=0
+GPT-4o mini	stress	step=23	in=1455	out=55	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_gpt-4o_mini_t0p2_m192_s0
+  -> completed run_id=weekend_baseline_gpt-4o_mini_t0p2_m192_s0 duration=1m 6s
+[17/24] baseline model=GPT-4o mini temp=0.2 max_tokens=192 seed=1 eta=10m 58s
+GPT-4o mini	benchmark	core_conciseness	incident_brief_one_sentence	25 tok
+GPT-4o mini	benchmark	core_conciseness	policy_delta_two_bullets	21 tok
+GPT-4o mini	benchmark	core_conciseness	handoff_delta_concise	46 tok
+GPT-4o mini	benchmark	core_conciseness	handoff_delta_detailed	96 tok
+GPT-4o mini	benchmark	structured_extraction	extract_ticket_json	54 tok
+GPT-4o mini	benchmark	structured_extraction	extract_invoice_json	42 tok
+GPT-4o mini	benchmark	structured_extraction	emit_csv_rows	18 tok
+GPT-4o mini	benchmark	structured_extraction	emit_action_lines	27 tok
+GPT-4o mini	benchmark	long_context_stability	state_reconciliation_json	66 tok
+GPT-4o mini	benchmark	long_context_stability	latest_override_selection	46 tok
+GPT-4o mini	benchmark	long_context_stability	reference_selection_triples	12 tok
+GPT-4o mini	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+GPT-4o mini	benchmark	persistent_failure_probe	exact_yaml_status	35 tok
+GPT-4o mini	benchmark	persistent_failure_probe	two_line_recovery_plan	21 tok
+GPT-4o mini	benchmark	adversarial_pressure	injected_override_ignore	22 tok
+GPT-4o mini	benchmark	adversarial_pressure	contradictory_owner_injection	10 tok
+GPT-4o mini	benchmark	adversarial_pressure	schema_injection_resist	27 tok
+GPT-4o mini	benchmark	bounded_determination	escalation_verdict_yaml	21 tok
+GPT-4o mini	benchmark	bounded_determination	continue_verdict_yaml	20 tok
+GPT-4o mini	benchmark	bounded_determination	abort_threshold_lines	15 tok
+GPT-4o mini	stress	step=0	in=158	out=53	fail=False	consec=0
+GPT-4o mini	stress	step=1	in=247	out=54	fail=False	consec=0
+GPT-4o mini	stress	step=2	in=301	out=67	fail=False	consec=0
+GPT-4o mini	stress	step=3	in=368	out=66	fail=False	consec=0
+GPT-4o mini	stress	step=4	in=434	out=64	fail=False	consec=0
+GPT-4o mini	stress	step=5	in=498	out=63	fail=False	consec=0
+GPT-4o mini	stress	step=6	in=561	out=66	fail=False	consec=0
+GPT-4o mini	stress	step=7	in=627	out=64	fail=False	consec=0
+GPT-4o mini	stress	step=8	in=691	out=65	fail=False	consec=0
+GPT-4o mini	stress	step=9	in=756	out=64	fail=False	consec=0
+GPT-4o mini	stress	step=10	in=820	out=66	fail=False	consec=0
+GPT-4o mini	stress	step=11	in=886	out=64	fail=False	consec=0
+GPT-4o mini	stress	step=12	in=950	out=64	fail=False	consec=0
+GPT-4o mini	stress	step=13	in=1014	out=64	fail=False	consec=0
+GPT-4o mini	stress	step=14	in=1078	out=64	fail=False	consec=0
+GPT-4o mini	stress	step=15	in=1142	out=64	fail=False	consec=0
+GPT-4o mini	stress	step=16	in=1206	out=64	fail=False	consec=0
+GPT-4o mini	stress	step=17	in=1270	out=64	fail=False	consec=0
+GPT-4o mini	stress	step=18	in=1334	out=64	fail=False	consec=0
+GPT-4o mini	stress	step=19	in=1398	out=64	fail=False	consec=0
+GPT-4o mini	stress	step=20	in=1462	out=64	fail=False	consec=0
+GPT-4o mini	stress	step=21	in=1526	out=64	fail=False	consec=0
+GPT-4o mini	stress	step=22	in=1590	out=64	fail=False	consec=0
+GPT-4o mini	stress	step=23	in=1654	out=64	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_gpt-4o_mini_t0p2_m192_s1
+  -> completed run_id=weekend_baseline_gpt-4o_mini_t0p2_m192_s1 duration=1m 5s
+[18/24] baseline model=GPT-4o mini temp=0.2 max_tokens=192 seed=2 eta=9m 29s
+GPT-4o mini	benchmark	core_conciseness	incident_brief_one_sentence	23 tok
+GPT-4o mini	benchmark	core_conciseness	policy_delta_two_bullets	21 tok
+GPT-4o mini	benchmark	core_conciseness	handoff_delta_concise	46 tok
+GPT-4o mini	benchmark	core_conciseness	handoff_delta_detailed	96 tok
+GPT-4o mini	benchmark	structured_extraction	extract_ticket_json	54 tok
+GPT-4o mini	benchmark	structured_extraction	extract_invoice_json	42 tok
+GPT-4o mini	benchmark	structured_extraction	emit_csv_rows	18 tok
+GPT-4o mini	benchmark	structured_extraction	emit_action_lines	27 tok
+GPT-4o mini	benchmark	long_context_stability	state_reconciliation_json	66 tok
+GPT-4o mini	benchmark	long_context_stability	latest_override_selection	46 tok
+GPT-4o mini	benchmark	long_context_stability	reference_selection_triples	12 tok
+GPT-4o mini	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+GPT-4o mini	benchmark	persistent_failure_probe	exact_yaml_status	32 tok
+GPT-4o mini	benchmark	persistent_failure_probe	two_line_recovery_plan	21 tok
+GPT-4o mini	benchmark	adversarial_pressure	injected_override_ignore	24 tok
+GPT-4o mini	benchmark	adversarial_pressure	contradictory_owner_injection	10 tok
+GPT-4o mini	benchmark	adversarial_pressure	schema_injection_resist	27 tok
+GPT-4o mini	benchmark	bounded_determination	escalation_verdict_yaml	21 tok
+GPT-4o mini	benchmark	bounded_determination	continue_verdict_yaml	20 tok
+GPT-4o mini	benchmark	bounded_determination	abort_threshold_lines	15 tok
+GPT-4o mini	stress	step=0	in=158	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=1	in=253	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=2	in=312	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=3	in=371	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=4	in=430	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=5	in=489	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=6	in=548	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=7	in=607	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=8	in=666	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=9	in=725	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=10	in=784	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=11	in=843	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=12	in=902	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=13	in=961	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=14	in=1020	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=15	in=1079	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=16	in=1138	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=17	in=1197	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=18	in=1256	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=19	in=1315	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=20	in=1374	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=21	in=1433	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=22	in=1492	out=59	fail=False	consec=0
+GPT-4o mini	stress	step=23	in=1551	out=59	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_gpt-4o_mini_t0p2_m192_s2
+  -> completed run_id=weekend_baseline_gpt-4o_mini_t0p2_m192_s2 duration=1m 21s
+[19/24] baseline model=GPT-4.1 mini temp=0.0 max_tokens=192 seed=0 eta=8m 8s
+GPT-4.1 mini	benchmark	core_conciseness	incident_brief_one_sentence	31 tok
+GPT-4.1 mini	benchmark	core_conciseness	policy_delta_two_bullets	21 tok
+GPT-4.1 mini	benchmark	core_conciseness	handoff_delta_concise	33 tok
+GPT-4.1 mini	benchmark	core_conciseness	handoff_delta_detailed	57 tok
+GPT-4.1 mini	benchmark	structured_extraction	extract_ticket_json	49 tok
+GPT-4.1 mini	benchmark	structured_extraction	extract_invoice_json	46 tok
+GPT-4.1 mini	benchmark	structured_extraction	emit_csv_rows	17 tok
+GPT-4.1 mini	benchmark	structured_extraction	emit_action_lines	26 tok
+GPT-4.1 mini	benchmark	long_context_stability	state_reconciliation_json	66 tok
+GPT-4.1 mini	benchmark	long_context_stability	latest_override_selection	58 tok
+GPT-4.1 mini	benchmark	long_context_stability	reference_selection_triples	11 tok
+GPT-4.1 mini	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+GPT-4.1 mini	benchmark	persistent_failure_probe	exact_yaml_status	33 tok
+GPT-4.1 mini	benchmark	persistent_failure_probe	two_line_recovery_plan	28 tok
+GPT-4.1 mini	benchmark	adversarial_pressure	injected_override_ignore	22 tok
+GPT-4.1 mini	benchmark	adversarial_pressure	contradictory_owner_injection	20 tok
+GPT-4.1 mini	benchmark	adversarial_pressure	schema_injection_resist	31 tok
+GPT-4.1 mini	benchmark	bounded_determination	escalation_verdict_yaml	23 tok
+GPT-4.1 mini	benchmark	bounded_determination	continue_verdict_yaml	16 tok
+GPT-4.1 mini	benchmark	bounded_determination	abort_threshold_lines	16 tok
+GPT-4.1 mini	stress	step=0	in=158	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=1	in=242	out=44	fail=False	consec=0
+GPT-4.1 mini	stress	step=2	in=287	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=3	in=330	out=43	fail=False	consec=0
+GPT-4.1 mini	stress	step=4	in=374	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=5	in=417	out=43	fail=False	consec=0
+GPT-4.1 mini	stress	step=6	in=461	out=43	fail=False	consec=0
+GPT-4.1 mini	stress	step=7	in=505	out=43	fail=False	consec=0
+GPT-4.1 mini	stress	step=8	in=549	out=43	fail=False	consec=0
+GPT-4.1 mini	stress	step=9	in=593	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=10	in=636	out=43	fail=False	consec=0
+GPT-4.1 mini	stress	step=11	in=680	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=12	in=723	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=13	in=766	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=14	in=809	out=43	fail=False	consec=0
+GPT-4.1 mini	stress	step=15	in=853	out=43	fail=False	consec=0
+GPT-4.1 mini	stress	step=16	in=897	out=43	fail=False	consec=0
+GPT-4.1 mini	stress	step=17	in=941	out=43	fail=False	consec=0
+GPT-4.1 mini	stress	step=18	in=985	out=43	fail=False	consec=0
+GPT-4.1 mini	stress	step=19	in=1029	out=43	fail=False	consec=0
+GPT-4.1 mini	stress	step=20	in=1073	out=43	fail=False	consec=0
+GPT-4.1 mini	stress	step=21	in=1117	out=43	fail=False	consec=0
+GPT-4.1 mini	stress	step=22	in=1161	out=43	fail=False	consec=0
+GPT-4.1 mini	stress	step=23	in=1205	out=43	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_gpt-41_mini_t0p0_m192_s0
+  -> completed run_id=weekend_baseline_gpt-41_mini_t0p0_m192_s0 duration=59s
+[20/24] baseline model=GPT-4.1 mini temp=0.0 max_tokens=192 seed=1 eta=6m 40s
+GPT-4.1 mini	benchmark	core_conciseness	incident_brief_one_sentence	31 tok
+GPT-4.1 mini	benchmark	core_conciseness	policy_delta_two_bullets	21 tok
+GPT-4.1 mini	benchmark	core_conciseness	handoff_delta_concise	33 tok
+GPT-4.1 mini	benchmark	core_conciseness	handoff_delta_detailed	56 tok
+GPT-4.1 mini	benchmark	structured_extraction	extract_ticket_json	49 tok
+GPT-4.1 mini	benchmark	structured_extraction	extract_invoice_json	46 tok
+GPT-4.1 mini	benchmark	structured_extraction	emit_csv_rows	17 tok
+GPT-4.1 mini	benchmark	structured_extraction	emit_action_lines	26 tok
+GPT-4.1 mini	benchmark	long_context_stability	state_reconciliation_json	66 tok
+GPT-4.1 mini	benchmark	long_context_stability	latest_override_selection	58 tok
+GPT-4.1 mini	benchmark	long_context_stability	reference_selection_triples	11 tok
+GPT-4.1 mini	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+GPT-4.1 mini	benchmark	persistent_failure_probe	exact_yaml_status	33 tok
+GPT-4.1 mini	benchmark	persistent_failure_probe	two_line_recovery_plan	28 tok
+GPT-4.1 mini	benchmark	adversarial_pressure	injected_override_ignore	22 tok
+GPT-4.1 mini	benchmark	adversarial_pressure	contradictory_owner_injection	20 tok
+GPT-4.1 mini	benchmark	adversarial_pressure	schema_injection_resist	31 tok
+GPT-4.1 mini	benchmark	bounded_determination	escalation_verdict_yaml	23 tok
+GPT-4.1 mini	benchmark	bounded_determination	continue_verdict_yaml	16 tok
+GPT-4.1 mini	benchmark	bounded_determination	abort_threshold_lines	16 tok
+GPT-4.1 mini	stress	step=0	in=158	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=1	in=242	out=44	fail=False	consec=0
+GPT-4.1 mini	stress	step=2	in=287	out=41	fail=False	consec=0
+GPT-4.1 mini	stress	step=3	in=329	out=44	fail=False	consec=0
+GPT-4.1 mini	stress	step=4	in=374	out=41	fail=False	consec=0
+GPT-4.1 mini	stress	step=5	in=416	out=44	fail=False	consec=0
+GPT-4.1 mini	stress	step=6	in=461	out=44	fail=False	consec=0
+GPT-4.1 mini	stress	step=7	in=506	out=44	fail=False	consec=0
+GPT-4.1 mini	stress	step=8	in=551	out=44	fail=False	consec=0
+GPT-4.1 mini	stress	step=9	in=596	out=44	fail=False	consec=0
+GPT-4.1 mini	stress	step=10	in=641	out=44	fail=False	consec=0
+GPT-4.1 mini	stress	step=11	in=686	out=44	fail=False	consec=0
+GPT-4.1 mini	stress	step=12	in=731	out=44	fail=False	consec=0
+GPT-4.1 mini	stress	step=13	in=776	out=44	fail=False	consec=0
+GPT-4.1 mini	stress	step=14	in=821	out=44	fail=False	consec=0
+GPT-4.1 mini	stress	step=15	in=866	out=44	fail=False	consec=0
+GPT-4.1 mini	stress	step=16	in=911	out=44	fail=False	consec=0
+GPT-4.1 mini	stress	step=17	in=956	out=44	fail=False	consec=0
+GPT-4.1 mini	stress	step=18	in=1001	out=44	fail=False	consec=0
+GPT-4.1 mini	stress	step=19	in=1046	out=44	fail=False	consec=0
+GPT-4.1 mini	stress	step=20	in=1091	out=41	fail=False	consec=0
+GPT-4.1 mini	stress	step=21	in=1133	out=44	fail=False	consec=0
+GPT-4.1 mini	stress	step=22	in=1178	out=44	fail=False	consec=0
+GPT-4.1 mini	stress	step=23	in=1223	out=41	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_gpt-41_mini_t0p0_m192_s1
+  -> completed run_id=weekend_baseline_gpt-41_mini_t0p0_m192_s1 duration=1m 11s
+[21/24] baseline model=GPT-4.1 mini temp=0.0 max_tokens=192 seed=2 eta=5m 18s
+GPT-4.1 mini	benchmark	core_conciseness	incident_brief_one_sentence	31 tok
+GPT-4.1 mini	benchmark	core_conciseness	policy_delta_two_bullets	21 tok
+GPT-4.1 mini	benchmark	core_conciseness	handoff_delta_concise	33 tok
+GPT-4.1 mini	benchmark	core_conciseness	handoff_delta_detailed	56 tok
+GPT-4.1 mini	benchmark	structured_extraction	extract_ticket_json	49 tok
+GPT-4.1 mini	benchmark	structured_extraction	extract_invoice_json	46 tok
+GPT-4.1 mini	benchmark	structured_extraction	emit_csv_rows	17 tok
+GPT-4.1 mini	benchmark	structured_extraction	emit_action_lines	26 tok
+GPT-4.1 mini	benchmark	long_context_stability	state_reconciliation_json	66 tok
+GPT-4.1 mini	benchmark	long_context_stability	latest_override_selection	58 tok
+GPT-4.1 mini	benchmark	long_context_stability	reference_selection_triples	11 tok
+GPT-4.1 mini	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+GPT-4.1 mini	benchmark	persistent_failure_probe	exact_yaml_status	31 tok
+GPT-4.1 mini	benchmark	persistent_failure_probe	two_line_recovery_plan	28 tok
+GPT-4.1 mini	benchmark	adversarial_pressure	injected_override_ignore	22 tok
+GPT-4.1 mini	benchmark	adversarial_pressure	contradictory_owner_injection	20 tok
+GPT-4.1 mini	benchmark	adversarial_pressure	schema_injection_resist	31 tok
+GPT-4.1 mini	benchmark	bounded_determination	escalation_verdict_yaml	23 tok
+GPT-4.1 mini	benchmark	bounded_determination	continue_verdict_yaml	16 tok
+GPT-4.1 mini	benchmark	bounded_determination	abort_threshold_lines	16 tok
+GPT-4.1 mini	stress	step=0	in=158	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=1	in=243	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=2	in=292	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=3	in=341	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=4	in=390	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=5	in=439	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=6	in=488	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=7	in=537	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=8	in=586	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=9	in=635	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=10	in=684	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=11	in=733	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=12	in=782	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=13	in=831	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=14	in=880	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=15	in=929	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=16	in=978	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=17	in=1027	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=18	in=1076	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=19	in=1125	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=20	in=1174	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=21	in=1223	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=22	in=1272	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=23	in=1321	out=48	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_gpt-41_mini_t0p0_m192_s2
+  -> completed run_id=weekend_baseline_gpt-41_mini_t0p0_m192_s2 duration=1m 4s
+[22/24] baseline model=GPT-4.1 mini temp=0.2 max_tokens=192 seed=0 eta=3m 57s
+GPT-4.1 mini	benchmark	core_conciseness	incident_brief_one_sentence	31 tok
+GPT-4.1 mini	benchmark	core_conciseness	policy_delta_two_bullets	21 tok
+GPT-4.1 mini	benchmark	core_conciseness	handoff_delta_concise	33 tok
+GPT-4.1 mini	benchmark	core_conciseness	handoff_delta_detailed	57 tok
+GPT-4.1 mini	benchmark	structured_extraction	extract_ticket_json	49 tok
+GPT-4.1 mini	benchmark	structured_extraction	extract_invoice_json	46 tok
+GPT-4.1 mini	benchmark	structured_extraction	emit_csv_rows	17 tok
+GPT-4.1 mini	benchmark	structured_extraction	emit_action_lines	26 tok
+GPT-4.1 mini	benchmark	long_context_stability	state_reconciliation_json	66 tok
+GPT-4.1 mini	benchmark	long_context_stability	latest_override_selection	58 tok
+GPT-4.1 mini	benchmark	long_context_stability	reference_selection_triples	11 tok
+GPT-4.1 mini	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+GPT-4.1 mini	benchmark	persistent_failure_probe	exact_yaml_status	33 tok
+GPT-4.1 mini	benchmark	persistent_failure_probe	two_line_recovery_plan	28 tok
+GPT-4.1 mini	benchmark	adversarial_pressure	injected_override_ignore	22 tok
+GPT-4.1 mini	benchmark	adversarial_pressure	contradictory_owner_injection	21 tok
+GPT-4.1 mini	benchmark	adversarial_pressure	schema_injection_resist	31 tok
+GPT-4.1 mini	benchmark	bounded_determination	escalation_verdict_yaml	21 tok
+GPT-4.1 mini	benchmark	bounded_determination	continue_verdict_yaml	16 tok
+GPT-4.1 mini	benchmark	bounded_determination	abort_threshold_lines	17 tok
+GPT-4.1 mini	stress	step=0	in=158	out=51	fail=False	consec=0
+GPT-4.1 mini	stress	step=1	in=246	out=43	fail=False	consec=0
+GPT-4.1 mini	stress	step=2	in=290	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=3	in=333	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=4	in=376	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=5	in=419	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=6	in=462	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=7	in=505	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=8	in=548	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=9	in=591	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=10	in=634	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=11	in=677	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=12	in=720	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=13	in=763	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=14	in=806	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=15	in=849	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=16	in=892	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=17	in=935	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=18	in=978	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=19	in=1021	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=20	in=1064	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=21	in=1107	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=22	in=1150	out=42	fail=False	consec=0
+GPT-4.1 mini	stress	step=23	in=1193	out=42	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_gpt-41_mini_t0p2_m192_s0
+  -> completed run_id=weekend_baseline_gpt-41_mini_t0p2_m192_s0 duration=1m 0s
+[23/24] baseline model=GPT-4.1 mini temp=0.2 max_tokens=192 seed=1 eta=2m 36s
+GPT-4.1 mini	benchmark	core_conciseness	incident_brief_one_sentence	31 tok
+GPT-4.1 mini	benchmark	core_conciseness	policy_delta_two_bullets	21 tok
+GPT-4.1 mini	benchmark	core_conciseness	handoff_delta_concise	33 tok
+GPT-4.1 mini	benchmark	core_conciseness	handoff_delta_detailed	58 tok
+GPT-4.1 mini	benchmark	structured_extraction	extract_ticket_json	49 tok
+GPT-4.1 mini	benchmark	structured_extraction	extract_invoice_json	46 tok
+GPT-4.1 mini	benchmark	structured_extraction	emit_csv_rows	17 tok
+GPT-4.1 mini	benchmark	structured_extraction	emit_action_lines	26 tok
+GPT-4.1 mini	benchmark	long_context_stability	state_reconciliation_json	66 tok
+GPT-4.1 mini	benchmark	long_context_stability	latest_override_selection	57 tok
+GPT-4.1 mini	benchmark	long_context_stability	reference_selection_triples	11 tok
+GPT-4.1 mini	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+GPT-4.1 mini	benchmark	persistent_failure_probe	exact_yaml_status	33 tok
+GPT-4.1 mini	benchmark	persistent_failure_probe	two_line_recovery_plan	29 tok
+GPT-4.1 mini	benchmark	adversarial_pressure	injected_override_ignore	22 tok
+GPT-4.1 mini	benchmark	adversarial_pressure	contradictory_owner_injection	21 tok
+GPT-4.1 mini	benchmark	adversarial_pressure	schema_injection_resist	31 tok
+GPT-4.1 mini	benchmark	bounded_determination	escalation_verdict_yaml	23 tok
+GPT-4.1 mini	benchmark	bounded_determination	continue_verdict_yaml	16 tok
+GPT-4.1 mini	benchmark	bounded_determination	abort_threshold_lines	16 tok
+GPT-4.1 mini	stress	step=0	in=158	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=1	in=243	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=2	in=292	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=3	in=341	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=4	in=390	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=5	in=439	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=6	in=488	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=7	in=537	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=8	in=586	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=9	in=635	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=10	in=684	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=11	in=733	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=12	in=782	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=13	in=831	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=14	in=880	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=15	in=929	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=16	in=978	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=17	in=1027	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=18	in=1076	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=19	in=1125	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=20	in=1174	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=21	in=1223	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=22	in=1272	out=48	fail=False	consec=0
+GPT-4.1 mini	stress	step=23	in=1321	out=48	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_gpt-41_mini_t0p2_m192_s1
+  -> completed run_id=weekend_baseline_gpt-41_mini_t0p2_m192_s1 duration=58s
+[24/24] baseline model=GPT-4.1 mini temp=0.2 max_tokens=192 seed=2 eta=1m 17s
+GPT-4.1 mini	benchmark	core_conciseness	incident_brief_one_sentence	30 tok
+GPT-4.1 mini	benchmark	core_conciseness	policy_delta_two_bullets	21 tok
+GPT-4.1 mini	benchmark	core_conciseness	handoff_delta_concise	33 tok
+GPT-4.1 mini	benchmark	core_conciseness	handoff_delta_detailed	59 tok
+GPT-4.1 mini	benchmark	structured_extraction	extract_ticket_json	49 tok
+GPT-4.1 mini	benchmark	structured_extraction	extract_invoice_json	46 tok
+GPT-4.1 mini	benchmark	structured_extraction	emit_csv_rows	17 tok
+GPT-4.1 mini	benchmark	structured_extraction	emit_action_lines	26 tok
+GPT-4.1 mini	benchmark	long_context_stability	state_reconciliation_json	66 tok
+GPT-4.1 mini	benchmark	long_context_stability	latest_override_selection	58 tok
+GPT-4.1 mini	benchmark	long_context_stability	reference_selection_triples	11 tok
+GPT-4.1 mini	benchmark	long_context_stability	ledger_carry_forward_json	56 tok
+GPT-4.1 mini	benchmark	persistent_failure_probe	exact_yaml_status	31 tok
+GPT-4.1 mini	benchmark	persistent_failure_probe	two_line_recovery_plan	26 tok
+GPT-4.1 mini	benchmark	adversarial_pressure	injected_override_ignore	22 tok
+GPT-4.1 mini	benchmark	adversarial_pressure	contradictory_owner_injection	20 tok
+GPT-4.1 mini	benchmark	adversarial_pressure	schema_injection_resist	31 tok
+GPT-4.1 mini	benchmark	bounded_determination	escalation_verdict_yaml	23 tok
+GPT-4.1 mini	benchmark	bounded_determination	continue_verdict_yaml	16 tok
+GPT-4.1 mini	benchmark	bounded_determination	abort_threshold_lines	16 tok
+GPT-4.1 mini	stress	step=0	in=158	out=51	fail=False	consec=0
+GPT-4.1 mini	stress	step=1	in=246	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=2	in=294	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=3	in=342	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=4	in=390	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=5	in=438	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=6	in=486	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=7	in=534	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=8	in=582	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=9	in=630	out=41	fail=False	consec=0
+GPT-4.1 mini	stress	step=10	in=672	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=11	in=720	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=12	in=768	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=13	in=816	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=14	in=864	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=15	in=912	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=16	in=960	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=17	in=1008	out=41	fail=False	consec=0
+GPT-4.1 mini	stress	step=18	in=1050	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=19	in=1098	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=20	in=1146	out=41	fail=False	consec=0
+GPT-4.1 mini	stress	step=21	in=1188	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=22	in=1236	out=47	fail=False	consec=0
+GPT-4.1 mini	stress	step=23	in=1284	out=47	fail=False	consec=0
+results/api_rerun/runs/unified_weekend_baseline_gpt-41_mini_t0p2_m192_s2
+  -> completed run_id=weekend_baseline_gpt-41_mini_t0p2_m192_s2 duration=56s
+results/api_rerun/report.md

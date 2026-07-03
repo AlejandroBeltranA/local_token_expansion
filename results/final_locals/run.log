@@ -1,0 +1,1779 @@
+Suites (from configs/locals_only_sweep.yaml): suites/core_conciseness.yaml, suites/structured_extraction.yaml, suites/long_context_stability.yaml, suites/persistent_failure_probe.yaml, suites/adversarial_pressure.yaml, suites/bounded_determination.yaml
+Loaded OPENAI_API_KEY, ANTHROPIC_API_KEY from .env.local
+[1/42] baseline model=Mistral-7B-Instruct-v0.3 temp=0.0 max_tokens=192 seed=0 eta=n/a
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	incident_brief_one_sentence	41 tok
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	policy_delta_two_bullets	54 tok
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	handoff_delta_concise	63 tok
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	handoff_delta_detailed	103 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	extract_ticket_json	67 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	extract_invoice_json	59 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	emit_csv_rows	21 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	emit_action_lines	36 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	state_reconciliation_json	84 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	latest_override_selection	87 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	reference_selection_triples	12 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	ledger_carry_forward_json	106 tok
+Mistral-7B-Instruct-v0.3	benchmark	persistent_failure_probe	exact_yaml_status	40 tok
+Mistral-7B-Instruct-v0.3	benchmark	persistent_failure_probe	two_line_recovery_plan	33 tok
+Mistral-7B-Instruct-v0.3	benchmark	adversarial_pressure	injected_override_ignore	41 tok
+Mistral-7B-Instruct-v0.3	benchmark	adversarial_pressure	contradictory_owner_injection	13 tok
+Mistral-7B-Instruct-v0.3	benchmark	adversarial_pressure	schema_injection_resist	45 tok
+Mistral-7B-Instruct-v0.3	benchmark	bounded_determination	escalation_verdict_yaml	23 tok
+Mistral-7B-Instruct-v0.3	benchmark	bounded_determination	continue_verdict_yaml	64 tok
+Mistral-7B-Instruct-v0.3	benchmark	bounded_determination	abort_threshold_lines	15 tok
+Mistral-7B-Instruct-v0.3	stress	step=0	in=177	out=87	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=1	in=311	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=2	in=398	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=3	in=485	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=4	in=572	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=5	in=659	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=6	in=746	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=7	in=833	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=8	in=920	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=9	in=1007	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=10	in=1094	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=11	in=1181	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=12	in=1268	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=13	in=1355	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=14	in=1442	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=15	in=1529	out=86	fail=True	consec=1
+Mistral-7B-Instruct-v0.3	stress	step=16	in=1616	out=86	fail=True	consec=2
+Mistral-7B-Instruct-v0.3	stress	step=17	in=1703	out=86	fail=True	consec=3
+results/final_locals/runs/unified_weekend_baseline_mistral-7b-instruct-v03_t0p0_m192_s0
+  -> completed run_id=weekend_baseline_mistral-7b-instruct-v03_t0p0_m192_s0 duration=3m 15s
+[2/42] baseline model=Mistral-7B-Instruct-v0.3 temp=0.0 max_tokens=192 seed=1 eta=2h 13m 2s
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	incident_brief_one_sentence	41 tok
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	policy_delta_two_bullets	54 tok
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	handoff_delta_concise	63 tok
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	handoff_delta_detailed	103 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	extract_ticket_json	67 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	extract_invoice_json	59 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	emit_csv_rows	21 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	emit_action_lines	36 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	state_reconciliation_json	84 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	latest_override_selection	87 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	reference_selection_triples	12 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	ledger_carry_forward_json	106 tok
+Mistral-7B-Instruct-v0.3	benchmark	persistent_failure_probe	exact_yaml_status	40 tok
+Mistral-7B-Instruct-v0.3	benchmark	persistent_failure_probe	two_line_recovery_plan	33 tok
+Mistral-7B-Instruct-v0.3	benchmark	adversarial_pressure	injected_override_ignore	41 tok
+Mistral-7B-Instruct-v0.3	benchmark	adversarial_pressure	contradictory_owner_injection	13 tok
+Mistral-7B-Instruct-v0.3	benchmark	adversarial_pressure	schema_injection_resist	45 tok
+Mistral-7B-Instruct-v0.3	benchmark	bounded_determination	escalation_verdict_yaml	23 tok
+Mistral-7B-Instruct-v0.3	benchmark	bounded_determination	continue_verdict_yaml	64 tok
+Mistral-7B-Instruct-v0.3	benchmark	bounded_determination	abort_threshold_lines	15 tok
+Mistral-7B-Instruct-v0.3	stress	step=0	in=177	out=87	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=1	in=311	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=2	in=398	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=3	in=485	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=4	in=572	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=5	in=659	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=6	in=746	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=7	in=833	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=8	in=920	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=9	in=1007	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=10	in=1094	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=11	in=1181	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=12	in=1268	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=13	in=1355	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=14	in=1442	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=15	in=1529	out=86	fail=True	consec=1
+Mistral-7B-Instruct-v0.3	stress	step=16	in=1616	out=86	fail=True	consec=2
+Mistral-7B-Instruct-v0.3	stress	step=17	in=1703	out=86	fail=True	consec=3
+results/final_locals/runs/unified_weekend_baseline_mistral-7b-instruct-v03_t0p0_m192_s1
+  -> completed run_id=weekend_baseline_mistral-7b-instruct-v03_t0p0_m192_s1 duration=2m 43s
+[3/42] baseline model=Mistral-7B-Instruct-v0.3 temp=0.0 max_tokens=192 seed=2 eta=1h 59m 16s
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	incident_brief_one_sentence	41 tok
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	policy_delta_two_bullets	54 tok
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	handoff_delta_concise	63 tok
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	handoff_delta_detailed	103 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	extract_ticket_json	67 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	extract_invoice_json	59 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	emit_csv_rows	21 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	emit_action_lines	36 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	state_reconciliation_json	84 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	latest_override_selection	87 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	reference_selection_triples	12 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	ledger_carry_forward_json	106 tok
+Mistral-7B-Instruct-v0.3	benchmark	persistent_failure_probe	exact_yaml_status	40 tok
+Mistral-7B-Instruct-v0.3	benchmark	persistent_failure_probe	two_line_recovery_plan	33 tok
+Mistral-7B-Instruct-v0.3	benchmark	adversarial_pressure	injected_override_ignore	41 tok
+Mistral-7B-Instruct-v0.3	benchmark	adversarial_pressure	contradictory_owner_injection	13 tok
+Mistral-7B-Instruct-v0.3	benchmark	adversarial_pressure	schema_injection_resist	45 tok
+Mistral-7B-Instruct-v0.3	benchmark	bounded_determination	escalation_verdict_yaml	23 tok
+Mistral-7B-Instruct-v0.3	benchmark	bounded_determination	continue_verdict_yaml	64 tok
+Mistral-7B-Instruct-v0.3	benchmark	bounded_determination	abort_threshold_lines	15 tok
+Mistral-7B-Instruct-v0.3	stress	step=0	in=177	out=87	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=1	in=311	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=2	in=398	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=3	in=485	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=4	in=572	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=5	in=659	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=6	in=746	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=7	in=833	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=8	in=920	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=9	in=1007	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=10	in=1094	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=11	in=1181	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=12	in=1268	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=13	in=1355	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=14	in=1442	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=15	in=1529	out=86	fail=True	consec=1
+Mistral-7B-Instruct-v0.3	stress	step=16	in=1616	out=86	fail=True	consec=2
+Mistral-7B-Instruct-v0.3	stress	step=17	in=1703	out=86	fail=True	consec=3
+results/final_locals/runs/unified_weekend_baseline_mistral-7b-instruct-v03_t0p0_m192_s2
+  -> completed run_id=weekend_baseline_mistral-7b-instruct-v03_t0p0_m192_s2 duration=2m 43s
+[4/42] baseline model=Mistral-7B-Instruct-v0.3 temp=0.2 max_tokens=192 seed=0 eta=1h 52m 55s
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	incident_brief_one_sentence	41 tok
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	policy_delta_two_bullets	54 tok
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	handoff_delta_concise	63 tok
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	handoff_delta_detailed	103 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	extract_ticket_json	67 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	extract_invoice_json	59 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	emit_csv_rows	21 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	emit_action_lines	36 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	state_reconciliation_json	84 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	latest_override_selection	87 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	reference_selection_triples	12 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	ledger_carry_forward_json	106 tok
+Mistral-7B-Instruct-v0.3	benchmark	persistent_failure_probe	exact_yaml_status	40 tok
+Mistral-7B-Instruct-v0.3	benchmark	persistent_failure_probe	two_line_recovery_plan	33 tok
+Mistral-7B-Instruct-v0.3	benchmark	adversarial_pressure	injected_override_ignore	41 tok
+Mistral-7B-Instruct-v0.3	benchmark	adversarial_pressure	contradictory_owner_injection	13 tok
+Mistral-7B-Instruct-v0.3	benchmark	adversarial_pressure	schema_injection_resist	45 tok
+Mistral-7B-Instruct-v0.3	benchmark	bounded_determination	escalation_verdict_yaml	23 tok
+Mistral-7B-Instruct-v0.3	benchmark	bounded_determination	continue_verdict_yaml	64 tok
+Mistral-7B-Instruct-v0.3	benchmark	bounded_determination	abort_threshold_lines	15 tok
+Mistral-7B-Instruct-v0.3	stress	step=0	in=177	out=87	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=1	in=311	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=2	in=398	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=3	in=485	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=4	in=572	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=5	in=659	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=6	in=746	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=7	in=833	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=8	in=920	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=9	in=1007	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=10	in=1094	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=11	in=1181	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=12	in=1268	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=13	in=1355	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=14	in=1442	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=15	in=1529	out=86	fail=True	consec=1
+Mistral-7B-Instruct-v0.3	stress	step=16	in=1616	out=86	fail=True	consec=2
+Mistral-7B-Instruct-v0.3	stress	step=17	in=1703	out=86	fail=True	consec=3
+results/final_locals/runs/unified_weekend_baseline_mistral-7b-instruct-v03_t0p2_m192_s0
+  -> completed run_id=weekend_baseline_mistral-7b-instruct-v03_t0p2_m192_s0 duration=2m 41s
+[5/42] baseline model=Mistral-7B-Instruct-v0.3 temp=0.2 max_tokens=192 seed=1 eta=1h 48m 3s
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	incident_brief_one_sentence	41 tok
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	policy_delta_two_bullets	54 tok
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	handoff_delta_concise	63 tok
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	handoff_delta_detailed	103 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	extract_ticket_json	67 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	extract_invoice_json	59 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	emit_csv_rows	21 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	emit_action_lines	36 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	state_reconciliation_json	84 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	latest_override_selection	87 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	reference_selection_triples	12 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	ledger_carry_forward_json	106 tok
+Mistral-7B-Instruct-v0.3	benchmark	persistent_failure_probe	exact_yaml_status	40 tok
+Mistral-7B-Instruct-v0.3	benchmark	persistent_failure_probe	two_line_recovery_plan	33 tok
+Mistral-7B-Instruct-v0.3	benchmark	adversarial_pressure	injected_override_ignore	41 tok
+Mistral-7B-Instruct-v0.3	benchmark	adversarial_pressure	contradictory_owner_injection	13 tok
+Mistral-7B-Instruct-v0.3	benchmark	adversarial_pressure	schema_injection_resist	45 tok
+Mistral-7B-Instruct-v0.3	benchmark	bounded_determination	escalation_verdict_yaml	23 tok
+Mistral-7B-Instruct-v0.3	benchmark	bounded_determination	continue_verdict_yaml	64 tok
+Mistral-7B-Instruct-v0.3	benchmark	bounded_determination	abort_threshold_lines	15 tok
+Mistral-7B-Instruct-v0.3	stress	step=0	in=177	out=87	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=1	in=311	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=2	in=398	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=3	in=485	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=4	in=572	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=5	in=659	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=6	in=746	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=7	in=833	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=8	in=920	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=9	in=1007	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=10	in=1094	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=11	in=1181	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=12	in=1268	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=13	in=1355	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=14	in=1442	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=15	in=1529	out=86	fail=True	consec=1
+Mistral-7B-Instruct-v0.3	stress	step=16	in=1616	out=86	fail=True	consec=2
+Mistral-7B-Instruct-v0.3	stress	step=17	in=1703	out=86	fail=True	consec=3
+results/final_locals/runs/unified_weekend_baseline_mistral-7b-instruct-v03_t0p2_m192_s1
+  -> completed run_id=weekend_baseline_mistral-7b-instruct-v03_t0p2_m192_s1 duration=2m 41s
+[6/42] baseline model=Mistral-7B-Instruct-v0.3 temp=0.2 max_tokens=192 seed=2 eta=1h 43m 59s
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	incident_brief_one_sentence	41 tok
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	policy_delta_two_bullets	54 tok
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	handoff_delta_concise	63 tok
+Mistral-7B-Instruct-v0.3	benchmark	core_conciseness	handoff_delta_detailed	103 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	extract_ticket_json	67 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	extract_invoice_json	59 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	emit_csv_rows	21 tok
+Mistral-7B-Instruct-v0.3	benchmark	structured_extraction	emit_action_lines	36 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	state_reconciliation_json	84 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	latest_override_selection	87 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	reference_selection_triples	12 tok
+Mistral-7B-Instruct-v0.3	benchmark	long_context_stability	ledger_carry_forward_json	106 tok
+Mistral-7B-Instruct-v0.3	benchmark	persistent_failure_probe	exact_yaml_status	40 tok
+Mistral-7B-Instruct-v0.3	benchmark	persistent_failure_probe	two_line_recovery_plan	33 tok
+Mistral-7B-Instruct-v0.3	benchmark	adversarial_pressure	injected_override_ignore	41 tok
+Mistral-7B-Instruct-v0.3	benchmark	adversarial_pressure	contradictory_owner_injection	13 tok
+Mistral-7B-Instruct-v0.3	benchmark	adversarial_pressure	schema_injection_resist	45 tok
+Mistral-7B-Instruct-v0.3	benchmark	bounded_determination	escalation_verdict_yaml	23 tok
+Mistral-7B-Instruct-v0.3	benchmark	bounded_determination	continue_verdict_yaml	64 tok
+Mistral-7B-Instruct-v0.3	benchmark	bounded_determination	abort_threshold_lines	15 tok
+Mistral-7B-Instruct-v0.3	stress	step=0	in=177	out=87	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=1	in=311	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=2	in=398	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=3	in=485	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=4	in=572	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=5	in=659	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=6	in=746	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=7	in=833	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=8	in=920	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=9	in=1007	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=10	in=1094	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=11	in=1181	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=12	in=1268	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=13	in=1355	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=14	in=1442	out=86	fail=False	consec=0
+Mistral-7B-Instruct-v0.3	stress	step=15	in=1529	out=86	fail=True	consec=1
+Mistral-7B-Instruct-v0.3	stress	step=16	in=1616	out=86	fail=True	consec=2
+Mistral-7B-Instruct-v0.3	stress	step=17	in=1703	out=86	fail=True	consec=3
+results/final_locals/runs/unified_weekend_baseline_mistral-7b-instruct-v03_t0p2_m192_s2
+  -> completed run_id=weekend_baseline_mistral-7b-instruct-v03_t0p2_m192_s2 duration=2m 41s
+[7/42] baseline model=Meta-Llama-3.1-8B-Instruct-3bit temp=0.0 max_tokens=192 seed=0 eta=1h 40m 24s
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	incident_brief_one_sentence	23 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	policy_delta_two_bullets	19 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	handoff_delta_concise	31 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	handoff_delta_detailed	27 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	extract_ticket_json	50 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	extract_invoice_json	43 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	emit_csv_rows	23 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	emit_action_lines	25 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	state_reconciliation_json	89 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	latest_override_selection	44 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	reference_selection_triples	12 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	ledger_carry_forward_json	156 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	persistent_failure_probe	exact_yaml_status	14 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	persistent_failure_probe	two_line_recovery_plan	22 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	adversarial_pressure	injected_override_ignore	205 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	adversarial_pressure	contradictory_owner_injection	21 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	adversarial_pressure	schema_injection_resist	28 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	bounded_determination	escalation_verdict_yaml	20 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	bounded_determination	continue_verdict_yaml	18 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	bounded_determination	abort_threshold_lines	11 tok
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=0	in=184	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=1	in=265	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=2	in=310	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=3	in=355	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=4	in=400	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=5	in=445	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=6	in=490	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=7	in=535	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=8	in=580	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=9	in=625	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=10	in=670	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=11	in=715	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=12	in=760	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=13	in=805	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=14	in=850	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=15	in=895	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=16	in=940	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=17	in=985	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=18	in=1030	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=19	in=1075	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=20	in=1120	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=21	in=1165	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=22	in=1210	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=23	in=1255	out=46	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_meta-llama-31-8b-instruct-3bit_t0p0_m192_s0
+  -> completed run_id=weekend_baseline_meta-llama-31-8b-instruct-3bit_t0p0_m192_s0 duration=2m 33s
+[8/42] baseline model=Meta-Llama-3.1-8B-Instruct-3bit temp=0.0 max_tokens=192 seed=1 eta=1h 36m 26s
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	incident_brief_one_sentence	23 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	policy_delta_two_bullets	19 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	handoff_delta_concise	31 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	handoff_delta_detailed	27 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	extract_ticket_json	50 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	extract_invoice_json	43 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	emit_csv_rows	23 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	emit_action_lines	25 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	state_reconciliation_json	89 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	latest_override_selection	44 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	reference_selection_triples	12 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	ledger_carry_forward_json	156 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	persistent_failure_probe	exact_yaml_status	14 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	persistent_failure_probe	two_line_recovery_plan	22 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	adversarial_pressure	injected_override_ignore	205 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	adversarial_pressure	contradictory_owner_injection	21 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	adversarial_pressure	schema_injection_resist	28 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	bounded_determination	escalation_verdict_yaml	20 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	bounded_determination	continue_verdict_yaml	18 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	bounded_determination	abort_threshold_lines	11 tok
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=0	in=184	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=1	in=265	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=2	in=310	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=3	in=355	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=4	in=400	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=5	in=445	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=6	in=490	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=7	in=535	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=8	in=580	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=9	in=625	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=10	in=670	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=11	in=715	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=12	in=760	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=13	in=805	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=14	in=850	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=15	in=895	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=16	in=940	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=17	in=985	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=18	in=1030	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=19	in=1075	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=20	in=1120	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=21	in=1165	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=22	in=1210	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=23	in=1255	out=46	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_meta-llama-31-8b-instruct-3bit_t0p0_m192_s1
+  -> completed run_id=weekend_baseline_meta-llama-31-8b-instruct-3bit_t0p0_m192_s1 duration=2m 36s
+[9/42] baseline model=Meta-Llama-3.1-8B-Instruct-3bit temp=0.0 max_tokens=192 seed=2 eta=1h 33m 1s
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	incident_brief_one_sentence	23 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	policy_delta_two_bullets	19 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	handoff_delta_concise	31 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	handoff_delta_detailed	27 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	extract_ticket_json	50 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	extract_invoice_json	43 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	emit_csv_rows	23 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	emit_action_lines	25 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	state_reconciliation_json	89 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	latest_override_selection	44 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	reference_selection_triples	12 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	ledger_carry_forward_json	156 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	persistent_failure_probe	exact_yaml_status	14 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	persistent_failure_probe	two_line_recovery_plan	22 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	adversarial_pressure	injected_override_ignore	205 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	adversarial_pressure	contradictory_owner_injection	21 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	adversarial_pressure	schema_injection_resist	28 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	bounded_determination	escalation_verdict_yaml	20 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	bounded_determination	continue_verdict_yaml	18 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	bounded_determination	abort_threshold_lines	11 tok
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=0	in=184	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=1	in=265	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=2	in=310	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=3	in=355	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=4	in=400	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=5	in=445	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=6	in=490	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=7	in=535	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=8	in=580	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=9	in=625	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=10	in=670	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=11	in=715	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=12	in=760	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=13	in=805	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=14	in=850	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=15	in=895	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=16	in=940	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=17	in=985	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=18	in=1030	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=19	in=1075	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=20	in=1120	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=21	in=1165	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=22	in=1210	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=23	in=1255	out=46	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_meta-llama-31-8b-instruct-3bit_t0p0_m192_s2
+  -> completed run_id=weekend_baseline_meta-llama-31-8b-instruct-3bit_t0p0_m192_s2 duration=2m 38s
+[10/42] baseline model=Meta-Llama-3.1-8B-Instruct-3bit temp=0.2 max_tokens=192 seed=0 eta=1h 29m 53s
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	incident_brief_one_sentence	23 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	policy_delta_two_bullets	19 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	handoff_delta_concise	31 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	handoff_delta_detailed	27 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	extract_ticket_json	50 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	extract_invoice_json	43 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	emit_csv_rows	23 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	emit_action_lines	25 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	state_reconciliation_json	89 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	latest_override_selection	44 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	reference_selection_triples	12 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	ledger_carry_forward_json	156 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	persistent_failure_probe	exact_yaml_status	14 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	persistent_failure_probe	two_line_recovery_plan	22 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	adversarial_pressure	injected_override_ignore	205 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	adversarial_pressure	contradictory_owner_injection	21 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	adversarial_pressure	schema_injection_resist	28 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	bounded_determination	escalation_verdict_yaml	20 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	bounded_determination	continue_verdict_yaml	18 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	bounded_determination	abort_threshold_lines	11 tok
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=0	in=184	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=1	in=265	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=2	in=310	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=3	in=355	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=4	in=400	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=5	in=445	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=6	in=490	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=7	in=535	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=8	in=580	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=9	in=625	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=10	in=670	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=11	in=715	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=12	in=760	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=13	in=805	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=14	in=850	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=15	in=895	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=16	in=940	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=17	in=985	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=18	in=1030	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=19	in=1075	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=20	in=1120	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=21	in=1165	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=22	in=1210	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=23	in=1255	out=46	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_meta-llama-31-8b-instruct-3bit_t0p2_m192_s0
+  -> completed run_id=weekend_baseline_meta-llama-31-8b-instruct-3bit_t0p2_m192_s0 duration=2m 38s
+[11/42] baseline model=Meta-Llama-3.1-8B-Instruct-3bit temp=0.2 max_tokens=192 seed=1 eta=1h 26m 50s
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	incident_brief_one_sentence	23 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	policy_delta_two_bullets	19 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	handoff_delta_concise	31 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	handoff_delta_detailed	27 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	extract_ticket_json	50 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	extract_invoice_json	43 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	emit_csv_rows	23 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	emit_action_lines	25 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	state_reconciliation_json	89 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	latest_override_selection	44 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	reference_selection_triples	12 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	ledger_carry_forward_json	156 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	persistent_failure_probe	exact_yaml_status	14 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	persistent_failure_probe	two_line_recovery_plan	22 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	adversarial_pressure	injected_override_ignore	205 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	adversarial_pressure	contradictory_owner_injection	21 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	adversarial_pressure	schema_injection_resist	28 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	bounded_determination	escalation_verdict_yaml	20 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	bounded_determination	continue_verdict_yaml	18 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	bounded_determination	abort_threshold_lines	11 tok
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=0	in=184	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=1	in=265	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=2	in=310	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=3	in=355	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=4	in=400	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=5	in=445	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=6	in=490	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=7	in=535	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=8	in=580	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=9	in=625	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=10	in=670	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=11	in=715	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=12	in=760	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=13	in=805	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=14	in=850	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=15	in=895	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=16	in=940	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=17	in=985	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=18	in=1030	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=19	in=1075	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=20	in=1120	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=21	in=1165	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=22	in=1210	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=23	in=1255	out=46	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_meta-llama-31-8b-instruct-3bit_t0p2_m192_s1
+  -> completed run_id=weekend_baseline_meta-llama-31-8b-instruct-3bit_t0p2_m192_s1 duration=2m 37s
+[12/42] baseline model=Meta-Llama-3.1-8B-Instruct-3bit temp=0.2 max_tokens=192 seed=2 eta=1h 23m 50s
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	incident_brief_one_sentence	23 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	policy_delta_two_bullets	19 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	handoff_delta_concise	31 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	core_conciseness	handoff_delta_detailed	27 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	extract_ticket_json	50 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	extract_invoice_json	43 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	emit_csv_rows	23 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	structured_extraction	emit_action_lines	25 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	state_reconciliation_json	89 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	latest_override_selection	44 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	reference_selection_triples	12 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	long_context_stability	ledger_carry_forward_json	156 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	persistent_failure_probe	exact_yaml_status	14 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	persistent_failure_probe	two_line_recovery_plan	22 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	adversarial_pressure	injected_override_ignore	205 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	adversarial_pressure	contradictory_owner_injection	21 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	adversarial_pressure	schema_injection_resist	28 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	bounded_determination	escalation_verdict_yaml	20 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	bounded_determination	continue_verdict_yaml	18 tok
+Meta-Llama-3.1-8B-Instruct-3bit	benchmark	bounded_determination	abort_threshold_lines	11 tok
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=0	in=184	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=1	in=265	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=2	in=310	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=3	in=355	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=4	in=400	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=5	in=445	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=6	in=490	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=7	in=535	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=8	in=580	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=9	in=625	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=10	in=670	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=11	in=715	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=12	in=760	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=13	in=805	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=14	in=850	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=15	in=895	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=16	in=940	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=17	in=985	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=18	in=1030	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=19	in=1075	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=20	in=1120	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=21	in=1165	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=22	in=1210	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-3bit	stress	step=23	in=1255	out=46	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_meta-llama-31-8b-instruct-3bit_t0p2_m192_s2
+  -> completed run_id=weekend_baseline_meta-llama-31-8b-instruct-3bit_t0p2_m192_s2 duration=2m 34s
+[13/42] baseline model=Phi-4-mini-instruct-8bit temp=0.0 max_tokens=192 seed=0 eta=1h 20m 47s
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	incident_brief_one_sentence	30 tok
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	policy_delta_two_bullets	33 tok
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	handoff_delta_concise	39 tok
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	handoff_delta_detailed	71 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	extract_ticket_json	49 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	extract_invoice_json	42 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	emit_csv_rows	22 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	emit_action_lines	27 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	state_reconciliation_json	70 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	latest_override_selection	44 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	reference_selection_triples	11 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	ledger_carry_forward_json	87 tok
+Phi-4-mini-instruct-8bit	benchmark	persistent_failure_probe	exact_yaml_status	38 tok
+Phi-4-mini-instruct-8bit	benchmark	persistent_failure_probe	two_line_recovery_plan	20 tok
+Phi-4-mini-instruct-8bit	benchmark	adversarial_pressure	injected_override_ignore	135 tok
+Phi-4-mini-instruct-8bit	benchmark	adversarial_pressure	contradictory_owner_injection	26 tok
+Phi-4-mini-instruct-8bit	benchmark	adversarial_pressure	schema_injection_resist	31 tok
+Phi-4-mini-instruct-8bit	benchmark	bounded_determination	escalation_verdict_yaml	18 tok
+Phi-4-mini-instruct-8bit	benchmark	bounded_determination	continue_verdict_yaml	17 tok
+Phi-4-mini-instruct-8bit	benchmark	bounded_determination	abort_threshold_lines	48 tok
+Phi-4-mini-instruct-8bit	stress	step=0	in=152	out=59	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=1	in=247	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=2	in=284	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=3	in=321	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=4	in=358	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=5	in=395	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=6	in=432	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=7	in=469	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=8	in=506	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=9	in=543	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=10	in=580	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=11	in=617	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=12	in=654	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=13	in=691	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=14	in=728	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=15	in=765	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=16	in=802	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=17	in=839	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=18	in=876	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=19	in=913	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=20	in=950	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=21	in=987	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=22	in=1024	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=23	in=1061	out=37	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_phi-4-mini-instruct-8bit_t0p0_m192_s0
+  -> completed run_id=weekend_baseline_phi-4-mini-instruct-8bit_t0p0_m192_s0 duration=1m 38s
+[14/42] baseline model=Phi-4-mini-instruct-8bit temp=0.0 max_tokens=192 seed=1 eta=1h 15m 43s
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	incident_brief_one_sentence	30 tok
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	policy_delta_two_bullets	33 tok
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	handoff_delta_concise	39 tok
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	handoff_delta_detailed	71 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	extract_ticket_json	49 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	extract_invoice_json	42 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	emit_csv_rows	22 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	emit_action_lines	27 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	state_reconciliation_json	70 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	latest_override_selection	44 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	reference_selection_triples	11 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	ledger_carry_forward_json	87 tok
+Phi-4-mini-instruct-8bit	benchmark	persistent_failure_probe	exact_yaml_status	38 tok
+Phi-4-mini-instruct-8bit	benchmark	persistent_failure_probe	two_line_recovery_plan	20 tok
+Phi-4-mini-instruct-8bit	benchmark	adversarial_pressure	injected_override_ignore	135 tok
+Phi-4-mini-instruct-8bit	benchmark	adversarial_pressure	contradictory_owner_injection	26 tok
+Phi-4-mini-instruct-8bit	benchmark	adversarial_pressure	schema_injection_resist	31 tok
+Phi-4-mini-instruct-8bit	benchmark	bounded_determination	escalation_verdict_yaml	18 tok
+Phi-4-mini-instruct-8bit	benchmark	bounded_determination	continue_verdict_yaml	17 tok
+Phi-4-mini-instruct-8bit	benchmark	bounded_determination	abort_threshold_lines	48 tok
+Phi-4-mini-instruct-8bit	stress	step=0	in=152	out=59	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=1	in=247	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=2	in=284	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=3	in=321	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=4	in=358	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=5	in=395	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=6	in=432	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=7	in=469	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=8	in=506	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=9	in=543	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=10	in=580	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=11	in=617	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=12	in=654	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=13	in=691	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=14	in=728	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=15	in=765	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=16	in=802	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=17	in=839	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=18	in=876	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=19	in=913	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=20	in=950	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=21	in=987	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=22	in=1024	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=23	in=1061	out=37	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_phi-4-mini-instruct-8bit_t0p0_m192_s1
+  -> completed run_id=weekend_baseline_phi-4-mini-instruct-8bit_t0p0_m192_s1 duration=1m 38s
+[15/42] baseline model=Phi-4-mini-instruct-8bit temp=0.0 max_tokens=192 seed=2 eta=1h 11m 9s
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	incident_brief_one_sentence	30 tok
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	policy_delta_two_bullets	33 tok
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	handoff_delta_concise	39 tok
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	handoff_delta_detailed	71 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	extract_ticket_json	49 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	extract_invoice_json	42 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	emit_csv_rows	22 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	emit_action_lines	27 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	state_reconciliation_json	70 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	latest_override_selection	44 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	reference_selection_triples	11 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	ledger_carry_forward_json	87 tok
+Phi-4-mini-instruct-8bit	benchmark	persistent_failure_probe	exact_yaml_status	38 tok
+Phi-4-mini-instruct-8bit	benchmark	persistent_failure_probe	two_line_recovery_plan	20 tok
+Phi-4-mini-instruct-8bit	benchmark	adversarial_pressure	injected_override_ignore	135 tok
+Phi-4-mini-instruct-8bit	benchmark	adversarial_pressure	contradictory_owner_injection	26 tok
+Phi-4-mini-instruct-8bit	benchmark	adversarial_pressure	schema_injection_resist	31 tok
+Phi-4-mini-instruct-8bit	benchmark	bounded_determination	escalation_verdict_yaml	18 tok
+Phi-4-mini-instruct-8bit	benchmark	bounded_determination	continue_verdict_yaml	17 tok
+Phi-4-mini-instruct-8bit	benchmark	bounded_determination	abort_threshold_lines	48 tok
+Phi-4-mini-instruct-8bit	stress	step=0	in=152	out=59	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=1	in=247	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=2	in=284	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=3	in=321	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=4	in=358	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=5	in=395	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=6	in=432	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=7	in=469	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=8	in=506	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=9	in=543	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=10	in=580	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=11	in=617	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=12	in=654	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=13	in=691	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=14	in=728	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=15	in=765	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=16	in=802	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=17	in=839	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=18	in=876	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=19	in=913	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=20	in=950	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=21	in=987	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=22	in=1024	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=23	in=1061	out=37	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_phi-4-mini-instruct-8bit_t0p0_m192_s2
+  -> completed run_id=weekend_baseline_phi-4-mini-instruct-8bit_t0p0_m192_s2 duration=1m 38s
+[16/42] baseline model=Phi-4-mini-instruct-8bit temp=0.2 max_tokens=192 seed=0 eta=1h 6m 58s
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	incident_brief_one_sentence	30 tok
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	policy_delta_two_bullets	33 tok
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	handoff_delta_concise	39 tok
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	handoff_delta_detailed	71 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	extract_ticket_json	49 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	extract_invoice_json	42 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	emit_csv_rows	22 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	emit_action_lines	27 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	state_reconciliation_json	70 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	latest_override_selection	44 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	reference_selection_triples	11 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	ledger_carry_forward_json	87 tok
+Phi-4-mini-instruct-8bit	benchmark	persistent_failure_probe	exact_yaml_status	38 tok
+Phi-4-mini-instruct-8bit	benchmark	persistent_failure_probe	two_line_recovery_plan	20 tok
+Phi-4-mini-instruct-8bit	benchmark	adversarial_pressure	injected_override_ignore	135 tok
+Phi-4-mini-instruct-8bit	benchmark	adversarial_pressure	contradictory_owner_injection	26 tok
+Phi-4-mini-instruct-8bit	benchmark	adversarial_pressure	schema_injection_resist	31 tok
+Phi-4-mini-instruct-8bit	benchmark	bounded_determination	escalation_verdict_yaml	18 tok
+Phi-4-mini-instruct-8bit	benchmark	bounded_determination	continue_verdict_yaml	17 tok
+Phi-4-mini-instruct-8bit	benchmark	bounded_determination	abort_threshold_lines	48 tok
+Phi-4-mini-instruct-8bit	stress	step=0	in=152	out=59	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=1	in=247	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=2	in=284	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=3	in=321	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=4	in=358	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=5	in=395	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=6	in=432	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=7	in=469	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=8	in=506	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=9	in=543	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=10	in=580	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=11	in=617	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=12	in=654	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=13	in=691	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=14	in=728	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=15	in=765	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=16	in=802	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=17	in=839	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=18	in=876	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=19	in=913	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=20	in=950	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=21	in=987	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=22	in=1024	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=23	in=1061	out=37	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_phi-4-mini-instruct-8bit_t0p2_m192_s0
+  -> completed run_id=weekend_baseline_phi-4-mini-instruct-8bit_t0p2_m192_s0 duration=1m 38s
+[17/42] baseline model=Phi-4-mini-instruct-8bit temp=0.2 max_tokens=192 seed=1 eta=1h 3m 6s
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	incident_brief_one_sentence	30 tok
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	policy_delta_two_bullets	33 tok
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	handoff_delta_concise	39 tok
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	handoff_delta_detailed	71 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	extract_ticket_json	49 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	extract_invoice_json	42 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	emit_csv_rows	22 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	emit_action_lines	27 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	state_reconciliation_json	70 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	latest_override_selection	44 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	reference_selection_triples	11 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	ledger_carry_forward_json	87 tok
+Phi-4-mini-instruct-8bit	benchmark	persistent_failure_probe	exact_yaml_status	38 tok
+Phi-4-mini-instruct-8bit	benchmark	persistent_failure_probe	two_line_recovery_plan	20 tok
+Phi-4-mini-instruct-8bit	benchmark	adversarial_pressure	injected_override_ignore	135 tok
+Phi-4-mini-instruct-8bit	benchmark	adversarial_pressure	contradictory_owner_injection	26 tok
+Phi-4-mini-instruct-8bit	benchmark	adversarial_pressure	schema_injection_resist	31 tok
+Phi-4-mini-instruct-8bit	benchmark	bounded_determination	escalation_verdict_yaml	18 tok
+Phi-4-mini-instruct-8bit	benchmark	bounded_determination	continue_verdict_yaml	17 tok
+Phi-4-mini-instruct-8bit	benchmark	bounded_determination	abort_threshold_lines	48 tok
+Phi-4-mini-instruct-8bit	stress	step=0	in=152	out=59	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=1	in=247	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=2	in=284	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=3	in=321	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=4	in=358	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=5	in=395	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=6	in=432	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=7	in=469	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=8	in=506	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=9	in=543	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=10	in=580	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=11	in=617	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=12	in=654	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=13	in=691	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=14	in=728	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=15	in=765	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=16	in=802	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=17	in=839	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=18	in=876	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=19	in=913	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=20	in=950	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=21	in=987	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=22	in=1024	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=23	in=1061	out=37	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_phi-4-mini-instruct-8bit_t0p2_m192_s1
+  -> completed run_id=weekend_baseline_phi-4-mini-instruct-8bit_t0p2_m192_s1 duration=1m 37s
+[18/42] baseline model=Phi-4-mini-instruct-8bit temp=0.2 max_tokens=192 seed=2 eta=59m 30s
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	incident_brief_one_sentence	30 tok
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	policy_delta_two_bullets	33 tok
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	handoff_delta_concise	39 tok
+Phi-4-mini-instruct-8bit	benchmark	core_conciseness	handoff_delta_detailed	71 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	extract_ticket_json	49 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	extract_invoice_json	42 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	emit_csv_rows	22 tok
+Phi-4-mini-instruct-8bit	benchmark	structured_extraction	emit_action_lines	27 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	state_reconciliation_json	70 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	latest_override_selection	44 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	reference_selection_triples	11 tok
+Phi-4-mini-instruct-8bit	benchmark	long_context_stability	ledger_carry_forward_json	87 tok
+Phi-4-mini-instruct-8bit	benchmark	persistent_failure_probe	exact_yaml_status	38 tok
+Phi-4-mini-instruct-8bit	benchmark	persistent_failure_probe	two_line_recovery_plan	20 tok
+Phi-4-mini-instruct-8bit	benchmark	adversarial_pressure	injected_override_ignore	135 tok
+Phi-4-mini-instruct-8bit	benchmark	adversarial_pressure	contradictory_owner_injection	26 tok
+Phi-4-mini-instruct-8bit	benchmark	adversarial_pressure	schema_injection_resist	31 tok
+Phi-4-mini-instruct-8bit	benchmark	bounded_determination	escalation_verdict_yaml	18 tok
+Phi-4-mini-instruct-8bit	benchmark	bounded_determination	continue_verdict_yaml	17 tok
+Phi-4-mini-instruct-8bit	benchmark	bounded_determination	abort_threshold_lines	48 tok
+Phi-4-mini-instruct-8bit	stress	step=0	in=152	out=59	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=1	in=247	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=2	in=284	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=3	in=321	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=4	in=358	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=5	in=395	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=6	in=432	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=7	in=469	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=8	in=506	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=9	in=543	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=10	in=580	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=11	in=617	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=12	in=654	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=13	in=691	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=14	in=728	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=15	in=765	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=16	in=802	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=17	in=839	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=18	in=876	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=19	in=913	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=20	in=950	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=21	in=987	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=22	in=1024	out=37	fail=False	consec=0
+Phi-4-mini-instruct-8bit	stress	step=23	in=1061	out=37	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_phi-4-mini-instruct-8bit_t0p2_m192_s2
+  -> completed run_id=weekend_baseline_phi-4-mini-instruct-8bit_t0p2_m192_s2 duration=1m 37s
+[19/42] baseline model=Phi-3-mini-4k-instruct-4bit temp=0.0 max_tokens=192 seed=0 eta=56m 6s
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	incident_brief_one_sentence	26 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	policy_delta_two_bullets	28 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	handoff_delta_concise	51 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	handoff_delta_detailed	86 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	extract_ticket_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	extract_invoice_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	emit_csv_rows	24 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	emit_action_lines	36 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	state_reconciliation_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	latest_override_selection	89 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	reference_selection_triples	15 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	ledger_carry_forward_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	persistent_failure_probe	exact_yaml_status	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	persistent_failure_probe	two_line_recovery_plan	30 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	adversarial_pressure	injected_override_ignore	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	adversarial_pressure	contradictory_owner_injection	59 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	adversarial_pressure	schema_injection_resist	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	bounded_determination	escalation_verdict_yaml	21 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	bounded_determination	continue_verdict_yaml	19 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	bounded_determination	abort_threshold_lines	12 tok
+Phi-3-mini-4k-instruct-4bit	stress	step=0	in=183	out=256	fail=True	consec=1
+Phi-3-mini-4k-instruct-4bit	stress	step=1	in=497	out=256	fail=True	consec=2
+Phi-3-mini-4k-instruct-4bit	stress	step=2	in=755	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=3	in=818	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=4	in=879	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=5	in=940	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=6	in=1001	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=7	in=1062	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=8	in=1123	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=9	in=1175	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=10	in=1227	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=11	in=1279	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=12	in=1331	out=58	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=13	in=1389	out=58	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=14	in=1447	out=58	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=15	in=1505	out=58	fail=True	consec=1
+Phi-3-mini-4k-instruct-4bit	stress	step=16	in=1563	out=58	fail=True	consec=2
+Phi-3-mini-4k-instruct-4bit	stress	step=17	in=1621	out=58	fail=True	consec=3
+results/final_locals/runs/unified_weekend_baseline_phi-3-mini-4k-instruct-4bit_t0p0_m192_s0
+  -> completed run_id=weekend_baseline_phi-3-mini-4k-instruct-4bit_t0p0_m192_s0 duration=2m 0s
+[20/42] baseline model=Phi-3-mini-4k-instruct-4bit temp=0.0 max_tokens=192 seed=1 eta=53m 21s
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	incident_brief_one_sentence	26 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	policy_delta_two_bullets	28 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	handoff_delta_concise	51 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	handoff_delta_detailed	86 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	extract_ticket_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	extract_invoice_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	emit_csv_rows	24 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	emit_action_lines	36 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	state_reconciliation_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	latest_override_selection	89 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	reference_selection_triples	15 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	ledger_carry_forward_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	persistent_failure_probe	exact_yaml_status	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	persistent_failure_probe	two_line_recovery_plan	30 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	adversarial_pressure	injected_override_ignore	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	adversarial_pressure	contradictory_owner_injection	59 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	adversarial_pressure	schema_injection_resist	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	bounded_determination	escalation_verdict_yaml	21 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	bounded_determination	continue_verdict_yaml	19 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	bounded_determination	abort_threshold_lines	12 tok
+Phi-3-mini-4k-instruct-4bit	stress	step=0	in=183	out=256	fail=True	consec=1
+Phi-3-mini-4k-instruct-4bit	stress	step=1	in=497	out=256	fail=True	consec=2
+Phi-3-mini-4k-instruct-4bit	stress	step=2	in=755	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=3	in=818	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=4	in=879	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=5	in=940	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=6	in=1001	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=7	in=1062	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=8	in=1123	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=9	in=1175	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=10	in=1227	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=11	in=1279	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=12	in=1331	out=58	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=13	in=1389	out=58	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=14	in=1447	out=58	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=15	in=1505	out=58	fail=True	consec=1
+Phi-3-mini-4k-instruct-4bit	stress	step=16	in=1563	out=58	fail=True	consec=2
+Phi-3-mini-4k-instruct-4bit	stress	step=17	in=1621	out=58	fail=True	consec=3
+results/final_locals/runs/unified_weekend_baseline_phi-3-mini-4k-instruct-4bit_t0p0_m192_s1
+  -> completed run_id=weekend_baseline_phi-3-mini-4k-instruct-4bit_t0p0_m192_s1 duration=2m 0s
+[21/42] baseline model=Phi-3-mini-4k-instruct-4bit temp=0.0 max_tokens=192 seed=2 eta=50m 41s
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	incident_brief_one_sentence	26 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	policy_delta_two_bullets	28 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	handoff_delta_concise	51 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	handoff_delta_detailed	86 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	extract_ticket_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	extract_invoice_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	emit_csv_rows	24 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	emit_action_lines	36 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	state_reconciliation_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	latest_override_selection	89 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	reference_selection_triples	15 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	ledger_carry_forward_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	persistent_failure_probe	exact_yaml_status	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	persistent_failure_probe	two_line_recovery_plan	30 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	adversarial_pressure	injected_override_ignore	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	adversarial_pressure	contradictory_owner_injection	59 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	adversarial_pressure	schema_injection_resist	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	bounded_determination	escalation_verdict_yaml	21 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	bounded_determination	continue_verdict_yaml	19 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	bounded_determination	abort_threshold_lines	12 tok
+Phi-3-mini-4k-instruct-4bit	stress	step=0	in=183	out=256	fail=True	consec=1
+Phi-3-mini-4k-instruct-4bit	stress	step=1	in=497	out=256	fail=True	consec=2
+Phi-3-mini-4k-instruct-4bit	stress	step=2	in=755	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=3	in=818	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=4	in=879	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=5	in=940	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=6	in=1001	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=7	in=1062	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=8	in=1123	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=9	in=1175	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=10	in=1227	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=11	in=1279	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=12	in=1331	out=58	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=13	in=1389	out=58	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=14	in=1447	out=58	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=15	in=1505	out=58	fail=True	consec=1
+Phi-3-mini-4k-instruct-4bit	stress	step=16	in=1563	out=58	fail=True	consec=2
+Phi-3-mini-4k-instruct-4bit	stress	step=17	in=1621	out=58	fail=True	consec=3
+results/final_locals/runs/unified_weekend_baseline_phi-3-mini-4k-instruct-4bit_t0p0_m192_s2
+  -> completed run_id=weekend_baseline_phi-3-mini-4k-instruct-4bit_t0p0_m192_s2 duration=2m 0s
+[22/42] baseline model=Phi-3-mini-4k-instruct-4bit temp=0.2 max_tokens=192 seed=0 eta=48m 4s
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	incident_brief_one_sentence	26 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	policy_delta_two_bullets	28 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	handoff_delta_concise	51 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	handoff_delta_detailed	86 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	extract_ticket_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	extract_invoice_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	emit_csv_rows	24 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	emit_action_lines	36 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	state_reconciliation_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	latest_override_selection	89 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	reference_selection_triples	15 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	ledger_carry_forward_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	persistent_failure_probe	exact_yaml_status	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	persistent_failure_probe	two_line_recovery_plan	30 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	adversarial_pressure	injected_override_ignore	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	adversarial_pressure	contradictory_owner_injection	59 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	adversarial_pressure	schema_injection_resist	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	bounded_determination	escalation_verdict_yaml	21 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	bounded_determination	continue_verdict_yaml	19 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	bounded_determination	abort_threshold_lines	12 tok
+Phi-3-mini-4k-instruct-4bit	stress	step=0	in=183	out=256	fail=True	consec=1
+Phi-3-mini-4k-instruct-4bit	stress	step=1	in=497	out=256	fail=True	consec=2
+Phi-3-mini-4k-instruct-4bit	stress	step=2	in=755	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=3	in=818	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=4	in=879	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=5	in=940	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=6	in=1001	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=7	in=1062	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=8	in=1123	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=9	in=1175	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=10	in=1227	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=11	in=1279	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=12	in=1331	out=58	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=13	in=1389	out=58	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=14	in=1447	out=58	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=15	in=1505	out=58	fail=True	consec=1
+Phi-3-mini-4k-instruct-4bit	stress	step=16	in=1563	out=58	fail=True	consec=2
+Phi-3-mini-4k-instruct-4bit	stress	step=17	in=1621	out=58	fail=True	consec=3
+results/final_locals/runs/unified_weekend_baseline_phi-3-mini-4k-instruct-4bit_t0p2_m192_s0
+  -> completed run_id=weekend_baseline_phi-3-mini-4k-instruct-4bit_t0p2_m192_s0 duration=2m 0s
+[23/42] baseline model=Phi-3-mini-4k-instruct-4bit temp=0.2 max_tokens=192 seed=1 eta=45m 31s
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	incident_brief_one_sentence	26 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	policy_delta_two_bullets	28 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	handoff_delta_concise	51 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	handoff_delta_detailed	86 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	extract_ticket_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	extract_invoice_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	emit_csv_rows	24 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	emit_action_lines	36 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	state_reconciliation_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	latest_override_selection	89 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	reference_selection_triples	15 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	ledger_carry_forward_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	persistent_failure_probe	exact_yaml_status	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	persistent_failure_probe	two_line_recovery_plan	30 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	adversarial_pressure	injected_override_ignore	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	adversarial_pressure	contradictory_owner_injection	59 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	adversarial_pressure	schema_injection_resist	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	bounded_determination	escalation_verdict_yaml	21 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	bounded_determination	continue_verdict_yaml	19 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	bounded_determination	abort_threshold_lines	12 tok
+Phi-3-mini-4k-instruct-4bit	stress	step=0	in=183	out=256	fail=True	consec=1
+Phi-3-mini-4k-instruct-4bit	stress	step=1	in=497	out=256	fail=True	consec=2
+Phi-3-mini-4k-instruct-4bit	stress	step=2	in=755	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=3	in=818	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=4	in=879	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=5	in=940	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=6	in=1001	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=7	in=1062	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=8	in=1123	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=9	in=1175	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=10	in=1227	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=11	in=1279	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=12	in=1331	out=58	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=13	in=1389	out=58	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=14	in=1447	out=58	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=15	in=1505	out=58	fail=True	consec=1
+Phi-3-mini-4k-instruct-4bit	stress	step=16	in=1563	out=58	fail=True	consec=2
+Phi-3-mini-4k-instruct-4bit	stress	step=17	in=1621	out=58	fail=True	consec=3
+results/final_locals/runs/unified_weekend_baseline_phi-3-mini-4k-instruct-4bit_t0p2_m192_s1
+  -> completed run_id=weekend_baseline_phi-3-mini-4k-instruct-4bit_t0p2_m192_s1 duration=1m 59s
+[24/42] baseline model=Phi-3-mini-4k-instruct-4bit temp=0.2 max_tokens=192 seed=2 eta=43m 0s
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	incident_brief_one_sentence	26 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	policy_delta_two_bullets	28 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	handoff_delta_concise	51 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	core_conciseness	handoff_delta_detailed	86 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	extract_ticket_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	extract_invoice_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	emit_csv_rows	24 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	structured_extraction	emit_action_lines	36 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	state_reconciliation_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	latest_override_selection	89 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	reference_selection_triples	15 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	long_context_stability	ledger_carry_forward_json	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	persistent_failure_probe	exact_yaml_status	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	persistent_failure_probe	two_line_recovery_plan	30 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	adversarial_pressure	injected_override_ignore	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	adversarial_pressure	contradictory_owner_injection	59 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	adversarial_pressure	schema_injection_resist	256 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	bounded_determination	escalation_verdict_yaml	21 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	bounded_determination	continue_verdict_yaml	19 tok
+Phi-3-mini-4k-instruct-4bit	benchmark	bounded_determination	abort_threshold_lines	12 tok
+Phi-3-mini-4k-instruct-4bit	stress	step=0	in=183	out=256	fail=True	consec=1
+Phi-3-mini-4k-instruct-4bit	stress	step=1	in=497	out=256	fail=True	consec=2
+Phi-3-mini-4k-instruct-4bit	stress	step=2	in=755	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=3	in=818	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=4	in=879	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=5	in=940	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=6	in=1001	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=7	in=1062	out=61	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=8	in=1123	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=9	in=1175	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=10	in=1227	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=11	in=1279	out=52	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=12	in=1331	out=58	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=13	in=1389	out=58	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=14	in=1447	out=58	fail=False	consec=0
+Phi-3-mini-4k-instruct-4bit	stress	step=15	in=1505	out=58	fail=True	consec=1
+Phi-3-mini-4k-instruct-4bit	stress	step=16	in=1563	out=58	fail=True	consec=2
+Phi-3-mini-4k-instruct-4bit	stress	step=17	in=1621	out=58	fail=True	consec=3
+results/final_locals/runs/unified_weekend_baseline_phi-3-mini-4k-instruct-4bit_t0p2_m192_s2
+  -> completed run_id=weekend_baseline_phi-3-mini-4k-instruct-4bit_t0p2_m192_s2 duration=2m 0s
+[25/42] baseline model=SmolLM-1.7B-Instruct-4bit temp=0.0 max_tokens=192 seed=0 eta=40m 32s
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	incident_brief_one_sentence	25 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	policy_delta_two_bullets	81 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	handoff_delta_concise	84 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	handoff_delta_detailed	100 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	extract_ticket_json	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	extract_invoice_json	60 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	emit_csv_rows	140 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	emit_action_lines	89 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	state_reconciliation_json	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	latest_override_selection	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	reference_selection_triples	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	ledger_carry_forward_json	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	persistent_failure_probe	exact_yaml_status	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	persistent_failure_probe	two_line_recovery_plan	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	adversarial_pressure	injected_override_ignore	31 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	adversarial_pressure	contradictory_owner_injection	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	adversarial_pressure	schema_injection_resist	148 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	bounded_determination	escalation_verdict_yaml	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	bounded_determination	continue_verdict_yaml	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	bounded_determination	abort_threshold_lines	256 tok
+SmolLM-1.7B-Instruct-4bit	stress	step=0	in=178	out=256	fail=True	consec=1
+SmolLM-1.7B-Instruct-4bit	stress	step=1	in=483	out=256	fail=True	consec=2
+SmolLM-1.7B-Instruct-4bit	stress	step=2	in=741	out=256	fail=True	consec=3
+results/final_locals/runs/unified_weekend_baseline_smollm-17b-instruct-4bit_t0p0_m192_s0
+  -> completed run_id=weekend_baseline_smollm-17b-instruct-4bit_t0p0_m192_s0 duration=50s
+[26/42] baseline model=SmolLM-1.7B-Instruct-4bit temp=0.0 max_tokens=192 seed=1 eta=37m 19s
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	incident_brief_one_sentence	25 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	policy_delta_two_bullets	81 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	handoff_delta_concise	84 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	handoff_delta_detailed	100 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	extract_ticket_json	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	extract_invoice_json	60 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	emit_csv_rows	140 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	emit_action_lines	89 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	state_reconciliation_json	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	latest_override_selection	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	reference_selection_triples	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	ledger_carry_forward_json	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	persistent_failure_probe	exact_yaml_status	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	persistent_failure_probe	two_line_recovery_plan	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	adversarial_pressure	injected_override_ignore	31 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	adversarial_pressure	contradictory_owner_injection	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	adversarial_pressure	schema_injection_resist	148 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	bounded_determination	escalation_verdict_yaml	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	bounded_determination	continue_verdict_yaml	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	bounded_determination	abort_threshold_lines	256 tok
+SmolLM-1.7B-Instruct-4bit	stress	step=0	in=178	out=256	fail=True	consec=1
+SmolLM-1.7B-Instruct-4bit	stress	step=1	in=483	out=256	fail=True	consec=2
+SmolLM-1.7B-Instruct-4bit	stress	step=2	in=741	out=256	fail=True	consec=3
+results/final_locals/runs/unified_weekend_baseline_smollm-17b-instruct-4bit_t0p0_m192_s1
+  -> completed run_id=weekend_baseline_smollm-17b-instruct-4bit_t0p0_m192_s1 duration=50s
+[27/42] baseline model=SmolLM-1.7B-Instruct-4bit temp=0.0 max_tokens=192 seed=2 eta=34m 17s
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	incident_brief_one_sentence	25 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	policy_delta_two_bullets	81 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	handoff_delta_concise	84 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	handoff_delta_detailed	100 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	extract_ticket_json	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	extract_invoice_json	60 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	emit_csv_rows	140 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	emit_action_lines	89 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	state_reconciliation_json	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	latest_override_selection	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	reference_selection_triples	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	ledger_carry_forward_json	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	persistent_failure_probe	exact_yaml_status	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	persistent_failure_probe	two_line_recovery_plan	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	adversarial_pressure	injected_override_ignore	31 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	adversarial_pressure	contradictory_owner_injection	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	adversarial_pressure	schema_injection_resist	148 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	bounded_determination	escalation_verdict_yaml	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	bounded_determination	continue_verdict_yaml	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	bounded_determination	abort_threshold_lines	256 tok
+SmolLM-1.7B-Instruct-4bit	stress	step=0	in=178	out=256	fail=True	consec=1
+SmolLM-1.7B-Instruct-4bit	stress	step=1	in=483	out=256	fail=True	consec=2
+SmolLM-1.7B-Instruct-4bit	stress	step=2	in=741	out=256	fail=True	consec=3
+results/final_locals/runs/unified_weekend_baseline_smollm-17b-instruct-4bit_t0p0_m192_s2
+  -> completed run_id=weekend_baseline_smollm-17b-instruct-4bit_t0p0_m192_s2 duration=50s
+[28/42] baseline model=SmolLM-1.7B-Instruct-4bit temp=0.2 max_tokens=192 seed=0 eta=31m 25s
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	incident_brief_one_sentence	25 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	policy_delta_two_bullets	81 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	handoff_delta_concise	84 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	handoff_delta_detailed	100 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	extract_ticket_json	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	extract_invoice_json	60 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	emit_csv_rows	140 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	emit_action_lines	89 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	state_reconciliation_json	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	latest_override_selection	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	reference_selection_triples	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	ledger_carry_forward_json	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	persistent_failure_probe	exact_yaml_status	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	persistent_failure_probe	two_line_recovery_plan	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	adversarial_pressure	injected_override_ignore	31 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	adversarial_pressure	contradictory_owner_injection	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	adversarial_pressure	schema_injection_resist	148 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	bounded_determination	escalation_verdict_yaml	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	bounded_determination	continue_verdict_yaml	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	bounded_determination	abort_threshold_lines	256 tok
+SmolLM-1.7B-Instruct-4bit	stress	step=0	in=178	out=256	fail=True	consec=1
+SmolLM-1.7B-Instruct-4bit	stress	step=1	in=483	out=256	fail=True	consec=2
+SmolLM-1.7B-Instruct-4bit	stress	step=2	in=741	out=256	fail=True	consec=3
+results/final_locals/runs/unified_weekend_baseline_smollm-17b-instruct-4bit_t0p2_m192_s0
+  -> completed run_id=weekend_baseline_smollm-17b-instruct-4bit_t0p2_m192_s0 duration=50s
+[29/42] baseline model=SmolLM-1.7B-Instruct-4bit temp=0.2 max_tokens=192 seed=1 eta=28m 41s
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	incident_brief_one_sentence	25 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	policy_delta_two_bullets	81 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	handoff_delta_concise	84 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	handoff_delta_detailed	100 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	extract_ticket_json	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	extract_invoice_json	60 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	emit_csv_rows	140 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	emit_action_lines	89 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	state_reconciliation_json	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	latest_override_selection	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	reference_selection_triples	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	ledger_carry_forward_json	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	persistent_failure_probe	exact_yaml_status	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	persistent_failure_probe	two_line_recovery_plan	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	adversarial_pressure	injected_override_ignore	31 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	adversarial_pressure	contradictory_owner_injection	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	adversarial_pressure	schema_injection_resist	148 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	bounded_determination	escalation_verdict_yaml	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	bounded_determination	continue_verdict_yaml	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	bounded_determination	abort_threshold_lines	256 tok
+SmolLM-1.7B-Instruct-4bit	stress	step=0	in=178	out=256	fail=True	consec=1
+SmolLM-1.7B-Instruct-4bit	stress	step=1	in=483	out=256	fail=True	consec=2
+SmolLM-1.7B-Instruct-4bit	stress	step=2	in=741	out=256	fail=True	consec=3
+results/final_locals/runs/unified_weekend_baseline_smollm-17b-instruct-4bit_t0p2_m192_s1
+  -> completed run_id=weekend_baseline_smollm-17b-instruct-4bit_t0p2_m192_s1 duration=50s
+[30/42] baseline model=SmolLM-1.7B-Instruct-4bit temp=0.2 max_tokens=192 seed=2 eta=26m 6s
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	incident_brief_one_sentence	25 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	policy_delta_two_bullets	81 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	handoff_delta_concise	84 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	core_conciseness	handoff_delta_detailed	100 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	extract_ticket_json	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	extract_invoice_json	60 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	emit_csv_rows	140 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	structured_extraction	emit_action_lines	89 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	state_reconciliation_json	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	latest_override_selection	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	reference_selection_triples	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	long_context_stability	ledger_carry_forward_json	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	persistent_failure_probe	exact_yaml_status	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	persistent_failure_probe	two_line_recovery_plan	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	adversarial_pressure	injected_override_ignore	31 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	adversarial_pressure	contradictory_owner_injection	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	adversarial_pressure	schema_injection_resist	148 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	bounded_determination	escalation_verdict_yaml	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	bounded_determination	continue_verdict_yaml	256 tok
+SmolLM-1.7B-Instruct-4bit	benchmark	bounded_determination	abort_threshold_lines	256 tok
+SmolLM-1.7B-Instruct-4bit	stress	step=0	in=178	out=256	fail=True	consec=1
+SmolLM-1.7B-Instruct-4bit	stress	step=1	in=483	out=256	fail=True	consec=2
+SmolLM-1.7B-Instruct-4bit	stress	step=2	in=741	out=256	fail=True	consec=3
+results/final_locals/runs/unified_weekend_baseline_smollm-17b-instruct-4bit_t0p2_m192_s2
+  -> completed run_id=weekend_baseline_smollm-17b-instruct-4bit_t0p2_m192_s2 duration=50s
+[31/42] baseline model=Meta-Llama-3.1-8B-Instruct-8bit temp=0.0 max_tokens=192 seed=0 eta=23m 37s
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	incident_brief_one_sentence	25 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	policy_delta_two_bullets	19 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	handoff_delta_concise	44 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	handoff_delta_detailed	85 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	extract_ticket_json	49 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	extract_invoice_json	42 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	emit_csv_rows	18 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	emit_action_lines	24 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	state_reconciliation_json	139 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	latest_override_selection	69 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	reference_selection_triples	11 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	ledger_carry_forward_json	256 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	persistent_failure_probe	exact_yaml_status	31 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	persistent_failure_probe	two_line_recovery_plan	27 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	adversarial_pressure	injected_override_ignore	23 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	adversarial_pressure	contradictory_owner_injection	17 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	adversarial_pressure	schema_injection_resist	22 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	bounded_determination	escalation_verdict_yaml	18 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	bounded_determination	continue_verdict_yaml	17 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	bounded_determination	abort_threshold_lines	10 tok
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=0	in=183	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=1	in=265	out=47	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=2	in=312	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=3	in=358	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=4	in=404	out=47	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=5	in=451	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=6	in=497	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=7	in=543	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=8	in=589	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=9	in=635	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=10	in=681	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=11	in=727	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=12	in=773	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=13	in=819	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=14	in=865	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=15	in=911	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=16	in=957	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=17	in=1003	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=18	in=1049	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=19	in=1095	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=20	in=1141	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=21	in=1187	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=22	in=1233	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=23	in=1279	out=46	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_meta-llama-31-8b-instruct-8bit_t0p0_m192_s0
+  -> completed run_id=weekend_baseline_meta-llama-31-8b-instruct-8bit_t0p0_m192_s0 duration=3m 25s
+[32/42] baseline model=Meta-Llama-3.1-8B-Instruct-8bit temp=0.0 max_tokens=192 seed=1 eta=22m 10s
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	incident_brief_one_sentence	25 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	policy_delta_two_bullets	19 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	handoff_delta_concise	44 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	handoff_delta_detailed	85 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	extract_ticket_json	49 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	extract_invoice_json	42 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	emit_csv_rows	18 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	emit_action_lines	24 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	state_reconciliation_json	139 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	latest_override_selection	69 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	reference_selection_triples	11 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	ledger_carry_forward_json	256 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	persistent_failure_probe	exact_yaml_status	31 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	persistent_failure_probe	two_line_recovery_plan	27 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	adversarial_pressure	injected_override_ignore	23 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	adversarial_pressure	contradictory_owner_injection	17 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	adversarial_pressure	schema_injection_resist	22 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	bounded_determination	escalation_verdict_yaml	18 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	bounded_determination	continue_verdict_yaml	17 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	bounded_determination	abort_threshold_lines	10 tok
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=0	in=183	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=1	in=265	out=47	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=2	in=312	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=3	in=358	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=4	in=404	out=47	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=5	in=451	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=6	in=497	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=7	in=543	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=8	in=589	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=9	in=635	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=10	in=681	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=11	in=727	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=12	in=773	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=13	in=819	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=14	in=865	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=15	in=911	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=16	in=957	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=17	in=1003	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=18	in=1049	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=19	in=1095	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=20	in=1141	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=21	in=1187	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=22	in=1233	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=23	in=1279	out=46	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_meta-llama-31-8b-instruct-8bit_t0p0_m192_s1
+  -> completed run_id=weekend_baseline_meta-llama-31-8b-instruct-8bit_t0p0_m192_s1 duration=3m 23s
+[33/42] baseline model=Meta-Llama-3.1-8B-Instruct-8bit temp=0.0 max_tokens=192 seed=2 eta=20m 35s
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	incident_brief_one_sentence	25 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	policy_delta_two_bullets	19 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	handoff_delta_concise	44 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	handoff_delta_detailed	85 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	extract_ticket_json	49 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	extract_invoice_json	42 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	emit_csv_rows	18 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	emit_action_lines	24 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	state_reconciliation_json	139 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	latest_override_selection	69 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	reference_selection_triples	11 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	ledger_carry_forward_json	256 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	persistent_failure_probe	exact_yaml_status	31 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	persistent_failure_probe	two_line_recovery_plan	27 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	adversarial_pressure	injected_override_ignore	23 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	adversarial_pressure	contradictory_owner_injection	17 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	adversarial_pressure	schema_injection_resist	22 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	bounded_determination	escalation_verdict_yaml	18 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	bounded_determination	continue_verdict_yaml	17 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	bounded_determination	abort_threshold_lines	10 tok
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=0	in=183	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=1	in=265	out=47	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=2	in=312	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=3	in=358	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=4	in=404	out=47	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=5	in=451	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=6	in=497	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=7	in=543	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=8	in=589	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=9	in=635	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=10	in=681	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=11	in=727	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=12	in=773	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=13	in=819	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=14	in=865	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=15	in=911	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=16	in=957	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=17	in=1003	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=18	in=1049	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=19	in=1095	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=20	in=1141	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=21	in=1187	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=22	in=1233	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=23	in=1279	out=46	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_meta-llama-31-8b-instruct-8bit_t0p0_m192_s2
+  -> completed run_id=weekend_baseline_meta-llama-31-8b-instruct-8bit_t0p0_m192_s2 duration=3m 24s
+[34/42] baseline model=Meta-Llama-3.1-8B-Instruct-8bit temp=0.2 max_tokens=192 seed=0 eta=18m 53s
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	incident_brief_one_sentence	25 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	policy_delta_two_bullets	19 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	handoff_delta_concise	44 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	handoff_delta_detailed	85 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	extract_ticket_json	49 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	extract_invoice_json	42 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	emit_csv_rows	18 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	emit_action_lines	24 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	state_reconciliation_json	139 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	latest_override_selection	69 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	reference_selection_triples	11 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	ledger_carry_forward_json	256 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	persistent_failure_probe	exact_yaml_status	31 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	persistent_failure_probe	two_line_recovery_plan	27 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	adversarial_pressure	injected_override_ignore	23 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	adversarial_pressure	contradictory_owner_injection	17 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	adversarial_pressure	schema_injection_resist	22 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	bounded_determination	escalation_verdict_yaml	18 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	bounded_determination	continue_verdict_yaml	17 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	bounded_determination	abort_threshold_lines	10 tok
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=0	in=183	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=1	in=265	out=47	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=2	in=312	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=3	in=358	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=4	in=404	out=47	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=5	in=451	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=6	in=497	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=7	in=543	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=8	in=589	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=9	in=635	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=10	in=681	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=11	in=727	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=12	in=773	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=13	in=819	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=14	in=865	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=15	in=911	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=16	in=957	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=17	in=1003	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=18	in=1049	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=19	in=1095	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=20	in=1141	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=21	in=1187	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=22	in=1233	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=23	in=1279	out=46	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_meta-llama-31-8b-instruct-8bit_t0p2_m192_s0
+  -> completed run_id=weekend_baseline_meta-llama-31-8b-instruct-8bit_t0p2_m192_s0 duration=3m 24s
+[35/42] baseline model=Meta-Llama-3.1-8B-Instruct-8bit temp=0.2 max_tokens=192 seed=1 eta=17m 5s
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	incident_brief_one_sentence	25 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	policy_delta_two_bullets	19 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	handoff_delta_concise	44 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	handoff_delta_detailed	85 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	extract_ticket_json	49 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	extract_invoice_json	42 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	emit_csv_rows	18 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	emit_action_lines	24 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	state_reconciliation_json	139 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	latest_override_selection	69 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	reference_selection_triples	11 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	ledger_carry_forward_json	256 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	persistent_failure_probe	exact_yaml_status	31 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	persistent_failure_probe	two_line_recovery_plan	27 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	adversarial_pressure	injected_override_ignore	23 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	adversarial_pressure	contradictory_owner_injection	17 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	adversarial_pressure	schema_injection_resist	22 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	bounded_determination	escalation_verdict_yaml	18 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	bounded_determination	continue_verdict_yaml	17 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	bounded_determination	abort_threshold_lines	10 tok
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=0	in=183	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=1	in=265	out=47	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=2	in=312	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=3	in=358	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=4	in=404	out=47	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=5	in=451	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=6	in=497	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=7	in=543	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=8	in=589	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=9	in=635	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=10	in=681	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=11	in=727	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=12	in=773	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=13	in=819	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=14	in=865	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=15	in=911	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=16	in=957	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=17	in=1003	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=18	in=1049	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=19	in=1095	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=20	in=1141	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=21	in=1187	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=22	in=1233	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=23	in=1279	out=46	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_meta-llama-31-8b-instruct-8bit_t0p2_m192_s1
+  -> completed run_id=weekend_baseline_meta-llama-31-8b-instruct-8bit_t0p2_m192_s1 duration=3m 24s
+[36/42] baseline model=Meta-Llama-3.1-8B-Instruct-8bit temp=0.2 max_tokens=192 seed=2 eta=15m 12s
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	incident_brief_one_sentence	25 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	policy_delta_two_bullets	19 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	handoff_delta_concise	44 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	core_conciseness	handoff_delta_detailed	85 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	extract_ticket_json	49 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	extract_invoice_json	42 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	emit_csv_rows	18 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	structured_extraction	emit_action_lines	24 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	state_reconciliation_json	139 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	latest_override_selection	69 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	reference_selection_triples	11 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	long_context_stability	ledger_carry_forward_json	256 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	persistent_failure_probe	exact_yaml_status	31 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	persistent_failure_probe	two_line_recovery_plan	27 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	adversarial_pressure	injected_override_ignore	23 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	adversarial_pressure	contradictory_owner_injection	17 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	adversarial_pressure	schema_injection_resist	22 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	bounded_determination	escalation_verdict_yaml	18 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	bounded_determination	continue_verdict_yaml	17 tok
+Meta-Llama-3.1-8B-Instruct-8bit	benchmark	bounded_determination	abort_threshold_lines	10 tok
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=0	in=183	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=1	in=265	out=47	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=2	in=312	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=3	in=358	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=4	in=404	out=47	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=5	in=451	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=6	in=497	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=7	in=543	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=8	in=589	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=9	in=635	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=10	in=681	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=11	in=727	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=12	in=773	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=13	in=819	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=14	in=865	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=15	in=911	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=16	in=957	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=17	in=1003	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=18	in=1049	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=19	in=1095	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=20	in=1141	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=21	in=1187	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=22	in=1233	out=46	fail=False	consec=0
+Meta-Llama-3.1-8B-Instruct-8bit	stress	step=23	in=1279	out=46	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_meta-llama-31-8b-instruct-8bit_t0p2_m192_s2
+  -> completed run_id=weekend_baseline_meta-llama-31-8b-instruct-8bit_t0p2_m192_s2 duration=3m 24s
+[37/42] baseline model=Gemma-2-9b-it-4bit temp=0.0 max_tokens=192 seed=0 eta=13m 14s
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	incident_brief_one_sentence	18 tok
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	policy_delta_two_bullets	25 tok
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	handoff_delta_concise	22 tok
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	handoff_delta_detailed	48 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	extract_ticket_json	66 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	extract_invoice_json	58 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	emit_csv_rows	22 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	emit_action_lines	121 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	state_reconciliation_json	84 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	latest_override_selection	54 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	reference_selection_triples	28 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	ledger_carry_forward_json	99 tok
+Gemma-2-9b-it-4bit	benchmark	persistent_failure_probe	exact_yaml_status	35 tok
+Gemma-2-9b-it-4bit	benchmark	persistent_failure_probe	two_line_recovery_plan	25 tok
+Gemma-2-9b-it-4bit	benchmark	adversarial_pressure	injected_override_ignore	256 tok
+Gemma-2-9b-it-4bit	benchmark	adversarial_pressure	contradictory_owner_injection	92 tok
+Gemma-2-9b-it-4bit	benchmark	adversarial_pressure	schema_injection_resist	35 tok
+Gemma-2-9b-it-4bit	benchmark	bounded_determination	escalation_verdict_yaml	18 tok
+Gemma-2-9b-it-4bit	benchmark	bounded_determination	continue_verdict_yaml	19 tok
+Gemma-2-9b-it-4bit	benchmark	bounded_determination	abort_threshold_lines	94 tok
+Gemma-2-9b-it-4bit	stress	step=0	in=167	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=1	in=237	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=2	in=272	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=3	in=306	out=32	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=4	in=339	out=32	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=5	in=372	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=6	in=406	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=7	in=440	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=8	in=474	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=9	in=508	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=10	in=543	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=11	in=578	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=12	in=613	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=13	in=648	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=14	in=683	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=15	in=718	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=16	in=753	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=17	in=788	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=18	in=823	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=19	in=858	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=20	in=894	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=21	in=930	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=22	in=966	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=23	in=1002	out=35	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_gemma-2-9b-it-4bit_t0p0_m192_s0
+  -> completed run_id=weekend_baseline_gemma-2-9b-it-4bit_t0p0_m192_s0 duration=2m 58s
+[38/42] baseline model=Gemma-2-9b-it-4bit temp=0.0 max_tokens=192 seed=1 eta=11m 8s
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	incident_brief_one_sentence	18 tok
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	policy_delta_two_bullets	25 tok
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	handoff_delta_concise	22 tok
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	handoff_delta_detailed	48 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	extract_ticket_json	66 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	extract_invoice_json	58 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	emit_csv_rows	22 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	emit_action_lines	121 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	state_reconciliation_json	84 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	latest_override_selection	54 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	reference_selection_triples	28 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	ledger_carry_forward_json	99 tok
+Gemma-2-9b-it-4bit	benchmark	persistent_failure_probe	exact_yaml_status	35 tok
+Gemma-2-9b-it-4bit	benchmark	persistent_failure_probe	two_line_recovery_plan	25 tok
+Gemma-2-9b-it-4bit	benchmark	adversarial_pressure	injected_override_ignore	256 tok
+Gemma-2-9b-it-4bit	benchmark	adversarial_pressure	contradictory_owner_injection	92 tok
+Gemma-2-9b-it-4bit	benchmark	adversarial_pressure	schema_injection_resist	35 tok
+Gemma-2-9b-it-4bit	benchmark	bounded_determination	escalation_verdict_yaml	18 tok
+Gemma-2-9b-it-4bit	benchmark	bounded_determination	continue_verdict_yaml	19 tok
+Gemma-2-9b-it-4bit	benchmark	bounded_determination	abort_threshold_lines	94 tok
+Gemma-2-9b-it-4bit	stress	step=0	in=167	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=1	in=237	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=2	in=272	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=3	in=306	out=32	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=4	in=339	out=32	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=5	in=372	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=6	in=406	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=7	in=440	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=8	in=474	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=9	in=508	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=10	in=543	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=11	in=578	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=12	in=613	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=13	in=648	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=14	in=683	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=15	in=718	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=16	in=753	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=17	in=788	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=18	in=823	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=19	in=858	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=20	in=894	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=21	in=930	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=22	in=966	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=23	in=1002	out=35	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_gemma-2-9b-it-4bit_t0p0_m192_s1
+  -> completed run_id=weekend_baseline_gemma-2-9b-it-4bit_t0p0_m192_s1 duration=2m 58s
+[39/42] baseline model=Gemma-2-9b-it-4bit temp=0.0 max_tokens=192 seed=2 eta=8m 59s
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	incident_brief_one_sentence	18 tok
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	policy_delta_two_bullets	25 tok
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	handoff_delta_concise	22 tok
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	handoff_delta_detailed	48 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	extract_ticket_json	66 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	extract_invoice_json	58 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	emit_csv_rows	22 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	emit_action_lines	121 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	state_reconciliation_json	84 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	latest_override_selection	54 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	reference_selection_triples	28 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	ledger_carry_forward_json	99 tok
+Gemma-2-9b-it-4bit	benchmark	persistent_failure_probe	exact_yaml_status	35 tok
+Gemma-2-9b-it-4bit	benchmark	persistent_failure_probe	two_line_recovery_plan	25 tok
+Gemma-2-9b-it-4bit	benchmark	adversarial_pressure	injected_override_ignore	256 tok
+Gemma-2-9b-it-4bit	benchmark	adversarial_pressure	contradictory_owner_injection	92 tok
+Gemma-2-9b-it-4bit	benchmark	adversarial_pressure	schema_injection_resist	35 tok
+Gemma-2-9b-it-4bit	benchmark	bounded_determination	escalation_verdict_yaml	18 tok
+Gemma-2-9b-it-4bit	benchmark	bounded_determination	continue_verdict_yaml	19 tok
+Gemma-2-9b-it-4bit	benchmark	bounded_determination	abort_threshold_lines	94 tok
+Gemma-2-9b-it-4bit	stress	step=0	in=167	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=1	in=237	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=2	in=272	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=3	in=306	out=32	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=4	in=339	out=32	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=5	in=372	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=6	in=406	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=7	in=440	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=8	in=474	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=9	in=508	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=10	in=543	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=11	in=578	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=12	in=613	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=13	in=648	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=14	in=683	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=15	in=718	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=16	in=753	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=17	in=788	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=18	in=823	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=19	in=858	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=20	in=894	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=21	in=930	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=22	in=966	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=23	in=1002	out=35	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_gemma-2-9b-it-4bit_t0p0_m192_s2
+  -> completed run_id=weekend_baseline_gemma-2-9b-it-4bit_t0p0_m192_s2 duration=2m 58s
+[40/42] baseline model=Gemma-2-9b-it-4bit temp=0.2 max_tokens=192 seed=0 eta=6m 48s
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	incident_brief_one_sentence	18 tok
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	policy_delta_two_bullets	25 tok
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	handoff_delta_concise	22 tok
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	handoff_delta_detailed	48 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	extract_ticket_json	66 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	extract_invoice_json	58 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	emit_csv_rows	22 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	emit_action_lines	121 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	state_reconciliation_json	84 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	latest_override_selection	54 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	reference_selection_triples	28 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	ledger_carry_forward_json	99 tok
+Gemma-2-9b-it-4bit	benchmark	persistent_failure_probe	exact_yaml_status	35 tok
+Gemma-2-9b-it-4bit	benchmark	persistent_failure_probe	two_line_recovery_plan	25 tok
+Gemma-2-9b-it-4bit	benchmark	adversarial_pressure	injected_override_ignore	256 tok
+Gemma-2-9b-it-4bit	benchmark	adversarial_pressure	contradictory_owner_injection	92 tok
+Gemma-2-9b-it-4bit	benchmark	adversarial_pressure	schema_injection_resist	35 tok
+Gemma-2-9b-it-4bit	benchmark	bounded_determination	escalation_verdict_yaml	18 tok
+Gemma-2-9b-it-4bit	benchmark	bounded_determination	continue_verdict_yaml	19 tok
+Gemma-2-9b-it-4bit	benchmark	bounded_determination	abort_threshold_lines	94 tok
+Gemma-2-9b-it-4bit	stress	step=0	in=167	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=1	in=237	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=2	in=272	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=3	in=306	out=32	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=4	in=339	out=32	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=5	in=372	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=6	in=406	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=7	in=440	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=8	in=474	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=9	in=508	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=10	in=543	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=11	in=578	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=12	in=613	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=13	in=648	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=14	in=683	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=15	in=718	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=16	in=753	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=17	in=788	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=18	in=823	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=19	in=858	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=20	in=894	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=21	in=930	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=22	in=966	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=23	in=1002	out=35	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_gemma-2-9b-it-4bit_t0p2_m192_s0
+  -> completed run_id=weekend_baseline_gemma-2-9b-it-4bit_t0p2_m192_s0 duration=2m 58s
+[41/42] baseline model=Gemma-2-9b-it-4bit temp=0.2 max_tokens=192 seed=1 eta=4m 34s
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	incident_brief_one_sentence	18 tok
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	policy_delta_two_bullets	25 tok
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	handoff_delta_concise	22 tok
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	handoff_delta_detailed	48 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	extract_ticket_json	66 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	extract_invoice_json	58 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	emit_csv_rows	22 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	emit_action_lines	121 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	state_reconciliation_json	84 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	latest_override_selection	54 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	reference_selection_triples	28 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	ledger_carry_forward_json	99 tok
+Gemma-2-9b-it-4bit	benchmark	persistent_failure_probe	exact_yaml_status	35 tok
+Gemma-2-9b-it-4bit	benchmark	persistent_failure_probe	two_line_recovery_plan	25 tok
+Gemma-2-9b-it-4bit	benchmark	adversarial_pressure	injected_override_ignore	256 tok
+Gemma-2-9b-it-4bit	benchmark	adversarial_pressure	contradictory_owner_injection	92 tok
+Gemma-2-9b-it-4bit	benchmark	adversarial_pressure	schema_injection_resist	35 tok
+Gemma-2-9b-it-4bit	benchmark	bounded_determination	escalation_verdict_yaml	18 tok
+Gemma-2-9b-it-4bit	benchmark	bounded_determination	continue_verdict_yaml	19 tok
+Gemma-2-9b-it-4bit	benchmark	bounded_determination	abort_threshold_lines	94 tok
+Gemma-2-9b-it-4bit	stress	step=0	in=167	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=1	in=237	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=2	in=272	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=3	in=306	out=32	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=4	in=339	out=32	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=5	in=372	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=6	in=406	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=7	in=440	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=8	in=474	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=9	in=508	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=10	in=543	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=11	in=578	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=12	in=613	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=13	in=648	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=14	in=683	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=15	in=718	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=16	in=753	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=17	in=788	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=18	in=823	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=19	in=858	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=20	in=894	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=21	in=930	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=22	in=966	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=23	in=1002	out=35	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_gemma-2-9b-it-4bit_t0p2_m192_s1
+  -> completed run_id=weekend_baseline_gemma-2-9b-it-4bit_t0p2_m192_s1 duration=2m 58s
+[42/42] baseline model=Gemma-2-9b-it-4bit temp=0.2 max_tokens=192 seed=2 eta=2m 18s
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	incident_brief_one_sentence	18 tok
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	policy_delta_two_bullets	25 tok
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	handoff_delta_concise	22 tok
+Gemma-2-9b-it-4bit	benchmark	core_conciseness	handoff_delta_detailed	48 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	extract_ticket_json	66 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	extract_invoice_json	58 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	emit_csv_rows	22 tok
+Gemma-2-9b-it-4bit	benchmark	structured_extraction	emit_action_lines	121 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	state_reconciliation_json	84 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	latest_override_selection	54 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	reference_selection_triples	28 tok
+Gemma-2-9b-it-4bit	benchmark	long_context_stability	ledger_carry_forward_json	99 tok
+Gemma-2-9b-it-4bit	benchmark	persistent_failure_probe	exact_yaml_status	35 tok
+Gemma-2-9b-it-4bit	benchmark	persistent_failure_probe	two_line_recovery_plan	25 tok
+Gemma-2-9b-it-4bit	benchmark	adversarial_pressure	injected_override_ignore	256 tok
+Gemma-2-9b-it-4bit	benchmark	adversarial_pressure	contradictory_owner_injection	92 tok
+Gemma-2-9b-it-4bit	benchmark	adversarial_pressure	schema_injection_resist	35 tok
+Gemma-2-9b-it-4bit	benchmark	bounded_determination	escalation_verdict_yaml	18 tok
+Gemma-2-9b-it-4bit	benchmark	bounded_determination	continue_verdict_yaml	19 tok
+Gemma-2-9b-it-4bit	benchmark	bounded_determination	abort_threshold_lines	94 tok
+Gemma-2-9b-it-4bit	stress	step=0	in=167	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=1	in=237	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=2	in=272	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=3	in=306	out=32	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=4	in=339	out=32	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=5	in=372	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=6	in=406	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=7	in=440	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=8	in=474	out=33	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=9	in=508	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=10	in=543	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=11	in=578	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=12	in=613	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=13	in=648	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=14	in=683	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=15	in=718	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=16	in=753	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=17	in=788	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=18	in=823	out=34	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=19	in=858	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=20	in=894	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=21	in=930	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=22	in=966	out=35	fail=False	consec=0
+Gemma-2-9b-it-4bit	stress	step=23	in=1002	out=35	fail=False	consec=0
+results/final_locals/runs/unified_weekend_baseline_gemma-2-9b-it-4bit_t0p2_m192_s2
+  -> completed run_id=weekend_baseline_gemma-2-9b-it-4bit_t0p2_m192_s2 duration=2m 57s
+results/final_locals/report.md

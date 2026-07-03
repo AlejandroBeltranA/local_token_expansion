@@ -1,0 +1,650 @@
+{
+  "models": [
+    {
+      "model": "Gemma-2-9b-it-4bit",
+      "baseline_regime": "abort",
+      "baseline_agreement": "3/3",
+      "regimes_by_condition_seeds": {
+        "f0p5": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f0p7": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f0p85": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f0p9": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f1p0": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f1p1": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f1p15": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f1p3": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f1p5": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "lorr_off": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "lorr_on": [
+          "abort",
+          "abort",
+          "abort"
+        ]
+      },
+      "consensus_by_condition": {
+        "f0p5": "abort",
+        "f0p7": "abort",
+        "f0p85": "abort",
+        "f0p9": "abort",
+        "f1p0": "abort",
+        "f1p1": "abort",
+        "f1p15": "abort",
+        "f1p3": "abort",
+        "f1p5": "abort",
+        "lorr_off": "abort",
+        "lorr_on": "abort"
+      },
+      "agreement_by_condition": {
+        "f0p5": "3/3",
+        "f0p7": "3/3",
+        "f0p85": "3/3",
+        "f0p9": "3/3",
+        "f1p0": "3/3",
+        "f1p1": "3/3",
+        "f1p15": "3/3",
+        "f1p3": "3/3",
+        "f1p5": "3/3",
+        "lorr_off": "3/3",
+        "lorr_on": "3/3"
+      },
+      "stable": true,
+      "flips": {}
+    },
+    {
+      "model": "Meta-Llama-3.1-8B-Instruct-3bit",
+      "baseline_regime": "escalate",
+      "baseline_agreement": "3/3",
+      "regimes_by_condition_seeds": {
+        "f0p5": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f0p7": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f0p85": [
+          "escalate",
+          "escalate",
+          "escalate"
+        ],
+        "f0p9": [
+          "escalate",
+          "escalate",
+          "escalate"
+        ],
+        "f1p0": [
+          "escalate",
+          "escalate",
+          "escalate"
+        ],
+        "f1p1": [
+          "escalate",
+          "escalate",
+          "escalate"
+        ],
+        "f1p15": [
+          "escalate",
+          "escalate",
+          "escalate"
+        ],
+        "f1p3": [
+          "escalate",
+          "escalate",
+          "escalate"
+        ],
+        "f1p5": [
+          "escalate",
+          "escalate",
+          "escalate"
+        ],
+        "lorr_off": [
+          "escalate",
+          "escalate",
+          "escalate"
+        ],
+        "lorr_on": [
+          "escalate",
+          "escalate",
+          "escalate"
+        ]
+      },
+      "consensus_by_condition": {
+        "f0p5": "abort",
+        "f0p7": "abort",
+        "f0p85": "escalate",
+        "f0p9": "escalate",
+        "f1p0": "escalate",
+        "f1p1": "escalate",
+        "f1p15": "escalate",
+        "f1p3": "escalate",
+        "f1p5": "escalate",
+        "lorr_off": "escalate",
+        "lorr_on": "escalate"
+      },
+      "agreement_by_condition": {
+        "f0p5": "3/3",
+        "f0p7": "3/3",
+        "f0p85": "3/3",
+        "f0p9": "3/3",
+        "f1p0": "3/3",
+        "f1p1": "3/3",
+        "f1p15": "3/3",
+        "f1p3": "3/3",
+        "f1p5": "3/3",
+        "lorr_off": "3/3",
+        "lorr_on": "3/3"
+      },
+      "stable": false,
+      "flips": {
+        "f0p5": "abort (3/3)",
+        "f0p7": "abort (3/3)"
+      }
+    },
+    {
+      "model": "Meta-Llama-3.1-8B-Instruct-8bit",
+      "baseline_regime": "escalate",
+      "baseline_agreement": "3/3",
+      "regimes_by_condition_seeds": {
+        "f0p5": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f0p7": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f0p85": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f0p9": [
+          "escalate",
+          "escalate",
+          "escalate"
+        ],
+        "f1p0": [
+          "escalate",
+          "escalate",
+          "escalate"
+        ],
+        "f1p1": [
+          "escalate",
+          "escalate",
+          "escalate"
+        ],
+        "f1p15": [
+          "escalate",
+          "escalate",
+          "escalate"
+        ],
+        "f1p3": [
+          "escalate",
+          "escalate",
+          "escalate"
+        ],
+        "f1p5": [
+          "escalate",
+          "escalate",
+          "escalate"
+        ],
+        "lorr_off": [
+          "escalate",
+          "escalate",
+          "escalate"
+        ],
+        "lorr_on": [
+          "escalate",
+          "escalate",
+          "escalate"
+        ]
+      },
+      "consensus_by_condition": {
+        "f0p5": "abort",
+        "f0p7": "abort",
+        "f0p85": "abort",
+        "f0p9": "escalate",
+        "f1p0": "escalate",
+        "f1p1": "escalate",
+        "f1p15": "escalate",
+        "f1p3": "escalate",
+        "f1p5": "escalate",
+        "lorr_off": "escalate",
+        "lorr_on": "escalate"
+      },
+      "agreement_by_condition": {
+        "f0p5": "3/3",
+        "f0p7": "3/3",
+        "f0p85": "3/3",
+        "f0p9": "3/3",
+        "f1p0": "3/3",
+        "f1p1": "3/3",
+        "f1p15": "3/3",
+        "f1p3": "3/3",
+        "f1p5": "3/3",
+        "lorr_off": "3/3",
+        "lorr_on": "3/3"
+      },
+      "stable": false,
+      "flips": {
+        "f0p5": "abort (3/3)",
+        "f0p7": "abort (3/3)",
+        "f0p85": "abort (3/3)"
+      }
+    },
+    {
+      "model": "Mistral-7B-Instruct-v0.3",
+      "baseline_regime": "abort",
+      "baseline_agreement": "3/3",
+      "regimes_by_condition_seeds": {
+        "f0p5": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f0p7": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f0p85": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f0p9": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f1p0": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f1p1": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f1p15": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f1p3": [
+          "escalate",
+          "escalate",
+          "escalate"
+        ],
+        "f1p5": [
+          "retry",
+          "retry",
+          "retry"
+        ],
+        "lorr_off": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "lorr_on": [
+          "abort",
+          "abort",
+          "abort"
+        ]
+      },
+      "consensus_by_condition": {
+        "f0p5": "abort",
+        "f0p7": "abort",
+        "f0p85": "abort",
+        "f0p9": "abort",
+        "f1p0": "abort",
+        "f1p1": "abort",
+        "f1p15": "abort",
+        "f1p3": "escalate",
+        "f1p5": "retry",
+        "lorr_off": "abort",
+        "lorr_on": "abort"
+      },
+      "agreement_by_condition": {
+        "f0p5": "3/3",
+        "f0p7": "3/3",
+        "f0p85": "3/3",
+        "f0p9": "3/3",
+        "f1p0": "3/3",
+        "f1p1": "3/3",
+        "f1p15": "3/3",
+        "f1p3": "3/3",
+        "f1p5": "3/3",
+        "lorr_off": "3/3",
+        "lorr_on": "3/3"
+      },
+      "stable": false,
+      "flips": {
+        "f1p3": "escalate (3/3)",
+        "f1p5": "retry (3/3)"
+      }
+    },
+    {
+      "model": "Phi-3-mini-4k-instruct-4bit",
+      "baseline_regime": "abort",
+      "baseline_agreement": "3/3",
+      "regimes_by_condition_seeds": {
+        "f0p5": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f0p7": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f0p85": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f0p9": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f1p0": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f1p1": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f1p15": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f1p3": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f1p5": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "lorr_off": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "lorr_on": [
+          "abort",
+          "abort",
+          "abort"
+        ]
+      },
+      "consensus_by_condition": {
+        "f0p5": "abort",
+        "f0p7": "abort",
+        "f0p85": "abort",
+        "f0p9": "abort",
+        "f1p0": "abort",
+        "f1p1": "abort",
+        "f1p15": "abort",
+        "f1p3": "abort",
+        "f1p5": "abort",
+        "lorr_off": "abort",
+        "lorr_on": "abort"
+      },
+      "agreement_by_condition": {
+        "f0p5": "3/3",
+        "f0p7": "3/3",
+        "f0p85": "3/3",
+        "f0p9": "3/3",
+        "f1p0": "3/3",
+        "f1p1": "3/3",
+        "f1p15": "3/3",
+        "f1p3": "3/3",
+        "f1p5": "3/3",
+        "lorr_off": "3/3",
+        "lorr_on": "3/3"
+      },
+      "stable": true,
+      "flips": {}
+    },
+    {
+      "model": "Phi-4-mini-instruct-8bit",
+      "baseline_regime": "retry",
+      "baseline_agreement": "3/3",
+      "regimes_by_condition_seeds": {
+        "f0p5": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f0p7": [
+          "escalate",
+          "escalate",
+          "escalate"
+        ],
+        "f0p85": [
+          "retry",
+          "retry",
+          "retry"
+        ],
+        "f0p9": [
+          "retry",
+          "retry",
+          "retry"
+        ],
+        "f1p0": [
+          "retry",
+          "retry",
+          "retry"
+        ],
+        "f1p1": [
+          "retry",
+          "retry",
+          "retry"
+        ],
+        "f1p15": [
+          "retry",
+          "retry",
+          "retry"
+        ],
+        "f1p3": [
+          "retry",
+          "retry",
+          "retry"
+        ],
+        "f1p5": [
+          "retry",
+          "retry",
+          "retry"
+        ],
+        "lorr_off": [
+          "retry",
+          "retry",
+          "retry"
+        ],
+        "lorr_on": [
+          "retry",
+          "retry",
+          "retry"
+        ]
+      },
+      "consensus_by_condition": {
+        "f0p5": "abort",
+        "f0p7": "escalate",
+        "f0p85": "retry",
+        "f0p9": "retry",
+        "f1p0": "retry",
+        "f1p1": "retry",
+        "f1p15": "retry",
+        "f1p3": "retry",
+        "f1p5": "retry",
+        "lorr_off": "retry",
+        "lorr_on": "retry"
+      },
+      "agreement_by_condition": {
+        "f0p5": "3/3",
+        "f0p7": "3/3",
+        "f0p85": "3/3",
+        "f0p9": "3/3",
+        "f1p0": "3/3",
+        "f1p1": "3/3",
+        "f1p15": "3/3",
+        "f1p3": "3/3",
+        "f1p5": "3/3",
+        "lorr_off": "3/3",
+        "lorr_on": "3/3"
+      },
+      "stable": false,
+      "flips": {
+        "f0p5": "abort (3/3)",
+        "f0p7": "escalate (3/3)"
+      }
+    },
+    {
+      "model": "SmolLM-1.7B-Instruct-4bit",
+      "baseline_regime": "abort",
+      "baseline_agreement": "3/3",
+      "regimes_by_condition_seeds": {
+        "f0p5": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f0p7": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f0p85": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f0p9": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f1p0": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f1p1": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f1p15": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f1p3": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "f1p5": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "lorr_off": [
+          "abort",
+          "abort",
+          "abort"
+        ],
+        "lorr_on": [
+          "abort",
+          "abort",
+          "abort"
+        ]
+      },
+      "consensus_by_condition": {
+        "f0p5": "abort",
+        "f0p7": "abort",
+        "f0p85": "abort",
+        "f0p9": "abort",
+        "f1p0": "abort",
+        "f1p1": "abort",
+        "f1p15": "abort",
+        "f1p3": "abort",
+        "f1p5": "abort",
+        "lorr_off": "abort",
+        "lorr_on": "abort"
+      },
+      "agreement_by_condition": {
+        "f0p5": "3/3",
+        "f0p7": "3/3",
+        "f0p85": "3/3",
+        "f0p9": "3/3",
+        "f1p0": "3/3",
+        "f1p1": "3/3",
+        "f1p15": "3/3",
+        "f1p3": "3/3",
+        "f1p5": "3/3",
+        "lorr_off": "3/3",
+        "lorr_on": "3/3"
+      },
+      "stable": true,
+      "flips": {}
+    }
+  ],
+  "all_stable": false,
+  "baseline_label": "f1p0",
+  "n_seeds": 3
+}

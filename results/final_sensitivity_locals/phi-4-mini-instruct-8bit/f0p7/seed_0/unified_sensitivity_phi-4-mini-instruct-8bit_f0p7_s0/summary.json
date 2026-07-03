@@ -1,0 +1,111 @@
+{
+  "benchmark_reused_from": "results/final_sensitivity_locals/phi-4-mini-instruct-8bit/f1p0/seed_0/unified_sensitivity_phi-4-mini-instruct-8bit_f1p0_s0/benchmark.jsonl",
+  "models": [
+    {
+      "benchmark_cases": 20,
+      "errors": 0,
+      "metrics": {
+        "benchmark_contract_failures": 8,
+        "mean_expansion_ratio": 0.470331,
+        "mean_length_overrun_rate": 0.045455,
+        "mean_runaway_continuation_score": 0.0,
+        "mean_stress_latency_ms": 2506.083,
+        "mean_verbosity_drift": 0.820513,
+        "recoverable_contract_failures": 5,
+        "unrecoverable_contract_failures": 3
+      },
+      "model_name": "Phi-4-mini-instruct-8bit",
+      "recommendation": {
+        "action": "escalate",
+        "rationale": "context decay, repetition loop, or latency cliff fired without persistent failure"
+      },
+      "stress_steps": 24,
+      "trigger_summary": {
+        "context_decay": {
+          "evidence": {
+            "context_benchmark_failures": [],
+            "dominant_gated_failure_reasons": [
+              "latency"
+            ],
+            "first_gated_failure_step": 23,
+            "stress_contract_break_steps": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "recommended_action": "escalate",
+          "status": "clear",
+          "threshold": ">=2 context_pressure benchmark contract failures, or gated stress failure dominated by repetition/near-cap reasons"
+        },
+        "latency_cliff": {
+          "evidence": {
+            "backend_mode": "local-any-gated",
+            "gated_latency_steps": [
+              23
+            ],
+            "hard_trigger_last_three": false
+          },
+          "recommended_action": "retry",
+          "status": "fired",
+          "threshold": "stress latency_ms>1750 after input_tokens>=1050; hard trigger if 2 of last 3 stress steps exceed it"
+        },
+        "near_cap_pressure": {
+          "evidence": {
+            "stress_window_hit": false,
+            "structured_lorr_mean": 0
+          },
+          "recommended_action": "repair",
+          "status": "clear",
+          "threshold": "benchmark LORR mean across structured_contracts+failure_escalation >=0.13999999999999999, or stress LORR=1 on any 1 steps within 4-step window"
+        },
+        "over_expansion": {
+          "evidence": {
+            "bounded_lorr_failures": [
+              "ledger_carry_forward_json"
+            ],
+            "budget_control_failures": [
+              "incident_brief_one_sentence",
+              "policy_delta_two_bullets"
+            ]
+          },
+          "recommended_action": "retry",
+          "status": "fired",
+          "threshold": ">=2 budget-tagged benchmark misses with ER>=1.25 or contract failure, or any max_tokens<=56 row with LORR=1"
+        },
+        "persistent_failure": {
+          "evidence": {
+            "failure_escalation_contract_failures": [
+              "exact_yaml_status"
+            ],
+            "stress_reasons": [],
+            "stress_step": null
+          },
+          "recommended_action": "abort",
+          "status": "clear",
+          "threshold": "stress reaches 2 consecutive failed steps, or both failure_escalation benchmark cases fail contract"
+        },
+        "repetition_loop": {
+          "evidence": {
+            "high_rcs_steps": [],
+            "last_five_mean_rcs": 0.0,
+            "two_consecutive": false
+          },
+          "recommended_action": "escalate",
+          "status": "clear",
+          "threshold": "stress RCS>=0.21 on 2 consecutive steps, or last 5 stress steps mean RCS>=0.154"
+        }
+      }
+    }
+  ],
+  "overall_recommendation": "escalate",
+  "records": {
+    "benchmark_rows": 20,
+    "error_rows": 0,
+    "generation_rows": 44,
+    "stress_rows": 24,
+    "total": 44
+  }
+}

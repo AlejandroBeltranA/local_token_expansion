@@ -13,7 +13,9 @@ __pycache__/
 mlx_models/
 old scripts/
 
-# LTE outputs (generated)
+# LTE outputs (generated). Lightweight summaries for the published sweeps
+# (summary.json / report.md / configs, no raw trajectories) are force-added
+# with `git add -f`; full trajectories are distributed via the Zenodo archive.
 /results/
 /reports/
 /artifacts/

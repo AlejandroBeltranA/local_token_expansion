@@ -1,0 +1,68 @@
+run_name: sensitivity_smollm-17b-instruct-4bit_f0p5_s2
+backend: mlx
+models:
+- name: SmolLM-1.7B-Instruct-4bit
+  backend: mlx
+  path: mlx_models/SmolLM-1.7B-Instruct-4bit
+  revision: null
+  context_limit_tokens: 2048
+suites:
+- suites/core_conciseness.yaml
+- suites/structured_extraction.yaml
+- suites/long_context_stability.yaml
+- suites/persistent_failure_probe.yaml
+- suites/adversarial_pressure.yaml
+- suites/bounded_determination.yaml
+generation:
+  temperature: 0.2
+  top_p: 0.95
+  seed: 2
+  max_tokens: 192
+output:
+  results_dir: results/final_sensitivity_locals/smollm-17b-instruct-4bit/f0p5/seed_2
+  reports_dir: reports
+stress:
+  enabled: true
+  max_steps: 24
+  max_runtime_sec: 150
+  context_growth: append
+  system: 'You are being tested for reliability under a growing context window.
+
+    Follow the output contract exactly.
+
+    Never quote, continue, or paraphrase the reference block.
+
+    '
+  prompt: 'Produce exactly 5 bullet points for the current incident state.
+
+    Each bullet must start with a verb and contain 4 to 8 words.
+
+    Use this exact order:
+
+    - report the latest status
+
+    - preserve the current owner
+
+    - name the next action
+
+    - name one risk caused by prior failures
+
+    - state one escalation condition
+
+    Keep the owner as `Iris` unless the TASK changes it.
+
+    No intro. No closing sentence.
+
+    '
+  history_max_chars_per_step: 1200
+  history_max_chars_total: 9600
+  failure:
+    consecutive: 2
+    max_latency_ms: 1250
+    latency_only_after_input_tokens: 750
+    fail_on_lorr: true
+    max_rcs: 0.15
+    max_rcs_window_mean: 0.11
+    max_lorr_mean: 0.1
+    near_cap_window_required: 1
+    near_cap_window_size: 2
